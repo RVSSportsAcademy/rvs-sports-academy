@@ -1,7 +1,5 @@
 'use client';
 
-import rvs from "@/assets/rvs-logo.png"
-
 import { useState } from "react";
 import Link from "next/link";
 import Image from "next/image";
@@ -14,7 +12,7 @@ const Navbar = () => {
     <header className="sticky top-0 left-0 z-50 flex items-center justify-between w-full px-6 py-4 bg-white border-b-2 border-gray-300 shadow-md">
       {/* Logo */}
       <div className="flex items-center gap-2">
-        <Image src="/rvs.png" alt="RVS Sports Academy Logo" width={50} height={50} />
+        <Image src="/rvs-logo.png" alt="RVS Sports Academy Logo" width={50} height={50} />
         <Link href="/"><h1 className="text-2xl font-bold">RVS Sports Academy</h1></Link>
       </div>
 
