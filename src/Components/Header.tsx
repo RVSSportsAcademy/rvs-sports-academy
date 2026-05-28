@@ -5,21 +5,25 @@ import Link from "next/link";
 import Image from "next/image";
 import { Menu, X } from "lucide-react";
 
-import Logo from "@/assets/rvs-logo.png";
+// IMPORT IMAGE
+import logo from "@/assets/rvs-logo.png";
 
 const Navbar = () => {
   const [isOpen, setIsOpen] = useState(false);
 
   return (
     <header className="sticky top-0 left-0 z-50 flex items-center justify-between w-full px-6 py-4 bg-white border-b-2 border-gray-300 shadow-md">
-      
+
       {/* Logo */}
       <div className="flex items-center gap-2">
-        <img
-          src={Logo}
+        
+        {/* USE NEXT IMAGE */}
+        <Image
+          src={logo}
           alt="RVS Sports Academy"
           width={50}
           height={50}
+          priority
         />
 
         <Link href="/">
@@ -68,7 +72,7 @@ const Navbar = () => {
       {/* Mobile Navigation */}
       {isOpen && (
         <div className="absolute left-0 top-16 flex flex-col items-center w-full py-4 space-y-4 bg-white border-b-2 border-gray-300 shadow-lg lg:hidden">
-          
+
           <Link
             href="/gallery"
             className="hover:text-orange-500"
