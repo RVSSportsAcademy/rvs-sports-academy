@@ -28,7 +28,7 @@ const Navbar = () => {
 
         <Link href="/">
           <h1 className="text-2xl font-bold">
-            RVS Sports Academy
+            RBS Sports Welfare Association
           </h1>
         </Link>
       </div>
