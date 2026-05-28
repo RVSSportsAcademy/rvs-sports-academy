@@ -5,7 +5,7 @@ import Link from "next/link";
 import Image from "next/image";
 import { Menu, X } from "lucide-react";
 
-import Logo from "@/assets/rvs-logo.svg";
+import Logo from "@/assets/rvs-logo.png";
 
 const Navbar = () => {
   const [isOpen, setIsOpen] = useState(false);
