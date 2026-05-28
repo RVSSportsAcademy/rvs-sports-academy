@@ -15,7 +15,7 @@ const Navbar = () => {
       
       {/* Logo */}
       <div className="flex items-center gap-2">
-        <Image
+        <img
           src={Logo}
           alt="RVS Sports Academy"
           width={50}
