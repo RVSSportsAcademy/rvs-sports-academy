@@ -46,12 +46,7 @@ const AboutSection = ({ slice }: AboutProps): JSX.Element => {
         <div className="text-gray-700 mb-4 text-sm md:text-base">
           <PrismicRichText field={slice.primary.description} />
         </div>
-        <a
-          href="#"
-          className="flex justify-center md:justify-start items-center text-red-500 font-semibold text-sm md:text-base"
-        >
-          ● Read More
-        </a>
+        
       </div>
     </section>
   );
