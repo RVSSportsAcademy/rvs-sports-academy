@@ -20,7 +20,6 @@ const Navbar = () => {
           alt="RVS Sports Academy"
           width={50}
           height={50}
-          priority
         />
 
         <Link href="/">
