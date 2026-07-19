@@ -1,0 +1,49 @@
+{
+  "id": "achievements",
+  "type": "SharedSlice",
+  "name": "Achievements",
+  "description": "Achievements section",
+  "variations": [
+    {
+      "id": "default",
+      "name": "Default",
+      "docURL": "...",
+      "version": "initial",
+      "description": "Default",
+      "imageUrl": "",
+      "primary": {
+        "title": {
+          "type": "Text",
+          "config": {
+            "label": "Title",
+            "placeholder": ""
+          }
+        },
+        "achievements": {
+          "type": "Group",
+          "config": {
+            "label": "Achievements",
+            "repeat": true,
+            "fields": {
+              "achievement_number": {
+                "type": "Text",
+                "config": {
+                  "label": "Achievement Number",
+                  "placeholder": ""
+                }
+              },
+              "achievement_label": {
+                "type": "Text",
+                "config": {
+                  "label": "Achievement Label",
+                  "placeholder": ""
+                }
+              }
+            }
+          }
+        }
+      },
+      "items": {}
+    }
+  ]
+}

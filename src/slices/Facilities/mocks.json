@@ -1,0 +1,38 @@
+[
+  {
+    "__TYPE__": "SharedSliceContent",
+    "variation": "default",
+    "primary": {
+      "title": {
+        "__TYPE__": "FieldContent",
+        "value": "Our Facilities",
+        "type": "Text"
+      },
+      "facilities": [
+        {
+          "__TYPE__": "GroupItemContent",
+          "facility_name": {
+            "__TYPE__": "FieldContent",
+            "value": "Training Ground",
+            "type": "Text"
+          },
+          "facility_image": {
+            "__TYPE__": "ImageContent"
+          },
+          "facility_description": {
+            "__TYPE__": "StructuredTextContent",
+            "value": [
+              {
+                "type": "paragraph",
+                "content": {
+                  "text": "State-of-the-art training facility with modern equipment."
+                }
+              }
+            ]
+          }
+        }
+      ]
+    },
+    "items": []
+  }
+]

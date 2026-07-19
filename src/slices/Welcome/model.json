@@ -2,7 +2,7 @@
   "id": "welcome",
   "type": "SharedSlice",
   "name": "Welcome",
-  "description": "Welcome",
+  "description": "Welcome Section",
   "variations": [
     {
       "id": "default",
@@ -10,7 +10,6 @@
       "docURL": "...",
       "version": "initial",
       "description": "Default",
-      "imageUrl": "",
       "primary": {
         "image": {
           "type": "Image",
@@ -20,27 +19,37 @@
             "thumbnails": []
           }
         },
-        "heading": {
-          "type": "Text",
-          "config": {
-            "label": "Heading",
-            "placeholder": ""
-          }
-        },
         "sub_heading": {
           "type": "Text",
           "config": {
-            "label": "Sub Heading",
-            "placeholder": ""
+            "label": "Sub Heading"
+          }
+        },
+        "heading": {
+          "type": "Text",
+          "config": {
+            "label": "Heading"
           }
         },
         "description": {
           "type": "StructuredText",
           "config": {
             "label": "Description",
-            "placeholder": "",
-            "allowTargetBlank": true,
-            "multi": "paragraph,preformatted,heading1,heading2,heading3,heading4,heading5,heading6,strong,em,hyperlink,image,embed,list-item,o-list-item,rtl"
+            "multi": "paragraph,strong,em,hyperlink,list-item,o-list-item",
+            "allowTargetBlank": true
+          }
+        },
+        "button_label": {
+          "type": "Text",
+          "config": {
+            "label": "Button Label"
+          }
+        },
+        "button_link": {
+          "type": "Link",
+          "config": {
+            "label": "Button Link",
+            "allowTargetBlank": true
           }
         }
       },

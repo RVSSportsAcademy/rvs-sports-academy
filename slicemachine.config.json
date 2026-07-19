@@ -3,5 +3,5 @@
   "adapter": "@slicemachine/adapter-next",
   "libraries": ["./src/slices"],
   "localSliceSimulatorURL": "https://rvs-sports-academy.vercel.app/slice-simulator",
-  "apiEndpoint": ""
+  "apiEndpoint": "https://rvs-sports.cdn.prismic.io/api/v2"
 }

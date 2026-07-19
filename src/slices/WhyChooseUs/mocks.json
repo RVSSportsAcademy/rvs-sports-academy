@@ -1,0 +1,35 @@
+[
+  {
+    "__TYPE__": "SharedSliceContent",
+    "variation": "default",
+    "primary": {
+      "title": {
+        "__TYPE__": "FieldContent",
+        "value": "Why Choose Us",
+        "type": "Text"
+      },
+      "reasons": [
+        {
+          "__TYPE__": "GroupItemContent",
+          "reason_title": {
+            "__TYPE__": "FieldContent",
+            "value": "Expert Coaches",
+            "type": "Text"
+          },
+          "reason_description": {
+            "__TYPE__": "StructuredTextContent",
+            "value": [
+              {
+                "type": "paragraph",
+                "content": {
+                  "text": "Our coaches are certified professionals with years of experience."
+                }
+              }
+            ]
+          }
+        }
+      ]
+    },
+    "items": []
+  }
+]

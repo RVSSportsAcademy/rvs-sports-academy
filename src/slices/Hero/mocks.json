@@ -1,56 +1,38 @@
-[
-	{
-		"__TYPE__": "SharedSliceContent",
-		"variation": "default",
-		"primary": {
-			"title": {
-				"__TYPE__": "FieldContent",
-				"value": "new",
-				"type": "Text"
-			},
-			"hero_image": {
-				"origin": {
-					"id": "main",
-					"url": "https://images.unsplash.com/photo-1600804931749-2da4ce26c869",
-					"width": 3199,
-					"height": 3199
-				},
-				"url": "https://images.unsplash.com/photo-1600804931749-2da4ce26c869",
-				"width": 3199,
-				"height": 3199,
-				"edit": {
-					"zoom": 1,
-					"crop": {
-						"x": 0,
-						"y": 0
-					},
-					"background": "transparent"
-				},
-				"credits": null,
-				"alt": null,
-				"__TYPE__": "ImageContent",
-				"thumbnails": {}
-			},
-			"paragraph": {
-				"__TYPE__": "FieldContent",
-				"value": "broad",
-				"type": "Text"
-			},
-			"link_label": {
-				"__TYPE__": "FieldContent",
-				"value": "science",
-				"type": "Text"
-			},
-			"link": {
-				"__TYPE__": "LinkContent",
-				"key": "dfd0a89a-364e-4e01-aece-a61e77c11d8b",
-				"value": {
-					"__TYPE__": "ExternalLink",
-					"url": "https://prismic.io",
-					"text": "then"
-				}
-			}
-		},
-		"items": []
-	}
-]
+{
+  "variations": [
+    {
+      "id": "default",
+      "name": "Default",
+      "slice_type": "hero",
+      "primary": {
+        "subtitle": "Empowering Youth Through Sports",
+        "title": "Build Champions, Build Character",
+        "paragraph": "Join RVS Sports Welfare Association and experience professional coaching, certified trainers, modern facilities, and opportunities to compete at state and national level tournaments.",
+        "hero_image": {
+          "dimensions": {
+            "width": 1920,
+            "height": 1080
+          },
+          "alt": "Hero Background",
+          "copyright": null,
+          "url": "https://images.unsplash.com/photo-1546519638-68e109498ffc?q=80&w=1920&auto=format&fit=crop"
+        },
+        "link_label": "Join Now",
+        "link": {
+          "link_type": "Web",
+          "url": "#contact"
+        },
+        "secondary_link_label": "Explore Programs",
+        "secondary_link": {
+          "link_type": "Web",
+          "url": "#programs"
+        },
+        "students_count": 500,
+        "coaches_count": 25,
+        "tournaments_count": 50,
+        "experience_count": 10
+      },
+      "items": []
+    }
+  ]
+}

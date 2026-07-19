@@ -10,12 +10,11 @@
       "docURL": "...",
       "version": "initial",
       "description": "Default",
-      "imageUrl": "",
       "primary": {
         "image": {
           "type": "Image",
           "config": {
-            "label": "Image",
+            "label": "Main Image",
             "constraint": {},
             "thumbnails": []
           }
@@ -23,7 +22,7 @@
         "smallimage": {
           "type": "Image",
           "config": {
-            "label": "SmallImage",
+            "label": "Secondary Image",
             "constraint": {},
             "thumbnails": []
           }
@@ -31,24 +30,21 @@
         "sub_heading": {
           "type": "Text",
           "config": {
-            "label": "Sub Heading",
-            "placeholder": ""
+            "label": "Sub Heading"
           }
         },
         "heading": {
           "type": "Text",
           "config": {
-            "label": "Heading",
-            "placeholder": ""
+            "label": "Heading"
           }
         },
         "description": {
           "type": "StructuredText",
           "config": {
             "label": "Description",
-            "placeholder": "",
             "allowTargetBlank": true,
-            "multi": "paragraph,preformatted,heading1,heading2,heading3,heading4,heading5,heading6,strong,em,hyperlink,image,embed,list-item,o-list-item,rtl"
+            "multi": "paragraph,strong,em,list-item,o-list-item,hyperlink"
           }
         },
         "basketball_card": {
@@ -68,17 +64,15 @@
               "basketball_card_heading": {
                 "type": "Text",
                 "config": {
-                  "label": "Basketball Card Heading",
-                  "placeholder": ""
+                  "label": "Basketball Card Heading"
                 }
               },
               "basketball_card_description": {
                 "type": "StructuredText",
                 "config": {
                   "label": "Basketball Card Description",
-                  "placeholder": "",
                   "allowTargetBlank": true,
-                  "multi": "paragraph,preformatted,heading1,heading2,heading3,heading4,heading5,heading6,strong,em,hyperlink,image,embed,list-item,o-list-item,rtl"
+                  "multi": "paragraph,strong,em,hyperlink"
                 }
               }
             }
@@ -87,7 +81,7 @@
         "community_card": {
           "type": "Group",
           "config": {
-            "label": "Community Card ",
+            "label": "Community Card",
             "repeat": true,
             "fields": {
               "community_card_image": {
@@ -101,17 +95,15 @@
               "community_card_heading": {
                 "type": "Text",
                 "config": {
-                  "label": "Community Card Heading",
-                  "placeholder": ""
+                  "label": "Community Card Heading"
                 }
               },
               "community_card_description": {
                 "type": "StructuredText",
                 "config": {
                   "label": "Community Card Description",
-                  "placeholder": "",
                   "allowTargetBlank": true,
-                  "multi": "paragraph,preformatted,heading1,heading2,heading3,heading4,heading5,heading6,strong,em,hyperlink,image,embed,list-item,o-list-item,rtl"
+                  "multi": "paragraph,strong,em,hyperlink"
                 }
               }
             }

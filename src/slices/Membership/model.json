@@ -1,0 +1,73 @@
+{
+  "id": "membership",
+  "type": "SharedSlice",
+  "name": "Membership",
+  "description": "Membership plans section",
+  "variations": [
+    {
+      "id": "default",
+      "name": "Default",
+      "docURL": "...",
+      "version": "initial",
+      "description": "Default",
+      "imageUrl": "",
+      "primary": {
+        "title": {
+          "type": "Text",
+          "config": {
+            "label": "Title",
+            "placeholder": ""
+          }
+        },
+        "membership_plans": {
+          "type": "Group",
+          "config": {
+            "label": "Membership Plans",
+            "repeat": true,
+            "fields": {
+              "plan_name": {
+                "type": "Text",
+                "config": {
+                  "label": "Plan Name",
+                  "placeholder": ""
+                }
+              },
+              "plan_price": {
+                "type": "Text",
+                "config": {
+                  "label": "Plan Price",
+                  "placeholder": ""
+                }
+              },
+              "plan_features": {
+                "type": "StructuredText",
+                "config": {
+                  "label": "Plan Features",
+                  "placeholder": ""
+                }
+              },
+              "plan_button_label": {
+                "type": "Text",
+                "config": {
+                  "label": "Button Label",
+                  "placeholder": ""
+                }
+              },
+              "plan_button": {
+                "type": "Link",
+                "config": {
+                  "label": "Button Link",
+                  "placeholder": "",
+                  "allowTargetBlank": true,
+                  "select": null,
+                  "allowText": true
+                }
+              }
+            }
+          }
+        }
+      },
+      "items": {}
+    }
+  ]
+}

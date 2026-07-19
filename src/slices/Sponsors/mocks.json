@@ -1,0 +1,27 @@
+[
+  {
+    "__TYPE__": "SharedSliceContent",
+    "variation": "default",
+    "primary": {
+      "title": {
+        "__TYPE__": "FieldContent",
+        "value": "Our Sponsors",
+        "type": "Text"
+      },
+      "sponsors": [
+        {
+          "__TYPE__": "GroupItemContent",
+          "sponsor_name": {
+            "__TYPE__": "FieldContent",
+            "value": "Sponsor Name",
+            "type": "Text"
+          },
+          "sponsor_logo": {
+            "__TYPE__": "ImageContent"
+          }
+        }
+      ]
+    },
+    "items": []
+  }
+]

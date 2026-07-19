@@ -1,0 +1,57 @@
+{
+  "id": "facilities",
+  "type": "SharedSlice",
+  "name": "Facilities",
+  "description": "Facilities section",
+  "variations": [
+    {
+      "id": "default",
+      "name": "Default",
+      "docURL": "...",
+      "version": "initial",
+      "description": "Default",
+      "imageUrl": "",
+      "primary": {
+        "title": {
+          "type": "Text",
+          "config": {
+            "label": "Title",
+            "placeholder": ""
+          }
+        },
+        "facilities": {
+          "type": "Group",
+          "config": {
+            "label": "Facilities",
+            "repeat": true,
+            "fields": {
+              "facility_name": {
+                "type": "Text",
+                "config": {
+                  "label": "Facility Name",
+                  "placeholder": ""
+                }
+              },
+              "facility_image": {
+                "type": "Image",
+                "config": {
+                  "label": "Facility Image",
+                  "constraint": {},
+                  "thumbnails": []
+                }
+              },
+              "facility_description": {
+                "type": "StructuredText",
+                "config": {
+                  "label": "Facility Description",
+                  "placeholder": ""
+                }
+              }
+            }
+          }
+        }
+      },
+      "items": {}
+    }
+  ]
+}

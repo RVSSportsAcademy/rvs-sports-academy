@@ -1,0 +1,49 @@
+{
+  "id": "why_choose_us",
+  "type": "SharedSlice",
+  "name": "WhyChooseUs",
+  "description": "Why Choose Us section",
+  "variations": [
+    {
+      "id": "default",
+      "name": "Default",
+      "docURL": "...",
+      "version": "initial",
+      "description": "Default",
+      "imageUrl": "",
+      "primary": {
+        "title": {
+          "type": "Text",
+          "config": {
+            "label": "Title",
+            "placeholder": ""
+          }
+        },
+        "reasons": {
+          "type": "Group",
+          "config": {
+            "label": "Reasons",
+            "repeat": true,
+            "fields": {
+              "reason_title": {
+                "type": "Text",
+                "config": {
+                  "label": "Reason Title",
+                  "placeholder": ""
+                }
+              },
+              "reason_description": {
+                "type": "StructuredText",
+                "config": {
+                  "label": "Reason Description",
+                  "placeholder": ""
+                }
+              }
+            }
+          }
+        }
+      },
+      "items": {}
+    }
+  ]
+}

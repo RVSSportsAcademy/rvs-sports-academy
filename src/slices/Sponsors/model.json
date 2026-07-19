@@ -1,0 +1,50 @@
+{
+  "id": "sponsors",
+  "type": "SharedSlice",
+  "name": "Sponsors",
+  "description": "Sponsors section",
+  "variations": [
+    {
+      "id": "default",
+      "name": "Default",
+      "docURL": "...",
+      "version": "initial",
+      "description": "Default",
+      "imageUrl": "",
+      "primary": {
+        "title": {
+          "type": "Text",
+          "config": {
+            "label": "Title",
+            "placeholder": ""
+          }
+        },
+        "sponsors": {
+          "type": "Group",
+          "config": {
+            "label": "Sponsors",
+            "repeat": true,
+            "fields": {
+              "sponsor_name": {
+                "type": "Text",
+                "config": {
+                  "label": "Sponsor Name",
+                  "placeholder": ""
+                }
+              },
+              "sponsor_logo": {
+                "type": "Image",
+                "config": {
+                  "label": "Sponsor Logo",
+                  "constraint": {},
+                  "thumbnails": []
+                }
+              }
+            }
+          }
+        }
+      },
+      "items": {}
+    }
+  ]
+}

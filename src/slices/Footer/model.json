@@ -1,0 +1,75 @@
+{
+  "id": "footer",
+  "type": "SharedSlice",
+  "name": "Footer",
+  "description": "Footer section",
+  "variations": [
+    {
+      "id": "default",
+      "name": "Default",
+      "docURL": "...",
+      "version": "initial",
+      "description": "Default",
+      "imageUrl": "",
+      "primary": {
+        "footer_sections": {
+          "type": "Group",
+          "config": {
+            "label": "Footer Sections",
+            "repeat": true,
+            "fields": {
+              "section_title": {
+                "type": "Text",
+                "config": {
+                  "label": "Section Title",
+                  "placeholder": ""
+                }
+              },
+              "section_content": {
+                "type": "StructuredText",
+                "config": {
+                  "label": "Section Content",
+                  "placeholder": ""
+                }
+              }
+            }
+          }
+        },
+        "copyright_text": {
+          "type": "Text",
+          "config": {
+            "label": "Copyright Text",
+            "placeholder": ""
+          }
+        },
+        "social_links": {
+          "type": "Group",
+          "config": {
+            "label": "Social Links",
+            "repeat": true,
+            "fields": {
+              "social_label": {
+                "type": "Text",
+                "config": {
+                  "label": "Social Label",
+                  "placeholder": ""
+                }
+              },
+              "social_link": {
+                "type": "Link",
+                "config": {
+                  "label": "Social Link",
+                  "placeholder": "",
+                  "allowTargetBlank": true,
+                  "select": null,
+                  "allowText": true
+                }
+              }
+            }
+          }
+        }
+      },
+      "items": {}
+    }
+  ]
+}

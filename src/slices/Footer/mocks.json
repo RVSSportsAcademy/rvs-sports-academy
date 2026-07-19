@@ -1,0 +1,48 @@
+[
+  {
+    "__TYPE__": "SharedSliceContent",
+    "variation": "default",
+    "primary": {
+      "footer_sections": [
+        {
+          "__TYPE__": "GroupItemContent",
+          "section_title": {
+            "__TYPE__": "FieldContent",
+            "value": "About Us",
+            "type": "Text"
+          },
+          "section_content": {
+            "__TYPE__": "StructuredTextContent",
+            "value": [
+              {
+                "type": "paragraph",
+                "content": {
+                  "text": "RVS Sports Academy - Developing young athletes."
+                }
+              }
+            ]
+          }
+        }
+      ],
+      "copyright_text": {
+        "__TYPE__": "FieldContent",
+        "value": "© 2024 RVS Sports Academy. All rights reserved.",
+        "type": "Text"
+      },
+      "social_links": [
+        {
+          "__TYPE__": "GroupItemContent",
+          "social_label": {
+            "__TYPE__": "FieldContent",
+            "value": "Facebook",
+            "type": "Text"
+          },
+          "social_link": {
+            "__TYPE__": "LinkContent"
+          }
+        }
+      ]
+    },
+    "items": []
+  }
+]

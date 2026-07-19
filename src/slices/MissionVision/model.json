@@ -1,0 +1,40 @@
+{
+  "id": "mission_vision",
+  "type": "SharedSlice",
+  "name": "MissionVision",
+  "description": "Mission and Vision section",
+  "variations": [
+    {
+      "id": "default",
+      "name": "Default",
+      "docURL": "...",
+      "version": "initial",
+      "description": "Default",
+      "imageUrl": "",
+      "primary": {
+        "title": {
+          "type": "Text",
+          "config": {
+            "label": "Title",
+            "placeholder": ""
+          }
+        },
+        "mission": {
+          "type": "StructuredText",
+          "config": {
+            "label": "Mission",
+            "placeholder": ""
+          }
+        },
+        "vision": {
+          "type": "StructuredText",
+          "config": {
+            "label": "Vision",
+            "placeholder": ""
+          }
+        }
+      },
+      "items": {}
+    }
+  ]
+}

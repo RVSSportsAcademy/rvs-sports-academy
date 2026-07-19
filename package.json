@@ -11,6 +11,7 @@
     "start": "next start",
     "lint": "next lint",
     "slicemachine": "start-slicemachine",
+    "slicemachine:open": "start-slicemachine --open",
     "format": "prettier --write ."
   },
   "dependencies": {

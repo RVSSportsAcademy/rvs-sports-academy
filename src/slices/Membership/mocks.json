@@ -1,0 +1,48 @@
+[
+  {
+    "__TYPE__": "SharedSliceContent",
+    "variation": "default",
+    "primary": {
+      "title": {
+        "__TYPE__": "FieldContent",
+        "value": "Membership Plans",
+        "type": "Text"
+      },
+      "membership_plans": [
+        {
+          "__TYPE__": "GroupItemContent",
+          "plan_name": {
+            "__TYPE__": "FieldContent",
+            "value": "Basic",
+            "type": "Text"
+          },
+          "plan_price": {
+            "__TYPE__": "FieldContent",
+            "value": "$99/month",
+            "type": "Text"
+          },
+          "plan_features": {
+            "__TYPE__": "StructuredTextContent",
+            "value": [
+              {
+                "type": "paragraph",
+                "content": {
+                  "text": "Access to training programs"
+                }
+              }
+            ]
+          },
+          "plan_button_label": {
+            "__TYPE__": "FieldContent",
+            "value": "Join Now",
+            "type": "Text"
+          },
+          "plan_button": {
+            "__TYPE__": "LinkContent"
+          }
+        }
+      ]
+    },
+    "items": []
+  }
+]

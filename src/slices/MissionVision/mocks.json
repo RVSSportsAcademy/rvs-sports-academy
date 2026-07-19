@@ -1,0 +1,36 @@
+[
+  {
+    "__TYPE__": "SharedSliceContent",
+    "variation": "default",
+    "primary": {
+      "title": {
+        "__TYPE__": "FieldContent",
+        "value": "Our Mission & Vision",
+        "type": "Text"
+      },
+      "mission": {
+        "__TYPE__": "StructuredTextContent",
+        "value": [
+          {
+            "type": "paragraph",
+            "content": {
+              "text": "To develop young athletes through sports excellence and character building."
+            }
+          }
+        ]
+      },
+      "vision": {
+        "__TYPE__": "StructuredTextContent",
+        "value": [
+          {
+            "type": "paragraph",
+            "content": {
+              "text": "To be a leading sports academy producing world-class athletes."
+            }
+          }
+        ]
+      }
+    },
+    "items": []
+  }
+]

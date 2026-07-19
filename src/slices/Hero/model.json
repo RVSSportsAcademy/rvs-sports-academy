@@ -2,21 +2,35 @@
   "id": "hero",
   "type": "SharedSlice",
   "name": "Hero",
-  "description": "Hero",
+  "description": "Professional Hero Section",
   "variations": [
     {
       "id": "default",
       "name": "Default",
       "docURL": "...",
-      "version": "initial",
-      "description": "Default",
+      "version": "2.0.0",
+      "description": "Professional Sports Hero",
       "imageUrl": "",
       "primary": {
+        "subtitle": {
+          "type": "Text",
+          "config": {
+            "label": "Subtitle",
+            "placeholder": "Empowering Youth Through Sports"
+          }
+        },
         "title": {
           "type": "Text",
           "config": {
             "label": "Title",
-            "placeholder": ""
+            "placeholder": "Build Champions, Build Character"
+          }
+        },
+        "paragraph": {
+          "type": "Text",
+          "config": {
+            "label": "Description",
+            "placeholder": "Professional coaching with certified coaches and world-class facilities."
           }
         },
         "hero_image": {
@@ -27,28 +41,64 @@
             "thumbnails": []
           }
         },
-        "paragraph": {
-          "type": "Text",
-          "config": {
-            "label": "Paragraph",
-            "placeholder": ""
-          }
-        },
         "link_label": {
           "type": "Text",
           "config": {
-            "label": "Link Label",
-            "placeholder": ""
+            "label": "Primary Button Label",
+            "placeholder": "Join Now"
           }
         },
         "link": {
           "type": "Link",
           "config": {
-            "label": "Link",
-            "placeholder": "",
+            "label": "Primary Button Link",
             "allowTargetBlank": true,
-            "select": null,
-            "allowText": true
+            "allowText": true,
+            "select": null
+          }
+        },
+        "secondary_link_label": {
+          "type": "Text",
+          "config": {
+            "label": "Secondary Button Label",
+            "placeholder": "Explore Programs"
+          }
+        },
+        "secondary_link": {
+          "type": "Link",
+          "config": {
+            "label": "Secondary Button Link",
+            "allowTargetBlank": true,
+            "allowText": true,
+            "select": null
+          }
+        },
+        "students_count": {
+          "type": "Number",
+          "config": {
+            "label": "Students Count",
+            "placeholder": "500"
+          }
+        },
+        "coaches_count": {
+          "type": "Number",
+          "config": {
+            "label": "Coaches Count",
+            "placeholder": "25"
+          }
+        },
+        "tournaments_count": {
+          "type": "Number",
+          "config": {
+            "label": "Tournaments Count",
+            "placeholder": "50"
+          }
+        },
+        "experience_count": {
+          "type": "Number",
+          "config": {
+            "label": "Years of Experience",
+            "placeholder": "10"
           }
         }
       },

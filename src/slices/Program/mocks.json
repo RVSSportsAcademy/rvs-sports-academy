@@ -1,192 +1,162 @@
 [
-	{
-		"__TYPE__": "SharedSliceContent",
-		"variation": "default",
-		"primary": {
-			"image": {
-				"origin": {
-					"id": "main",
-					"url": "https://images.unsplash.com/photo-1601933973783-43cf8a7d4c5f",
-					"width": 6597,
-					"height": 4398
-				},
-				"url": "https://images.unsplash.com/photo-1601933973783-43cf8a7d4c5f",
-				"width": 6597,
-				"height": 4398,
-				"edit": {
-					"zoom": 1,
-					"crop": {
-						"x": 0,
-						"y": 0
-					},
-					"background": "transparent"
-				},
-				"credits": null,
-				"alt": null,
-				"__TYPE__": "ImageContent",
-				"thumbnails": {}
-			},
-			"sub_heading": {
-				"__TYPE__": "FieldContent",
-				"value": "as",
-				"type": "Text"
-			},
-			"heading": {
-				"__TYPE__": "FieldContent",
-				"value": "among",
-				"type": "Text"
-			},
-			"description": {
-				"__TYPE__": "StructuredTextContent",
-				"value": [
-					{
-						"type": "paragraph",
-						"content": {
-							"text": "Aliqua velit nisi in pariatur incididunt ex eu nostrud eiusmod incididunt cupidatat veniam."
-						}
-					}
-				]
-			},
-			"basketball_card": {
-				"__TYPE__": "GroupContentType",
-				"value": [
-					{
-						"__TYPE__": "GroupItemContent",
-						"value": [
-							[
-								"basketball_card_image",
-								{
-									"origin": {
-										"id": "main",
-										"url": "https://images.unsplash.com/photo-1547082299-de196ea013d6",
-										"width": 4272,
-										"height": 2848
-									},
-									"url": "https://images.unsplash.com/photo-1547082299-de196ea013d6",
-									"width": 4272,
-									"height": 2848,
-									"edit": {
-										"zoom": 1,
-										"crop": {
-											"x": 0,
-											"y": 0
-										},
-										"background": "transparent"
-									},
-									"credits": null,
-									"alt": null,
-									"__TYPE__": "ImageContent",
-									"thumbnails": {}
-								}
-							],
-							[
-								"basketball_card_heading",
-								{
-									"__TYPE__": "FieldContent",
-									"value": "older",
-									"type": "Text"
-								}
-							],
-							[
-								"basketball_card_description",
-								{
-									"__TYPE__": "StructuredTextContent",
-									"value": [
-										{
-											"type": "paragraph",
-											"content": {
-												"text": "Ea incididunt nisi id enim dolore ex consequat esse mollit in fugiat quis culpa dolore incididunt."
-											}
-										}
-									]
-								}
-							]
-						]
-					}
-				]
-			},
-			"community_card": {
-				"__TYPE__": "GroupContentType",
-				"value": [
-					{
-						"__TYPE__": "GroupItemContent",
-						"value": [
-							[
-								"community_card_image",
-								{
-									"origin": {
-										"id": "main",
-										"url": "https://images.unsplash.com/photo-1601933973783-43cf8a7d4c5f",
-										"width": 6597,
-										"height": 4398
-									},
-									"url": "https://images.unsplash.com/photo-1601933973783-43cf8a7d4c5f",
-									"width": 6597,
-									"height": 4398,
-									"edit": {
-										"zoom": 1,
-										"crop": {
-											"x": 0,
-											"y": 0
-										},
-										"background": "transparent"
-									},
-									"credits": null,
-									"alt": null,
-									"__TYPE__": "ImageContent",
-									"thumbnails": {}
-								}
-							],
-							[
-								"community_card_heading",
-								{
-									"__TYPE__": "FieldContent",
-									"value": "roll",
-									"type": "Text"
-								}
-							],
-							[
-								"community_card_description",
-								{
-									"__TYPE__": "StructuredTextContent",
-									"value": [
-										{
-											"type": "paragraph",
-											"content": {
-												"text": "Consequat occaecat proident reprehenderit sint elit ea non. Esse exercitation reprehenderit ut eiusmod veniam ut. Veniam dolore ipsum duis minim sint dolor."
-											}
-										}
-									]
-								}
-							]
-						]
-					}
-				]
-			},
-			"smallimage": {
-				"origin": {
-					"id": "main",
-					"url": "https://images.unsplash.com/photo-1589321599763-d66926c29613",
-					"width": 3168,
-					"height": 4752
-				},
-				"url": "https://images.unsplash.com/photo-1589321599763-d66926c29613",
-				"width": 3168,
-				"height": 4752,
-				"edit": {
-					"zoom": 1,
-					"crop": {
-						"x": 0,
-						"y": 0
-					},
-					"background": "transparent"
-				},
-				"credits": null,
-				"alt": null,
-				"__TYPE__": "ImageContent",
-				"thumbnails": {}
-			}
-		},
-		"items": []
-	}
+  {
+    "__TYPE__": "SharedSliceContent",
+    "variation": "default",
+    "primary": {
+      "image": {
+        "origin": {
+          "id": "main",
+          "url": "https://images.unsplash.com/photo-1546519638-68e109498ffc",
+          "width": 2500,
+          "height": 1667
+        },
+        "url": "https://images.unsplash.com/photo-1546519638-68e109498ffc",
+        "width": 2500,
+        "height": 1667,
+        "edit": {
+          "zoom": 1,
+          "crop": {
+            "x": 0,
+            "y": 0
+          },
+          "background": "transparent"
+        },
+        "credits": null,
+        "alt": "Basketball Training",
+        "__TYPE__": "ImageContent",
+        "thumbnails": {}
+      },
+      "smallimage": {
+        "origin": {
+          "id": "main",
+          "url": "https://images.unsplash.com/photo-1517649763962-0c623066013b",
+          "width": 2500,
+          "height": 1667
+        },
+        "url": "https://images.unsplash.com/photo-1517649763962-0c623066013b",
+        "width": 2500,
+        "height": 1667,
+        "edit": {
+          "zoom": 1,
+          "crop": {
+            "x": 0,
+            "y": 0
+          },
+          "background": "transparent"
+        },
+        "credits": null,
+        "alt": "Sports Academy",
+        "__TYPE__": "ImageContent",
+        "thumbnails": {}
+      },
+      "sub_heading": {
+        "__TYPE__": "FieldContent",
+        "value": "Our Programs",
+        "type": "Text"
+      },
+      "heading": {
+        "__TYPE__": "FieldContent",
+        "value": "Train Like a Champion",
+        "type": "Text"
+      },
+      "description": {
+        "__TYPE__": "StructuredTextContent",
+        "value": [
+          {
+            "type": "paragraph",
+            "content": {
+              "text": "RVS Sports Academy provides structured coaching programs that focus on technical skills, physical fitness, teamwork and leadership for athletes of every age group."
+            }
+          }
+        ]
+      },
+      "basketball_card": {
+        "__TYPE__": "GroupContentType",
+        "value": [
+          {
+            "__TYPE__": "GroupItemContent",
+            "value": [
+              [
+                "basketball_card_image",
+                {
+                  "__TYPE__": "ImageContent",
+                  "url": "https://img.icons8.com/color/96/basketball.png",
+                  "width": 96,
+                  "height": 96,
+                  "alt": "Basketball",
+                  "thumbnails": {}
+                }
+              ],
+              [
+                "basketball_card_heading",
+                {
+                  "__TYPE__": "FieldContent",
+                  "value": "Basketball Coaching",
+                  "type": "Text"
+                }
+              ],
+              [
+                "basketball_card_description",
+                {
+                  "__TYPE__": "StructuredTextContent",
+                  "value": [
+                    {
+                      "type": "paragraph",
+                      "content": {
+                        "text": "Professional basketball coaching focusing on dribbling, shooting, passing, defence and game strategy."
+                      }
+                    }
+                  ]
+                }
+              ]
+            ]
+          }
+        ]
+      },
+      "community_card": {
+        "__TYPE__": "GroupContentType",
+        "value": [
+          {
+            "__TYPE__": "GroupItemContent",
+            "value": [
+              [
+                "community_card_image",
+                {
+                  "__TYPE__": "ImageContent",
+                  "url": "https://img.icons8.com/color/96/training.png",
+                  "width": 96,
+                  "height": 96,
+                  "alt": "Training",
+                  "thumbnails": {}
+                }
+              ],
+              [
+                "community_card_heading",
+                {
+                  "__TYPE__": "FieldContent",
+                  "value": "Fitness & Community",
+                  "type": "Text"
+                }
+              ],
+              [
+                "community_card_description",
+                {
+                  "__TYPE__": "StructuredTextContent",
+                  "value": [
+                    {
+                      "type": "paragraph",
+                      "content": {
+                        "text": "Strength training, endurance sessions, fitness camps and community sports initiatives that inspire healthy lifestyles."
+                      }
+                    }
+                  ]
+                }
+              ]
+            ]
+          }
+        ]
+      }
+    },
+    "items": []
+  }
 ]

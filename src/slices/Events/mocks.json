@@ -1,0 +1,43 @@
+[
+	{
+		"__TYPE__": "SharedSliceContent",
+		"variation": "default",
+		"primary": {
+			"title": {
+				"__TYPE__": "FieldContent",
+				"value": "plant",
+				"type": "Text"
+			},
+			"description": {
+				"__TYPE__": "StructuredTextContent",
+				"value": [
+					{
+						"type": "paragraph",
+						"content": {
+							"text": "Eu eiusmod culpa aute id ea laborum nulla. Ut sunt incididunt occaecat incididunt aliqua incididunt. Tempor pariatur Lorem duis voluptate sunt."
+						}
+					}
+				]
+			},
+			"event_cards": {
+				"__TYPE__": "GroupContentType",
+				"value": [
+					{
+						"__TYPE__": "GroupItemContent",
+						"value": [
+							[
+								"event_title",
+								{
+									"__TYPE__": "FieldContent",
+									"value": "eye",
+									"type": "Text"
+								}
+							]
+						]
+					}
+				]
+			}
+		},
+		"items": []
+	}
+]

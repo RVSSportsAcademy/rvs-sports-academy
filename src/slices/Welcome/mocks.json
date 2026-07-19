@@ -1,53 +1,70 @@
 [
-	{
-		"__TYPE__": "SharedSliceContent",
-		"variation": "default",
-		"primary": {
-			"image": {
-				"origin": {
-					"id": "main",
-					"url": "https://images.unsplash.com/photo-1496181133206-80ce9b88a853",
-					"width": 5243,
-					"height": 3495
-				},
-				"url": "https://images.unsplash.com/photo-1496181133206-80ce9b88a853",
-				"width": 5243,
-				"height": 3495,
-				"edit": {
-					"zoom": 1,
-					"crop": {
-						"x": 0,
-						"y": 0
-					},
-					"background": "transparent"
-				},
-				"credits": null,
-				"alt": null,
-				"__TYPE__": "ImageContent",
-				"thumbnails": {}
-			},
-			"heading": {
-				"__TYPE__": "FieldContent",
-				"value": "needed",
-				"type": "Text"
-			},
-			"sub_heading": {
-				"__TYPE__": "FieldContent",
-				"value": "today",
-				"type": "Text"
-			},
-			"description": {
-				"__TYPE__": "StructuredTextContent",
-				"value": [
-					{
-						"type": "paragraph",
-						"content": {
-							"text": "Eiusmod qui incididunt anim. Culpa velit ex elit eiusmod ipsum tempor id laborum."
-						}
-					}
-				]
-			}
-		},
-		"items": []
-	}
+  {
+    "__TYPE__": "SharedSliceContent",
+    "variation": "default",
+    "primary": {
+      "image": {
+        "origin": {
+          "id": "main",
+          "url": "https://images.unsplash.com/photo-1547347298-4074fc3086f0",
+          "width": 2500,
+          "height": 1667
+        },
+        "url": "https://images.unsplash.com/photo-1547347298-4074fc3086f0",
+        "width": 2500,
+        "height": 1667,
+        "edit": {
+          "zoom": 1,
+          "crop": {
+            "x": 0,
+            "y": 0
+          },
+          "background": "transparent"
+        },
+        "credits": null,
+        "alt": "Basketball Training",
+        "__TYPE__": "ImageContent",
+        "thumbnails": {}
+      },
+
+      "sub_heading": {
+        "__TYPE__": "FieldContent",
+        "value": "Welcome to RVS",
+        "type": "Text"
+      },
+
+      "heading": {
+        "__TYPE__": "FieldContent",
+        "value": "Empowering Future Champions Through Sports",
+        "type": "Text"
+      },
+
+      "description": {
+        "__TYPE__": "StructuredTextContent",
+        "value": [
+          {
+            "type": "paragraph",
+            "content": {
+              "text": "RVS Sports Academy is dedicated to developing young athletes through professional coaching, discipline, teamwork, fitness and leadership. We create opportunities for students to compete, learn and grow on and off the court."
+            }
+          }
+        ]
+      },
+
+      "button_label": {
+        "__TYPE__": "FieldContent",
+        "value": "Learn More",
+        "type": "Text"
+      },
+
+      "button_link": {
+        "__TYPE__": "LinkContent",
+        "value": {
+          "link_type": "Web",
+          "url": "https://www.rvssportsacademy.com"
+        }
+      }
+    },
+    "items": []
+  }
 ]
