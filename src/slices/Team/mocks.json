@@ -1,72 +1,133 @@
 [
-	{
-		"__TYPE__": "SharedSliceContent",
-		"variation": "default",
-		"primary": {
-			"heading": {
-				"__TYPE__": "FieldContent",
-				"value": "along",
-				"type": "Text"
-			},
-			"coaches": {
-				"__TYPE__": "GroupContentType",
-				"value": [
-					{
-						"__TYPE__": "GroupItemContent",
-						"value": [
-							[
-								"image",
-								{
-									"origin": {
-										"id": "main",
-										"url": "https://images.unsplash.com/photo-1537498425277-c283d32ef9db",
-										"width": 4380,
-										"height": 2895
-									},
-									"url": "https://images.unsplash.com/photo-1537498425277-c283d32ef9db",
-									"width": 4380,
-									"height": 2895,
-									"edit": {
-										"zoom": 1,
-										"crop": {
-											"x": 0,
-											"y": 0
-										},
-										"background": "transparent"
-									},
-									"credits": null,
-									"alt": null,
-									"__TYPE__": "ImageContent",
-									"thumbnails": {}
-								}
-							],
-							[
-								"name",
-								{
-									"__TYPE__": "FieldContent",
-									"value": "command",
-									"type": "Text"
-								}
-							],
-							[
-								"designation",
-								{
-									"__TYPE__": "StructuredTextContent",
-									"value": [
-										{
-											"type": "paragraph",
-											"content": {
-												"text": "Cillum commodo aliquip ipsum tempor dolor aliqua aliqua ad veniam nostrud esse consectetur nisi exercitation incididunt. Do nisi proident dolore aute ad veniam amet adipisicing ut ut consectetur irure. Sunt ad elit quis."
-											}
-										}
-									]
-								}
-							]
-						]
-					}
-				]
-			}
-		},
-		"items": []
-	}
+  {
+    "__TYPE__": "SharedSliceContent",
+    "variation": "default",
+    "primary": {
+      "heading": {
+        "__TYPE__": "FieldContent",
+        "value": "Meet Our Expert Coaches",
+        "type": "Text"
+      },
+      "coaches": {
+        "__TYPE__": "GroupContentType",
+        "value": [
+          {
+            "__TYPE__": "GroupItemContent",
+            "value": [
+              [
+                "image",
+                {
+                  "__TYPE__": "ImageContent",
+                  "url": "https://images.unsplash.com/photo-1560250097-0b93528c311a",
+                  "width": 1200,
+                  "height": 1200,
+                  "alt": "Head Basketball Coach",
+                  "thumbnails": {}
+                }
+              ],
+              [
+                "name",
+                {
+                  "__TYPE__": "FieldContent",
+                  "value": "Coach Rahul Sharma",
+                  "type": "Text"
+                }
+              ],
+              [
+                "designation",
+                {
+                  "__TYPE__": "StructuredTextContent",
+                  "value": [
+                    {
+                      "type": "paragraph",
+                      "content": {
+                        "text": "Head Basketball Coach with 12+ years of experience in national-level coaching and youth player development."
+                      }
+                    }
+                  ]
+                }
+              ]
+            ]
+          },
+          {
+            "__TYPE__": "GroupItemContent",
+            "value": [
+              [
+                "image",
+                {
+                  "__TYPE__": "ImageContent",
+                  "url": "https://images.unsplash.com/photo-1500648767791-00dcc994a43e",
+                  "width": 1200,
+                  "height": 1200,
+                  "alt": "Fitness Coach",
+                  "thumbnails": {}
+                }
+              ],
+              [
+                "name",
+                {
+                  "__TYPE__": "FieldContent",
+                  "value": "Coach Aman Verma",
+                  "type": "Text"
+                }
+              ],
+              [
+                "designation",
+                {
+                  "__TYPE__": "StructuredTextContent",
+                  "value": [
+                    {
+                      "type": "paragraph",
+                      "content": {
+                        "text": "Strength & Conditioning Coach helping athletes improve endurance, agility and overall fitness."
+                      }
+                    }
+                  ]
+                }
+              ]
+            ]
+          },
+          {
+            "__TYPE__": "GroupItemContent",
+            "value": [
+              [
+                "image",
+                {
+                  "__TYPE__": "ImageContent",
+                  "url": "https://images.unsplash.com/photo-1506794778202-cad84cf45f1d",
+                  "width": 1200,
+                  "height": 1200,
+                  "alt": "Assistant Coach",
+                  "thumbnails": {}
+                }
+              ],
+              [
+                "name",
+                {
+                  "__TYPE__": "FieldContent",
+                  "value": "Coach Vikas Singh",
+                  "type": "Text"
+                }
+              ],
+              [
+                "designation",
+                {
+                  "__TYPE__": "StructuredTextContent",
+                  "value": [
+                    {
+                      "type": "paragraph",
+                      "content": {
+                        "text": "Assistant Basketball Coach specializing in player skill development, game strategy and team coordination."
+                      }
+                    }
+                  ]
+                }
+              ]
+            ]
+          }
+        ]
+      }
+    },
+    "items": []
+  }
 ]
