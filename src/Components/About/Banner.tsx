@@ -1,46 +1,54 @@
-import { PrismicNextImage } from "@prismicio/next";
 import { cn } from "@/libs/utils";
 import { Content } from "@prismicio/client";
-import { oswald } from "@/libs/fonts";
+import { PrismicNextImage } from "@prismicio/next";
 import { PrismicRichText, SliceComponentProps } from "@prismicio/react";
 
-
-/**
- * Props for `Banner`.
- */
 export type BannerProps = SliceComponentProps<Content.AboutSlice>;
 
-/**
- * Component for "About" Banner Slice.
- */
 const Banner = ({ slice }: BannerProps): JSX.Element => {
+  const primary = slice.primary as any;
+
   return (
     <section
       data-slice-type={slice.slice_type}
       data-slice-variation={slice.variation}
       className={cn(
-        "relative text-white  flex flex-col  text-center overflow-hidden"
+        "relative flex min-h-[70vh] items-center justify-center overflow-hidden"
       )}
     >
-      <div className="absolute inset-0 z-0">
+      {/* Background Image */}
+      {slice.primary.background_image?.url && (
         <PrismicNextImage
-          style={{ objectFit: "cover" }}
           field={slice.primary.background_image}
           fill
-          alt=""
+          priority
+          fallbackAlt=""
+          className="absolute inset-0 -z-20 object-cover object-center"
         />
-      </div>
-      <div className="relative w-full z-10 bg-black bg-opacity-50 p-6"
-            // style={{ backgroundImage: `url(${slice.primary.background_image.url})` }}
-            >
-        <h1 className="text-5xl font-bold font-oswald uppercase mb-4">ABOUT US</h1>
-        <div className="flex flex-col items-center">
+      )}
 
-        <div className="text-lg  text-center max-w-2xl">
-          <PrismicRichText field={slice.primary.description} />
+      {/* Dark Overlay */}
+      <div className="absolute inset-0 -z-10 bg-black/70" />
+
+      {/* Orange Glow */}
+      <div className="absolute left-0 top-0 h-72 w-72 rounded-full bg-orange-500/20 blur-3xl" />
+      <div className="absolute bottom-0 right-0 h-72 w-72 rounded-full bg-orange-500/20 blur-3xl" />
+
+      {/* Content */}
+      <div className="container mx-auto px-6 text-center">
+        <span className="mb-6 inline-block rounded-full border border-orange-500 bg-orange-500/10 px-5 py-2 text-sm font-semibold uppercase tracking-[3px] text-orange-400">
+          {primary.banner_title || "Welcome to RVS Sports Academy"}
+        </span>
+
+        <h1 className="mb-6 text-5xl font-extrabold uppercase text-white md:text-7xl">
+          {primary.heading || "About Us"}
+        </h1>
+
+        <div className="mx-auto max-w-3xl text-lg leading-8 text-gray-200">
+          <PrismicRichText field={primary.description} />
         </div>
-        
-        </div>
+
+        <div className="mx-auto mt-10 h-1 w-24 rounded-full bg-orange-500" />
       </div>
     </section>
   );

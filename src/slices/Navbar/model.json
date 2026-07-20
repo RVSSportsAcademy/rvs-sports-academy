@@ -1,0 +1,63 @@
+{
+  "id": "navbar",
+  "type": "SharedSlice",
+  "name": "Navbar",
+  "description": "Website Navigation Bar",
+  "variations": [
+    {
+      "id": "default",
+      "name": "Default",
+      "docURL": "...",
+      "version": "initial",
+      "description": "Premium Navbar",
+      "imageUrl": "",
+      "primary": {
+        "logo": {
+          "type": "Image",
+          "config": {
+            "label": "Logo"
+          }
+        },
+        "academy_name": {
+          "type": "Text",
+          "config": {
+            "label": "Academy Name",
+            "placeholder": "RVS Sports Academy"
+          }
+        },
+        "cta_button_text": {
+          "type": "Text",
+          "config": {
+            "label": "CTA Button Text",
+            "placeholder": "Join Now"
+          }
+        },
+        "cta_button_link": {
+          "type": "Link",
+          "config": {
+            "label": "CTA Button Link",
+            "allowTargetBlank": true,
+            "select": null
+          }
+        }
+      },
+      "items": {
+        "menu_name": {
+          "type": "Text",
+          "config": {
+            "label": "Menu Name",
+            "placeholder": "Home"
+          }
+        },
+        "menu_link": {
+          "type": "Link",
+          "config": {
+            "label": "Menu Link",
+            "allowTargetBlank": false,
+            "select": null
+          }
+        }
+      }
+    }
+  ]
+}

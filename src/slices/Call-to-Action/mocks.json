@@ -1,0 +1,62 @@
+[
+  {
+    "__TYPE__": "SharedSliceContent",
+    "variation": "default",
+    "primary": {
+      "subtitle": {
+        "__TYPE__": "FieldContent",
+        "value": "Join RVS Today",
+        "type": "Text"
+      },
+      "title": {
+        "__TYPE__": "FieldContent",
+        "value": "Ready To Become The Next Champion?",
+        "type": "Text"
+      },
+      "description": {
+        "__TYPE__": "StructuredTextContent",
+        "value": [
+          {
+            "type": "paragraph",
+            "content": {
+              "text": "Start your sports journey with expert coaching, world-class facilities, and a supportive community that helps every athlete unlock their full potential."
+            }
+          }
+        ]
+      },
+      "background_image": {
+        "__TYPE__": "ImageContent",
+        "url": "https://images.prismic.io/demo/cta.jpg",
+        "width": 1600,
+        "height": 900,
+        "alt": "CTA Background",
+        "thumbnails": {}
+      },
+      "primary_button_text": {
+        "__TYPE__": "FieldContent",
+        "value": "Join Now",
+        "type": "Text"
+      },
+      "primary_button_link": {
+        "__TYPE__": "LinkContent",
+        "value": {
+          "link_type": "Web",
+          "url": "#"
+        }
+      },
+      "secondary_button_text": {
+        "__TYPE__": "FieldContent",
+        "value": "Contact Us",
+        "type": "Text"
+      },
+      "secondary_button_link": {
+        "__TYPE__": "LinkContent",
+        "value": {
+          "link_type": "Web",
+          "url": "#"
+        }
+      }
+    },
+    "items": []
+  }
+]

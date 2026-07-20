@@ -1,0 +1,68 @@
+{
+  "id": "cta",
+  "type": "SharedSlice",
+  "name": "CTA",
+  "description": "Call To Action Section",
+  "variations": [
+    {
+      "id": "default",
+      "name": "Default",
+      "docURL": "...",
+      "version": "initial",
+      "description": "Premium CTA",
+      "imageUrl": "",
+      "primary": {
+        "subtitle": {
+          "type": "Text",
+          "config": {
+            "label": "Subtitle"
+          }
+        },
+        "title": {
+          "type": "Text",
+          "config": {
+            "label": "Title"
+          }
+        },
+        "description": {
+          "type": "StructuredText",
+          "config": {
+            "label": "Description",
+            "multi": "paragraph,strong,em"
+          }
+        },
+        "background_image": {
+          "type": "Image",
+          "config": {
+            "label": "Background Image"
+          }
+        },
+        "primary_button_text": {
+          "type": "Text",
+          "config": {
+            "label": "Primary Button Text"
+          }
+        },
+        "primary_button_link": {
+          "type": "Link",
+          "config": {
+            "label": "Primary Button Link"
+          }
+        },
+        "secondary_button_text": {
+          "type": "Text",
+          "config": {
+            "label": "Secondary Button Text"
+          }
+        },
+        "secondary_button_link": {
+          "type": "Link",
+          "config": {
+            "label": "Secondary Button Link"
+          }
+        }
+      },
+      "items": {}
+    }
+  ]
+}

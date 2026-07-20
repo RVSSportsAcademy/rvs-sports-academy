@@ -1,0 +1,279 @@
+[
+  {
+    "__TYPE__": "SharedSliceContent",
+    "variation": "default",
+    "primary": {
+      "subtitle": {
+        "__TYPE__": "FieldContent",
+        "value": "TRAINING PROGRAMS",
+        "type": "Text"
+      },
+      "heading": {
+        "__TYPE__": "FieldContent",
+        "value": "Professional Training Programs",
+        "type": "Text"
+      },
+      "description": {
+        "__TYPE__": "StructuredTextContent",
+        "value": [
+          {
+            "type": "paragraph",
+            "content": {
+              "text": "Our comprehensive training programs are designed to help athletes of all ages improve their technical skills, fitness, confidence, and competitive performance under experienced coaches."
+            }
+          }
+        ]
+      },
+      "button_text": {
+        "__TYPE__": "FieldContent",
+        "value": "Enroll Now",
+        "type": "Text"
+      },
+      "button_link": {
+        "__TYPE__": "LinkContent",
+        "value": {
+          "link_type": "Web",
+          "url": "/contact"
+        }
+      }
+    },
+    "items": [
+      {
+        "image": {
+          "__TYPE__": "ImageContent",
+          "url": "https://images.prismic.io/demo/basketball-training.jpg",
+          "width": 900,
+          "height": 600,
+          "alt": "Basketball Fundamentals",
+          "thumbnails": {}
+        },
+        "title": {
+          "__TYPE__": "FieldContent",
+          "value": "Basketball Fundamentals",
+          "type": "Text"
+        },
+        "price": {
+          "__TYPE__": "FieldContent",
+          "value": "₹2,500 / Month",
+          "type": "Text"
+        },
+        "duration": {
+          "__TYPE__": "FieldContent",
+          "value": "3 Months",
+          "type": "Text"
+        },
+        "description": {
+          "__TYPE__": "StructuredTextContent",
+          "value": [
+            {
+              "type": "paragraph",
+              "content": {
+                "text": "Learn dribbling, passing, shooting, footwork, defense and game awareness through structured coaching sessions."
+              }
+            }
+          ]
+        },
+        "features": {
+          "__TYPE__": "StructuredTextContent",
+          "value": [
+            {
+              "type": "list-item",
+              "content": {
+                "text": "Professional Coaches"
+              }
+            },
+            {
+              "type": "list-item",
+              "content": {
+                "text": "Weekly Practice Sessions"
+              }
+            },
+            {
+              "type": "list-item",
+              "content": {
+                "text": "Fitness Assessment"
+              }
+            }
+          ]
+        }
+      },
+      {
+        "image": {
+          "__TYPE__": "ImageContent",
+          "url": "https://images.prismic.io/demo/advanced-training.jpg",
+          "width": 900,
+          "height": 600,
+          "alt": "Advanced Skill Development",
+          "thumbnails": {}
+        },
+        "title": {
+          "__TYPE__": "FieldContent",
+          "value": "Advanced Skill Development",
+          "type": "Text"
+        },
+        "price": {
+          "__TYPE__": "FieldContent",
+          "value": "₹4,000 / Month",
+          "type": "Text"
+        },
+        "duration": {
+          "__TYPE__": "FieldContent",
+          "value": "6 Months",
+          "type": "Text"
+        },
+        "description": {
+          "__TYPE__": "StructuredTextContent",
+          "value": [
+            {
+              "type": "paragraph",
+              "content": {
+                "text": "Master advanced offensive moves, defensive strategies, game intelligence and match preparation."
+              }
+            }
+          ]
+        },
+        "features": {
+          "__TYPE__": "StructuredTextContent",
+          "value": [
+            {
+              "type": "list-item",
+              "content": {
+                "text": "Match Simulation"
+              }
+            },
+            {
+              "type": "list-item",
+              "content": {
+                "text": "Performance Analysis"
+              }
+            },
+            {
+              "type": "list-item",
+              "content": {
+                "text": "Video Review Sessions"
+              }
+            }
+          ]
+        }
+      },
+      {
+        "image": {
+          "__TYPE__": "ImageContent",
+          "url": "https://images.prismic.io/demo/fitness-training.jpg",
+          "width": 900,
+          "height": 600,
+          "alt": "Strength & Conditioning",
+          "thumbnails": {}
+        },
+        "title": {
+          "__TYPE__": "FieldContent",
+          "value": "Strength & Conditioning",
+          "type": "Text"
+        },
+        "price": {
+          "__TYPE__": "FieldContent",
+          "value": "₹3,500 / Month",
+          "type": "Text"
+        },
+        "duration": {
+          "__TYPE__": "FieldContent",
+          "value": "4 Months",
+          "type": "Text"
+        },
+        "description": {
+          "__TYPE__": "StructuredTextContent",
+          "value": [
+            {
+              "type": "paragraph",
+              "content": {
+                "text": "Build strength, endurance, agility, flexibility and speed through scientifically designed fitness programs."
+              }
+            }
+          ]
+        },
+        "features": {
+          "__TYPE__": "StructuredTextContent",
+          "value": [
+            {
+              "type": "list-item",
+              "content": {
+                "text": "Strength Training"
+              }
+            },
+            {
+              "type": "list-item",
+              "content": {
+                "text": "Speed & Agility"
+              }
+            },
+            {
+              "type": "list-item",
+              "content": {
+                "text": "Recovery Sessions"
+              }
+            }
+          ]
+        }
+      },
+      {
+        "image": {
+          "__TYPE__": "ImageContent",
+          "url": "https://images.prismic.io/demo/elite-program.jpg",
+          "width": 900,
+          "height": 600,
+          "alt": "Elite Tournament Program",
+          "thumbnails": {}
+        },
+        "title": {
+          "__TYPE__": "FieldContent",
+          "value": "Elite Tournament Program",
+          "type": "Text"
+        },
+        "price": {
+          "__TYPE__": "FieldContent",
+          "value": "₹6,000 / Month",
+          "type": "Text"
+        },
+        "duration": {
+          "__TYPE__": "FieldContent",
+          "value": "12 Months",
+          "type": "Text"
+        },
+        "description": {
+          "__TYPE__": "StructuredTextContent",
+          "value": [
+            {
+              "type": "paragraph",
+              "content": {
+                "text": "Prepare for district, state and national championships with high-performance coaching and competition exposure."
+              }
+            }
+          ]
+        },
+        "features": {
+          "__TYPE__": "StructuredTextContent",
+          "value": [
+            {
+              "type": "list-item",
+              "content": {
+                "text": "Tournament Preparation"
+              }
+            },
+            {
+              "type": "list-item",
+              "content": {
+                "text": "Personal Mentoring"
+              }
+            },
+            {
+              "type": "list-item",
+              "content": {
+                "text": "Competition Exposure"
+              }
+            }
+          ]
+        }
+      }
+    ]
+  }
+]

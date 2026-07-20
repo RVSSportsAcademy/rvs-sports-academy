@@ -12,6 +12,9 @@ export type MembershipProps = SliceComponentProps<Content.MembershipSlice>;
  * Component for "Membership" Slices.
  */
 const Membership = ({ slice }: MembershipProps): JSX.Element => {
+  const primary = slice.primary as any;
+  const membership_plans = (primary.membership_plans || []) as any[];
+
   return (
     <section
       className={cn("min-h-screen py-12")}
@@ -23,7 +26,7 @@ const Membership = ({ slice }: MembershipProps): JSX.Element => {
           {slice.primary.title}
         </h1>
         <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-8">
-          {slice.primary.membership_plans.map((plan, index) => (
+          {membership_plans.map((plan: any, index: number) => (
             <div key={index} className="bg-white p-8 rounded-lg shadow-lg border-t-4 border-deepBlue">
               <h3 className="text-2xl font-bold text-deepBlue mb-2">
                 {plan.plan_name}
@@ -34,7 +37,7 @@ const Membership = ({ slice }: MembershipProps): JSX.Element => {
               <div className="mb-6">
                 <PrismicRichText field={plan.plan_features} />
               </div>
-              {plan.plan_button.url && (
+              {plan.plan_button?.url && (
                 <PrismicNextLink field={plan.plan_button} className="btn btn-primary w-full">
                   {plan.plan_button_label}
                 </PrismicNextLink>

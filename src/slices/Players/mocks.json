@@ -1,83 +1,263 @@
 [
-	{
-		"__TYPE__": "SharedSliceContent",
-		"variation": "default",
-		"primary": {
-			"players": {
-				"__TYPE__": "GroupContentType",
-				"value": [
-					{
-						"__TYPE__": "GroupItemContent",
-						"value": [
-							[
-								"image",
-								{
-									"origin": {
-										"id": "main",
-										"url": "https://images.unsplash.com/photo-1448932223592-d1fc686e76ea",
-										"width": 3500,
-										"height": 2338
-									},
-									"url": "https://images.unsplash.com/photo-1448932223592-d1fc686e76ea",
-									"width": 3500,
-									"height": 2338,
-									"edit": {
-										"zoom": 1,
-										"crop": {
-											"x": 0,
-											"y": 0
-										},
-										"background": "transparent"
-									},
-									"credits": null,
-									"alt": null,
-									"__TYPE__": "ImageContent",
-									"thumbnails": {}
-								}
-							],
-							[
-								"name",
-								{
-									"__TYPE__": "FieldContent",
-									"value": "never",
-									"type": "Text"
-								}
-							],
-							[
-								"player_description",
-								{
-									"__TYPE__": "StructuredTextContent",
-									"value": [
-										{
-											"type": "paragraph",
-											"content": {
-												"text": "Laboris irure exercitation ullamco est officia proident aliqua. Et pariatur do nulla consectetur officia cillum id ipsum fugiat."
-											}
-										}
-									]
-								}
-							]
-						]
-					}
-				]
-			},
-			"heading": {
-				"__TYPE__": "FieldContent",
-				"value": "living",
-				"type": "Text"
-			},
-			"description": {
-				"__TYPE__": "StructuredTextContent",
-				"value": [
-					{
-						"type": "paragraph",
-						"content": {
-							"text": "Commodo quis dolore consectetur fugiat esse ut esse commodo reprehenderit fugiat elit reprehenderit eiusmod."
-						}
-					}
-				]
-			}
-		},
-		"items": []
-	}
+  {
+    "__TYPE__": "SharedSliceContent",
+    "variation": "default",
+    "primary": {
+      "subtitle": {
+        "__TYPE__": "FieldContent",
+        "value": "Meet Our Team",
+        "type": "Text"
+      },
+      "heading": {
+        "__TYPE__": "FieldContent",
+        "value": "Our Professional Players",
+        "type": "Text"
+      },
+      "description": {
+        "__TYPE__": "StructuredTextContent",
+        "value": [
+          {
+            "type": "paragraph",
+            "content": {
+              "text": "Our talented athletes are dedicated to excellence, teamwork, discipline, and continuous improvement. Every player is trained by experienced coaches to perform at the highest level."
+            }
+          }
+        ]
+      },
+      "players": {
+        "__TYPE__": "GroupContentType",
+        "value": [
+          {
+            "__TYPE__": "GroupItemContent",
+            "value": [
+              [
+                "image",
+                {
+                  "__TYPE__": "ImageContent"
+                }
+              ],
+              [
+                "name",
+                {
+                  "__TYPE__": "FieldContent",
+                  "value": "Aarav Sharma",
+                  "type": "Text"
+                }
+              ],
+              [
+                "position",
+                {
+                  "__TYPE__": "FieldContent",
+                  "value": "Point Guard",
+                  "type": "Text"
+                }
+              ],
+              [
+                "jersey_number",
+                {
+                  "__TYPE__": "FieldContent",
+                  "value": "#07",
+                  "type": "Text"
+                }
+              ],
+              [
+                "experience",
+                {
+                  "__TYPE__": "FieldContent",
+                  "value": "5 Years",
+                  "type": "Text"
+                }
+              ],
+              [
+                "player_description",
+                {
+                  "__TYPE__": "StructuredTextContent",
+                  "value": [
+                    {
+                      "type": "paragraph",
+                      "content": {
+                        "text": "An excellent playmaker with outstanding court vision, leadership qualities, and exceptional ball-handling skills."
+                      }
+                    }
+                  ]
+                }
+              ]
+            ]
+          },
+          {
+            "__TYPE__": "GroupItemContent",
+            "value": [
+              [
+                "image",
+                {
+                  "__TYPE__": "ImageContent"
+                }
+              ],
+              [
+                "name",
+                {
+                  "__TYPE__": "FieldContent",
+                  "value": "Rohan Singh",
+                  "type": "Text"
+                }
+              ],
+              [
+                "position",
+                {
+                  "__TYPE__": "FieldContent",
+                  "value": "Shooting Guard",
+                  "type": "Text"
+                }
+              ],
+              [
+                "jersey_number",
+                {
+                  "__TYPE__": "FieldContent",
+                  "value": "#11",
+                  "type": "Text"
+                }
+              ],
+              [
+                "experience",
+                {
+                  "__TYPE__": "FieldContent",
+                  "value": "4 Years",
+                  "type": "Text"
+                }
+              ],
+              [
+                "player_description",
+                {
+                  "__TYPE__": "StructuredTextContent",
+                  "value": [
+                    {
+                      "type": "paragraph",
+                      "content": {
+                        "text": "Known for accurate three-point shooting, quick decision-making, and consistent performance under pressure."
+                      }
+                    }
+                  ]
+                }
+              ]
+            ]
+          },
+          {
+            "__TYPE__": "GroupItemContent",
+            "value": [
+              [
+                "image",
+                {
+                  "__TYPE__": "ImageContent"
+                }
+              ],
+              [
+                "name",
+                {
+                  "__TYPE__": "FieldContent",
+                  "value": "Vihaan Verma",
+                  "type": "Text"
+                }
+              ],
+              [
+                "position",
+                {
+                  "__TYPE__": "FieldContent",
+                  "value": "Small Forward",
+                  "type": "Text"
+                }
+              ],
+              [
+                "jersey_number",
+                {
+                  "__TYPE__": "FieldContent",
+                  "value": "#23",
+                  "type": "Text"
+                }
+              ],
+              [
+                "experience",
+                {
+                  "__TYPE__": "FieldContent",
+                  "value": "6 Years",
+                  "type": "Text"
+                }
+              ],
+              [
+                "player_description",
+                {
+                  "__TYPE__": "StructuredTextContent",
+                  "value": [
+                    {
+                      "type": "paragraph",
+                      "content": {
+                        "text": "A versatile athlete with strong defensive abilities, explosive speed, and remarkable scoring capability."
+                      }
+                    }
+                  ]
+                }
+              ]
+            ]
+          },
+          {
+            "__TYPE__": "GroupItemContent",
+            "value": [
+              [
+                "image",
+                {
+                  "__TYPE__": "ImageContent"
+                }
+              ],
+              [
+                "name",
+                {
+                  "__TYPE__": "FieldContent",
+                  "value": "Aditya Kapoor",
+                  "type": "Text"
+                }
+              ],
+              [
+                "position",
+                {
+                  "__TYPE__": "FieldContent",
+                  "value": "Center",
+                  "type": "Text"
+                }
+              ],
+              [
+                "jersey_number",
+                {
+                  "__TYPE__": "FieldContent",
+                  "value": "#35",
+                  "type": "Text"
+                }
+              ],
+              [
+                "experience",
+                {
+                  "__TYPE__": "FieldContent",
+                  "value": "7 Years",
+                  "type": "Text"
+                }
+              ],
+              [
+                "player_description",
+                {
+                  "__TYPE__": "StructuredTextContent",
+                  "value": [
+                    {
+                      "type": "paragraph",
+                      "content": {
+                        "text": "Dominates the paint with excellent rebounding, shot-blocking, and inside scoring abilities."
+                      }
+                    }
+                  ]
+                }
+              ]
+            ]
+          }
+        ]
+      }
+    },
+    "items": []
+  }
 ]

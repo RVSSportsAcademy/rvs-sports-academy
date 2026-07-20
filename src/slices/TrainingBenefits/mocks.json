@@ -1,0 +1,169 @@
+[
+  {
+    "__TYPE__": "SharedSliceContent",
+    "variation": "default",
+    "primary": {
+      "subtitle": {
+        "__TYPE__": "FieldContent",
+        "value": "WHY CHOOSE OUR TRAINING",
+        "type": "Text"
+      },
+      "title": {
+        "__TYPE__": "FieldContent",
+        "value": "Benefits of Our Training Programs",
+        "type": "Text"
+      },
+      "description": {
+        "__TYPE__": "StructuredTextContent",
+        "value": [
+          {
+            "type": "paragraph",
+            "content": {
+              "text": "Our professionally designed training programs help athletes develop technical excellence, physical fitness, confidence, teamwork, and leadership while preparing them for competitive success."
+            }
+          }
+        ]
+      }
+    },
+    "items": [
+      {
+        "icon": {
+          "__TYPE__": "FieldContent",
+          "value": "Award",
+          "type": "Text"
+        },
+        "title": {
+          "__TYPE__": "FieldContent",
+          "value": "Professional Coaching",
+          "type": "Text"
+        },
+        "description": {
+          "__TYPE__": "StructuredTextContent",
+          "value": [
+            {
+              "type": "paragraph",
+              "content": {
+                "text": "Learn from certified and experienced coaches dedicated to developing every athlete's full potential."
+              }
+            }
+          ]
+        }
+      },
+      {
+        "icon": {
+          "__TYPE__": "FieldContent",
+          "value": "Heart",
+          "type": "Text"
+        },
+        "title": {
+          "__TYPE__": "FieldContent",
+          "value": "Physical Fitness",
+          "type": "Text"
+        },
+        "description": {
+          "__TYPE__": "StructuredTextContent",
+          "value": [
+            {
+              "type": "paragraph",
+              "content": {
+                "text": "Improve endurance, flexibility, agility, strength, and overall physical wellness through structured fitness sessions."
+              }
+            }
+          ]
+        }
+      },
+      {
+        "icon": {
+          "__TYPE__": "FieldContent",
+          "value": "Target",
+          "type": "Text"
+        },
+        "title": {
+          "__TYPE__": "FieldContent",
+          "value": "Skill Development",
+          "type": "Text"
+        },
+        "description": {
+          "__TYPE__": "StructuredTextContent",
+          "value": [
+            {
+              "type": "paragraph",
+              "content": {
+                "text": "Master technical skills, tactical awareness, game intelligence, and decision-making through progressive coaching."
+              }
+            }
+          ]
+        }
+      },
+      {
+        "icon": {
+          "__TYPE__": "FieldContent",
+          "value": "Users",
+          "type": "Text"
+        },
+        "title": {
+          "__TYPE__": "FieldContent",
+          "value": "Teamwork & Leadership",
+          "type": "Text"
+        },
+        "description": {
+          "__TYPE__": "StructuredTextContent",
+          "value": [
+            {
+              "type": "paragraph",
+              "content": {
+                "text": "Develop communication, discipline, teamwork, leadership, and confidence both on and off the court."
+              }
+            }
+          ]
+        }
+      },
+      {
+        "icon": {
+          "__TYPE__": "FieldContent",
+          "value": "Shield",
+          "type": "Text"
+        },
+        "title": {
+          "__TYPE__": "FieldContent",
+          "value": "Safe Training Environment",
+          "type": "Text"
+        },
+        "description": {
+          "__TYPE__": "StructuredTextContent",
+          "value": [
+            {
+              "type": "paragraph",
+              "content": {
+                "text": "Train in a safe, supportive, and motivating environment equipped with modern facilities and quality infrastructure."
+              }
+            }
+          ]
+        }
+      },
+      {
+        "icon": {
+          "__TYPE__": "FieldContent",
+          "value": "Trophy",
+          "type": "Text"
+        },
+        "title": {
+          "__TYPE__": "FieldContent",
+          "value": "Competitive Excellence",
+          "type": "Text"
+        },
+        "description": {
+          "__TYPE__": "StructuredTextContent",
+          "value": [
+            {
+              "type": "paragraph",
+              "content": {
+                "text": "Prepare for district, state, and national-level competitions through match practice, tournaments, and performance analysis."
+              }
+            }
+          ]
+        }
+      }
+    ]
+  }
+]

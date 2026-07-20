@@ -1,0 +1,193 @@
+[
+  {
+    "__TYPE__": "SharedSliceContent",
+    "variation": "default",
+    "primary": {
+      "subtitle": {
+        "__TYPE__": "FieldContent",
+        "value": "WEEKLY TRAINING SCHEDULE",
+        "type": "Text"
+      },
+      "title": {
+        "__TYPE__": "FieldContent",
+        "value": "Train With Us Every Week",
+        "type": "Text"
+      },
+      "description": {
+        "__TYPE__": "StructuredTextContent",
+        "value": [
+          {
+            "type": "paragraph",
+            "content": {
+              "text": "Choose the training program that best matches your age, skill level and athletic goals. Our structured weekly schedule ensures consistent progress for every athlete."
+            }
+          }
+        ]
+      }
+    },
+    "items": [
+      {
+        "day": {
+          "__TYPE__": "FieldContent",
+          "value": "Monday",
+          "type": "Text"
+        },
+        "time": {
+          "__TYPE__": "FieldContent",
+          "value": "5:00 PM – 6:30 PM",
+          "type": "Text"
+        },
+        "program": {
+          "__TYPE__": "FieldContent",
+          "value": "Basketball Fundamentals",
+          "type": "Text"
+        },
+        "age_group": {
+          "__TYPE__": "FieldContent",
+          "value": "8–12 Years",
+          "type": "Text"
+        },
+        "coach": {
+          "__TYPE__": "FieldContent",
+          "value": "Rahul Sharma",
+          "type": "Text"
+        }
+      },
+      {
+        "day": {
+          "__TYPE__": "FieldContent",
+          "value": "Tuesday",
+          "type": "Text"
+        },
+        "time": {
+          "__TYPE__": "FieldContent",
+          "value": "6:00 PM – 7:30 PM",
+          "type": "Text"
+        },
+        "program": {
+          "__TYPE__": "FieldContent",
+          "value": "Strength & Conditioning",
+          "type": "Text"
+        },
+        "age_group": {
+          "__TYPE__": "FieldContent",
+          "value": "13–18 Years",
+          "type": "Text"
+        },
+        "coach": {
+          "__TYPE__": "FieldContent",
+          "value": "Amit Verma",
+          "type": "Text"
+        }
+      },
+      {
+        "day": {
+          "__TYPE__": "FieldContent",
+          "value": "Wednesday",
+          "type": "Text"
+        },
+        "time": {
+          "__TYPE__": "FieldContent",
+          "value": "5:30 PM – 7:00 PM",
+          "type": "Text"
+        },
+        "program": {
+          "__TYPE__": "FieldContent",
+          "value": "Advanced Skill Development",
+          "type": "Text"
+        },
+        "age_group": {
+          "__TYPE__": "FieldContent",
+          "value": "12–18 Years",
+          "type": "Text"
+        },
+        "coach": {
+          "__TYPE__": "FieldContent",
+          "value": "Vikram Singh",
+          "type": "Text"
+        }
+      },
+      {
+        "day": {
+          "__TYPE__": "FieldContent",
+          "value": "Thursday",
+          "type": "Text"
+        },
+        "time": {
+          "__TYPE__": "FieldContent",
+          "value": "5:00 PM – 6:30 PM",
+          "type": "Text"
+        },
+        "program": {
+          "__TYPE__": "FieldContent",
+          "value": "Elite Tournament Training",
+          "type": "Text"
+        },
+        "age_group": {
+          "__TYPE__": "FieldContent",
+          "value": "15+ Years",
+          "type": "Text"
+        },
+        "coach": {
+          "__TYPE__": "FieldContent",
+          "value": "Sanjay Kumar",
+          "type": "Text"
+        }
+      },
+      {
+        "day": {
+          "__TYPE__": "FieldContent",
+          "value": "Saturday",
+          "type": "Text"
+        },
+        "time": {
+          "__TYPE__": "FieldContent",
+          "value": "7:00 AM – 9:00 AM",
+          "type": "Text"
+        },
+        "program": {
+          "__TYPE__": "FieldContent",
+          "value": "Weekend Performance Camp",
+          "type": "Text"
+        },
+        "age_group": {
+          "__TYPE__": "FieldContent",
+          "value": "All Age Groups",
+          "type": "Text"
+        },
+        "coach": {
+          "__TYPE__": "FieldContent",
+          "value": "Coaching Team",
+          "type": "Text"
+        }
+      },
+      {
+        "day": {
+          "__TYPE__": "FieldContent",
+          "value": "Sunday",
+          "type": "Text"
+        },
+        "time": {
+          "__TYPE__": "FieldContent",
+          "value": "8:00 AM – 10:00 AM",
+          "type": "Text"
+        },
+        "program": {
+          "__TYPE__": "FieldContent",
+          "value": "Friendly Matches & Recovery",
+          "type": "Text"
+        },
+        "age_group": {
+          "__TYPE__": "FieldContent",
+          "value": "All Players",
+          "type": "Text"
+        },
+        "coach": {
+          "__TYPE__": "FieldContent",
+          "value": "RVS Coaching Staff",
+          "type": "Text"
+        }
+      }
+    ]
+  }
+]

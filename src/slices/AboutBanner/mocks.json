@@ -1,0 +1,38 @@
+[
+  {
+    "__TYPE__": "SharedSliceContent",
+    "variation": "default",
+    "primary": {
+      "background_image": {
+        "__TYPE__": "ImageContent",
+        "url": "https://images.prismic.io/demo/about-banner.jpg",
+        "width": 1920,
+        "height": 1080,
+        "alt": "About Banner",
+        "thumbnails": {}
+      },
+      "subtitle": {
+        "__TYPE__": "FieldContent",
+        "value": "ABOUT US",
+        "type": "Text"
+      },
+      "title": {
+        "__TYPE__": "FieldContent",
+        "value": "Building Champions On and Off the Court",
+        "type": "Text"
+      },
+      "description": {
+        "__TYPE__": "StructuredTextContent",
+        "value": [
+          {
+            "type": "paragraph",
+            "content": {
+              "text": "RVS Sports Academy empowers youth through professional coaching, leadership, education, discipline, and community development to create future champions."
+            }
+          }
+        ]
+      }
+    },
+    "items": []
+  }
+]

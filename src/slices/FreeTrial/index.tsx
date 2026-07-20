@@ -47,7 +47,7 @@ const FreeTrial = ({ slice }: FreeTrialProps): JSX.Element => {
 						<PrismicNextLink field={title.link}>
 							<button
 								className={cn(
-									"text-white text-base md:text-xl font-bold uppercase font-oswald rounded-lg w-32 md:w-40 h-10 md:h-12 bg-basketballOrange"
+									"text-white text-base md:text-xl font-bold uppercase font-oswald rounded-lg w-32 md:w-40 h-10 md:h-12 bg-primary"
 								)}
 							>
 								{title.link_label}

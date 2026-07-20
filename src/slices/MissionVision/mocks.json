@@ -3,34 +3,133 @@
     "__TYPE__": "SharedSliceContent",
     "variation": "default",
     "primary": {
-      "title": {
+      "subtitle": {
         "__TYPE__": "FieldContent",
-        "value": "Our Mission & Vision",
+        "value": "OUR PURPOSE",
         "type": "Text"
       },
-      "mission": {
+      "title": {
+        "__TYPE__": "FieldContent",
+        "value": "Building Champions Beyond the Game",
+        "type": "Text"
+      },
+      "description": {
         "__TYPE__": "StructuredTextContent",
         "value": [
           {
             "type": "paragraph",
             "content": {
-              "text": "To develop young athletes through sports excellence and character building."
+              "text": "At RVS Sports Academy, our vision and mission inspire everything we do. We are committed to developing athletes into confident leaders through sports, education, discipline, and community engagement."
             }
           }
         ]
       },
-      "vision": {
+      "vision_title": {
+        "__TYPE__": "FieldContent",
+        "value": "Our Vision",
+        "type": "Text"
+      },
+      "vision_description": {
         "__TYPE__": "StructuredTextContent",
         "value": [
           {
             "type": "paragraph",
             "content": {
-              "text": "To be a leading sports academy producing world-class athletes."
+              "text": "To become India's leading sports academy, empowering every athlete to achieve excellence while building character, confidence, and leadership."
+            }
+          }
+        ]
+      },
+      "mission_title": {
+        "__TYPE__": "FieldContent",
+        "value": "Our Mission",
+        "type": "Text"
+      },
+      "mission_description": {
+        "__TYPE__": "StructuredTextContent",
+        "value": [
+          {
+            "type": "paragraph",
+            "content": {
+              "text": "Provide world-class coaching, modern facilities, and holistic development programs that prepare athletes for success in sports and life."
             }
           }
         ]
       }
     },
-    "items": []
+    "items": [
+      {
+        "value_title": {
+          "__TYPE__": "FieldContent",
+          "value": "Integrity",
+          "type": "Text"
+        },
+        "value_description": {
+          "__TYPE__": "StructuredTextContent",
+          "value": [
+            {
+              "type": "paragraph",
+              "content": {
+                "text": "We act honestly, ethically and responsibly."
+              }
+            }
+          ]
+        }
+      },
+      {
+        "value_title": {
+          "__TYPE__": "FieldContent",
+          "value": "Excellence",
+          "type": "Text"
+        },
+        "value_description": {
+          "__TYPE__": "StructuredTextContent",
+          "value": [
+            {
+              "type": "paragraph",
+              "content": {
+                "text": "We pursue the highest standards in everything we do."
+              }
+            }
+          ]
+        }
+      },
+      {
+        "value_title": {
+          "__TYPE__": "FieldContent",
+          "value": "Teamwork",
+          "type": "Text"
+        },
+        "value_description": {
+          "__TYPE__": "StructuredTextContent",
+          "value": [
+            {
+              "type": "paragraph",
+              "content": {
+                "text": "Collaboration creates stronger athletes and stronger communities."
+              }
+            }
+          ]
+        }
+      },
+      {
+        "value_title": {
+          "__TYPE__": "FieldContent",
+          "value": "Discipline",
+          "type": "Text"
+        },
+        "value_description": {
+          "__TYPE__": "StructuredTextContent",
+          "value": [
+            {
+              "type": "paragraph",
+              "content": {
+                "text": "Consistency, focus and hard work lead to long-term success."
+              }
+            }
+          ]
+        }
+      }
+    ]
   }
 ]

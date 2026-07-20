@@ -26,37 +26,32 @@
         "__TYPE__": "ImageContent",
         "thumbnails": {}
       },
-
       "sub_heading": {
         "__TYPE__": "FieldContent",
         "value": "Welcome to RVS",
         "type": "Text"
       },
-
       "heading": {
         "__TYPE__": "FieldContent",
         "value": "Empowering Future Champions Through Sports",
         "type": "Text"
       },
-
       "description": {
         "__TYPE__": "StructuredTextContent",
         "value": [
           {
             "type": "paragraph",
             "content": {
-              "text": "RVS Sports Academy is dedicated to developing young athletes through professional coaching, discipline, teamwork, fitness and leadership. We create opportunities for students to compete, learn and grow on and off the court."
+              "text": "RVS Sports Welfare Association is dedicated to empowering youth through sports, education, leadership, health, and community development. We nurture talent, build confidence, and inspire the next generation of champions."
             }
           }
         ]
       },
-
       "button_label": {
         "__TYPE__": "FieldContent",
-        "value": "Learn More",
+        "value": "Explore Programs",
         "type": "Text"
       },
-
       "button_link": {
         "__TYPE__": "LinkContent",
         "value": {
@@ -65,6 +60,35 @@
         }
       }
     },
-    "items": []
+    "items": [
+      {
+        "feature_title": {
+          "__TYPE__": "FieldContent",
+          "value": "Professional Coaching",
+          "type": "Text"
+        }
+      },
+      {
+        "feature_title": {
+          "__TYPE__": "FieldContent",
+          "value": "Athlete Development",
+          "type": "Text"
+        }
+      },
+      {
+        "feature_title": {
+          "__TYPE__": "FieldContent",
+          "value": "National Competitions",
+          "type": "Text"
+        }
+      },
+      {
+        "feature_title": {
+          "__TYPE__": "FieldContent",
+          "value": "Leadership & Team Building",
+          "type": "Text"
+        }
+      }
+    ]
   }
 ]

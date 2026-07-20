@@ -3,25 +3,161 @@
     "__TYPE__": "SharedSliceContent",
     "variation": "default",
     "primary": {
-      "title": {
+      "subtitle": {
         "__TYPE__": "FieldContent",
-        "value": "Our Sponsors",
+        "value": "Our Partners",
         "type": "Text"
       },
-      "sponsors": [
-        {
-          "__TYPE__": "GroupItemContent",
-          "sponsor_name": {
-            "__TYPE__": "FieldContent",
-            "value": "Sponsor Name",
-            "type": "Text"
-          },
-          "sponsor_logo": {
-            "__TYPE__": "ImageContent"
+      "title": {
+        "__TYPE__": "FieldContent",
+        "value": "Trusted by Leading Organizations",
+        "type": "Text"
+      },
+      "description": {
+        "__TYPE__": "StructuredTextContent",
+        "value": [
+          {
+            "type": "paragraph",
+            "content": {
+              "text": "We proudly collaborate with organizations, educational institutions, and industry leaders who share our vision of empowering young athletes through sports and education."
+            }
+          }
+        ]
+      }
+    },
+    "items": [
+      {
+        "sponsor_name": {
+          "__TYPE__": "FieldContent",
+          "value": "Nike",
+          "type": "Text"
+        },
+        "sponsor_description": {
+          "__TYPE__": "StructuredTextContent",
+          "value": [
+            {
+              "type": "paragraph",
+              "content": {
+                "text": "Official Sportswear Partner"
+              }
+            }
+          ]
+        },
+        "sponsor_logo": {
+          "__TYPE__": "ImageContent",
+          "url": "https://images.prismic.io/your-repo/nike-logo.png",
+          "width": 300,
+          "height": 120,
+          "alt": "Nike Logo",
+          "thumbnails": {}
+        },
+        "sponsor_link": {
+          "__TYPE__": "LinkContent",
+          "value": {
+            "link_type": "Web",
+            "url": "https://www.nike.com"
           }
         }
-      ]
-    },
-    "items": []
+      },
+      {
+        "sponsor_name": {
+          "__TYPE__": "FieldContent",
+          "value": "Adidas",
+          "type": "Text"
+        },
+        "sponsor_description": {
+          "__TYPE__": "StructuredTextContent",
+          "value": [
+            {
+              "type": "paragraph",
+              "content": {
+                "text": "Performance Equipment Partner"
+              }
+            }
+          ]
+        },
+        "sponsor_logo": {
+          "__TYPE__": "ImageContent",
+          "url": "https://images.prismic.io/your-repo/adidas-logo.png",
+          "width": 300,
+          "height": 120,
+          "alt": "Adidas Logo",
+          "thumbnails": {}
+        },
+        "sponsor_link": {
+          "__TYPE__": "LinkContent",
+          "value": {
+            "link_type": "Web",
+            "url": "https://www.adidas.com"
+          }
+        }
+      },
+      {
+        "sponsor_name": {
+          "__TYPE__": "FieldContent",
+          "value": "Decathlon",
+          "type": "Text"
+        },
+        "sponsor_description": {
+          "__TYPE__": "StructuredTextContent",
+          "value": [
+            {
+              "type": "paragraph",
+              "content": {
+                "text": "Sports Equipment Partner"
+              }
+            }
+          ]
+        },
+        "sponsor_logo": {
+          "__TYPE__": "ImageContent",
+          "url": "https://images.prismic.io/your-repo/decathlon-logo.png",
+          "width": 300,
+          "height": 120,
+          "alt": "Decathlon Logo",
+          "thumbnails": {}
+        },
+        "sponsor_link": {
+          "__TYPE__": "LinkContent",
+          "value": {
+            "link_type": "Web",
+            "url": "https://www.decathlon.com"
+          }
+        }
+      },
+      {
+        "sponsor_name": {
+          "__TYPE__": "FieldContent",
+          "value": "Spalding",
+          "type": "Text"
+        },
+        "sponsor_description": {
+          "__TYPE__": "StructuredTextContent",
+          "value": [
+            {
+              "type": "paragraph",
+              "content": {
+                "text": "Official Basketball Partner"
+              }
+            }
+          ]
+        },
+        "sponsor_logo": {
+          "__TYPE__": "ImageContent",
+          "url": "https://images.prismic.io/your-repo/spalding-logo.png",
+          "width": 300,
+          "height": 120,
+          "alt": "Spalding Logo",
+          "thumbnails": {}
+        },
+        "sponsor_link": {
+          "__TYPE__": "LinkContent",
+          "value": {
+            "link_type": "Web",
+            "url": "https://www.spalding.com"
+          }
+        }
+      }
+    ]
   }
 ]

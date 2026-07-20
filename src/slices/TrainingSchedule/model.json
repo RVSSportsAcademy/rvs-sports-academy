@@ -1,0 +1,78 @@
+{
+  "id": "training_schedule",
+  "type": "SharedSlice",
+  "name": "TrainingSchedule",
+  "description": "Training Schedule Section",
+  "variations": [
+    {
+      "id": "default",
+      "name": "Default",
+      "docURL": "...",
+      "version": "initial",
+      "description": "Training Schedule",
+      "imageUrl": "",
+      "primary": {
+        "sub_heading": {
+          "type": "Text",
+          "config": {
+            "label": "Sub Heading",
+            "placeholder": "Training Schedule"
+          }
+        },
+        "heading": {
+          "type": "Text",
+          "config": {
+            "label": "Heading",
+            "placeholder": "Weekly Training Plan"
+          }
+        },
+        "description": {
+          "type": "StructuredText",
+          "config": {
+            "label": "Description",
+            "multi": "paragraph,strong,em",
+            "allowTargetBlank": true
+          }
+        },
+        "schedule": {
+          "type": "Group",
+          "config": {
+            "label": "Schedule",
+            "repeat": true,
+            "fields": {
+              "day": {
+                "type": "Text",
+                "config": {
+                  "label": "Day",
+                  "placeholder": "Monday"
+                }
+              },
+              "time": {
+                "type": "Text",
+                "config": {
+                  "label": "Time",
+                  "placeholder": "06:00 PM - 08:00 PM"
+                }
+              },
+              "activity": {
+                "type": "Text",
+                "config": {
+                  "label": "Activity",
+                  "placeholder": "Basketball Skills Training"
+                }
+              },
+              "coach": {
+                "type": "Text",
+                "config": {
+                  "label": "Coach",
+                  "placeholder": "Coach Rahul"
+                }
+              }
+            }
+          }
+        }
+      },
+      "items": {}
+    }
+  ]
+}

@@ -1,29 +1,62 @@
+import { Metadata } from "next";
 import { PrismicPreview } from "@prismicio/next";
-import { repositoryName } from "@/prismicio";
-import { createClient } from "@/prismicio";
-import { outfit, roboto, montserrat, oswald, roboto_condensed } from "@/libs/fonts";
+
+import { createClient, repositoryName } from "@/prismicio";
+
+import {
+  outfit,
+  roboto,
+  montserrat,
+  oswald,
+  roboto_condensed,
+  inter,
+  manrope,
+} from "@/libs/fonts";
+
 import { cn } from "@/libs/utils";
+
 import Header from "@/Components/Header";
 import Footer from "@/Components/Footer";
-import { Metadata } from "next";
+
 import "./globals.css";
 
 export async function generateMetadata(): Promise<Metadata> {
   const client = createClient();
+
   try {
     const settings = await client.getSingle("settings");
+
     return {
-      title: settings.data.site_title || "RVS Sports Academy",
-      description: settings.data.meta_description,
+      title: {
+        default: settings.data.site_title || "RVS Sports Welfare Association",
+
+template: "%s | RVS Sports Welfare Association",
+      },
+
+      description:
+        settings.data.meta_description ||
+        "Professional Basketball Coaching & Player Development.",
+
       openGraph: {
-        images: [settings.data.og_image.url || ""],
+        title: settings.data.site_title || "RVS Sports Welfare Association",
+        description:
+          settings.data.meta_description ||
+          "Professional Basketball Coaching",
+
+        images: settings.data.og_image?.url
+          ? [settings.data.og_image.url]
+          : [],
+      },
+
+      twitter: {
+        card: "summary_large_image",
       },
     };
-  } catch (error) {
-    console.error("Error fetching settings:", error);
+  } catch {
     return {
-      title: "Default Title",
-      description: "Default Description",
+      title: "RVS Sports Welfare Association",
+      description:
+        "Professional Basketball Coaching & Player Development.",
     };
   }
 }
@@ -35,12 +68,26 @@ export default function RootLayout({
 }>) {
   return (
     <html lang="en">
-      <body className={cn(outfit, roboto, montserrat, oswald,roboto_condensed, "antialiased")}>
+      <body
+        className={cn(
+          outfit,
+          roboto,
+          montserrat,
+          oswald,
+          roboto_condensed,
+          inter,
+          manrope,
+          "antialiased bg-page text-heading"
+        )}
+      >
         <Header />
-        {children}
+
+        <main>{children}</main>
+
         <Footer />
+
+        <PrismicPreview repositoryName={repositoryName} />
       </body>
-      <PrismicPreview repositoryName={repositoryName} />
     </html>
   );
 }

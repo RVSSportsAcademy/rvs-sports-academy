@@ -1,0 +1,146 @@
+[
+  {
+    "__TYPE__": "SharedSliceContent",
+    "variation": "default",
+    "primary": {
+      "subtitle": {
+        "__TYPE__": "FieldContent",
+        "value": "OUR JOURNEY",
+        "type": "Text"
+      },
+      "title": {
+        "__TYPE__": "FieldContent",
+        "value": "Growing Stronger Every Year",
+        "type": "Text"
+      },
+      "description": {
+        "__TYPE__": "StructuredTextContent",
+        "value": [
+          {
+            "type": "paragraph",
+            "content": {
+              "text": "From a small initiative to a leading sports academy, our journey has been driven by passion, perseverance, and a commitment to developing champions."
+            }
+          }
+        ]
+      }
+    },
+    "items": [
+      {
+        "year": {
+          "__TYPE__": "FieldContent",
+          "value": "2019",
+          "type": "Text"
+        },
+        "milestone_title": {
+          "__TYPE__": "FieldContent",
+          "value": "Academy Founded",
+          "type": "Text"
+        },
+        "milestone_description": {
+          "__TYPE__": "StructuredTextContent",
+          "value": [
+            {
+              "type": "paragraph",
+              "content": {
+                "text": "RVS Sports Academy was established with the vision of nurturing young athletes and building future champions."
+              }
+            }
+          ]
+        }
+      },
+      {
+        "year": {
+          "__TYPE__": "FieldContent",
+          "value": "2020",
+          "type": "Text"
+        },
+        "milestone_title": {
+          "__TYPE__": "FieldContent",
+          "value": "First Basketball Camp",
+          "type": "Text"
+        },
+        "milestone_description": {
+          "__TYPE__": "StructuredTextContent",
+          "value": [
+            {
+              "type": "paragraph",
+              "content": {
+                "text": "Successfully organized the academy's first professional basketball development camp."
+              }
+            }
+          ]
+        }
+      },
+      {
+        "year": {
+          "__TYPE__": "FieldContent",
+          "value": "2021",
+          "type": "Text"
+        },
+        "milestone_title": {
+          "__TYPE__": "FieldContent",
+          "value": "State Championship",
+          "type": "Text"
+        },
+        "milestone_description": {
+          "__TYPE__": "StructuredTextContent",
+          "value": [
+            {
+              "type": "paragraph",
+              "content": {
+                "text": "Our athletes secured their first major state-level championship title."
+              }
+            }
+          ]
+        }
+      },
+      {
+        "year": {
+          "__TYPE__": "FieldContent",
+          "value": "2023",
+          "type": "Text"
+        },
+        "milestone_title": {
+          "__TYPE__": "FieldContent",
+          "value": "National Recognition",
+          "type": "Text"
+        },
+        "milestone_description": {
+          "__TYPE__": "StructuredTextContent",
+          "value": [
+            {
+              "type": "paragraph",
+              "content": {
+                "text": "Recognized nationally for excellence in athlete development and community impact."
+              }
+            }
+          ]
+        }
+      },
+      {
+        "year": {
+          "__TYPE__": "FieldContent",
+          "value": "2025",
+          "type": "Text"
+        },
+        "milestone_title": {
+          "__TYPE__": "FieldContent",
+          "value": "New High Performance Center",
+          "type": "Text"
+        },
+        "milestone_description": {
+          "__TYPE__": "StructuredTextContent",
+          "value": [
+            {
+              "type": "paragraph",
+              "content": {
+                "text": "Expanded with a modern high-performance training center featuring advanced sports facilities."
+              }
+            }
+          ]
+        }
+      }
+    ]
+  }
+]

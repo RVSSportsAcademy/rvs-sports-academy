@@ -3,7 +3,7 @@
 import { PrismicNextImage, PrismicNextLink } from "@prismicio/next";
 import { Content, isFilled } from "@prismicio/client";
 import { SliceComponentProps } from "@prismicio/react";
-import { Button } from "@/Components/Utils/Button";
+import Button from "@/Components/Utils/Button";
 import { cn } from "@/libs/utils";
 import { motion } from "framer-motion";
 import {
@@ -17,24 +17,27 @@ import {
 export type HeroProps = SliceComponentProps<Content.HeroSlice>;
 
 const Hero = ({ slice }: HeroProps): JSX.Element => {
+  console.log("Hero Primary:", JSON.stringify(slice.primary, null, 2));
+  console.log(slice.primary.hero_image);
+console.log(slice.primary.hero_image?.url);
   const stats = [
     {
-      icon: <Users className="h-10 w-10 text-basketballOrange" />,
+      icon: <Users className="h-10 w-10 text-accent" />,
       value: Number(slice.primary.students_count) || 500,
       label: "Students",
     },
     {
-      icon: <Trophy className="h-10 w-10 text-basketballOrange" />,
+      icon: <Trophy className="h-10 w-10 text-accent" />,
       value: Number(slice.primary.coaches_count) || 25,
       label: "Expert Coaches",
     },
     {
-      icon: <Medal className="h-10 w-10 text-basketballOrange" />,
+      icon: <Medal className="h-10 w-10 text-accent" />,
       value: Number(slice.primary.tournaments_count) || 50,
       label: "Tournaments",
     },
     {
-      icon: <Star className="h-10 w-10 text-basketballOrange" />,
+      icon: <Star className="h-10 w-10 text-accent" />,
       value: Number(slice.primary.experience_count) || 10,
       label: "Years Experience",
     },
@@ -69,7 +72,7 @@ const Hero = ({ slice }: HeroProps): JSX.Element => {
         >
           {/* Subtitle */}
           {slice.primary.subtitle && (
-            <span className="mb-5 inline-flex rounded-full border border-basketballOrange bg-basketballOrange/10 px-5 py-2 text-sm font-semibold uppercase tracking-[3px] text-basketballOrange">
+            <span className="mb-5 inline-flex rounded-full border border-primary bg-primary/10 px-5 py-2 text-sm font-semibold uppercase tracking-[3px] text-accent">
               {slice.primary.subtitle}
             </span>
           )}
@@ -94,7 +97,7 @@ const Hero = ({ slice }: HeroProps): JSX.Element => {
           <div className="mt-10 flex flex-wrap justify-center gap-5">
             <PrismicNextLink field={slice.primary.link}>
               <Button
-                color="basketballOrange"
+                variant="primary"
                 size="large"
                 className="rounded-xl px-8 py-4 shadow-lg transition-all duration-300 hover:-translate-y-1 hover:shadow-2xl"
               >
@@ -158,7 +161,7 @@ const Hero = ({ slice }: HeroProps): JSX.Element => {
               </span>
 
               <ChevronDown
-                className="text-basketballOrange"
+                className="text-accent"
                 size={34}
               />
             </div>

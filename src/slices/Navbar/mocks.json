@@ -1,0 +1,119 @@
+[
+  {
+    "__TYPE__": "SharedSliceContent",
+    "variation": "default",
+    "primary": {
+      "academy_name": {
+        "__TYPE__": "FieldContent",
+        "value": "RVS Sports Academy",
+        "type": "Text"
+      },
+      "logo": {
+        "__TYPE__": "ImageContent",
+        "url": "https://images.prismic.io/demo/logo.png",
+        "width": 200,
+        "height": 200,
+        "alt": "RVS Sports Academy Logo",
+        "thumbnails": {}
+      },
+      "cta_button_text": {
+        "__TYPE__": "FieldContent",
+        "value": "Join Academy",
+        "type": "Text"
+      },
+      "cta_button_link": {
+        "__TYPE__": "LinkContent",
+        "value": {
+          "link_type": "Web",
+          "url": "/contact"
+        }
+      }
+    },
+    "items": [
+      {
+        "menu_name": {
+          "__TYPE__": "FieldContent",
+          "value": "Home",
+          "type": "Text"
+        },
+        "menu_link": {
+          "__TYPE__": "LinkContent",
+          "value": {
+            "link_type": "Web",
+            "url": "/"
+          }
+        }
+      },
+      {
+        "menu_name": {
+          "__TYPE__": "FieldContent",
+          "value": "About",
+          "type": "Text"
+        },
+        "menu_link": {
+          "__TYPE__": "LinkContent",
+          "value": {
+            "link_type": "Web",
+            "url": "/about"
+          }
+        }
+      },
+      {
+        "menu_name": {
+          "__TYPE__": "FieldContent",
+          "value": "Programs",
+          "type": "Text"
+        },
+        "menu_link": {
+          "__TYPE__": "LinkContent",
+          "value": {
+            "link_type": "Web",
+            "url": "/programs"
+          }
+        }
+      },
+      {
+        "menu_name": {
+          "__TYPE__": "FieldContent",
+          "value": "Events",
+          "type": "Text"
+        },
+        "menu_link": {
+          "__TYPE__": "LinkContent",
+          "value": {
+            "link_type": "Web",
+            "url": "/events"
+          }
+        }
+      },
+      {
+        "menu_name": {
+          "__TYPE__": "FieldContent",
+          "value": "Gallery",
+          "type": "Text"
+        },
+        "menu_link": {
+          "__TYPE__": "LinkContent",
+          "value": {
+            "link_type": "Web",
+            "url": "/gallery"
+          }
+        }
+      },
+      {
+        "menu_name": {
+          "__TYPE__": "FieldContent",
+          "value": "Contact",
+          "type": "Text"
+        },
+        "menu_link": {
+          "__TYPE__": "LinkContent",
+          "value": {
+            "link_type": "Web",
+            "url": "/contact"
+          }
+        }
+      }
+    ]
+  }
+]

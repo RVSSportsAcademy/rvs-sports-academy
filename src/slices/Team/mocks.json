@@ -3,10 +3,26 @@
     "__TYPE__": "SharedSliceContent",
     "variation": "default",
     "primary": {
+      "sub_heading": {
+        "__TYPE__": "FieldContent",
+        "value": "Meet Our Coaches",
+        "type": "Text"
+      },
       "heading": {
         "__TYPE__": "FieldContent",
-        "value": "Meet Our Expert Coaches",
+        "value": "Professional Coaches Dedicated to Your Success",
         "type": "Text"
+      },
+      "description": {
+        "__TYPE__": "StructuredTextContent",
+        "value": [
+          {
+            "type": "paragraph",
+            "content": {
+              "text": "Our experienced coaching team is committed to helping every athlete reach their full potential through professional training, discipline, teamwork, and personalized guidance."
+            }
+          }
+        ]
       },
       "coaches": {
         "__TYPE__": "GroupContentType",
@@ -20,8 +36,8 @@
                   "__TYPE__": "ImageContent",
                   "url": "https://images.unsplash.com/photo-1560250097-0b93528c311a",
                   "width": 1200,
-                  "height": 1200,
-                  "alt": "Head Basketball Coach",
+                  "height": 1400,
+                  "alt": "Coach Rahul Sharma",
                   "thumbnails": {}
                 }
               ],
@@ -29,19 +45,43 @@
                 "name",
                 {
                   "__TYPE__": "FieldContent",
-                  "value": "Coach Rahul Sharma",
+                  "value": "Rahul Sharma",
                   "type": "Text"
                 }
               ],
               [
-                "designation",
+                "role",
+                {
+                  "__TYPE__": "FieldContent",
+                  "value": "Head Basketball Coach",
+                  "type": "Text"
+                }
+              ],
+              [
+                "experience",
+                {
+                  "__TYPE__": "FieldContent",
+                  "value": "12+ Years",
+                  "type": "Text"
+                }
+              ],
+              [
+                "expertise",
+                {
+                  "__TYPE__": "FieldContent",
+                  "value": "Player Development",
+                  "type": "Text"
+                }
+              ],
+              [
+                "bio",
                 {
                   "__TYPE__": "StructuredTextContent",
                   "value": [
                     {
                       "type": "paragraph",
                       "content": {
-                        "text": "Head Basketball Coach with 12+ years of experience in national-level coaching and youth player development."
+                        "text": "Specializes in developing young athletes with modern coaching methods, discipline, leadership, and competitive basketball training."
                       }
                     }
                   ]
@@ -58,8 +98,8 @@
                   "__TYPE__": "ImageContent",
                   "url": "https://images.unsplash.com/photo-1500648767791-00dcc994a43e",
                   "width": 1200,
-                  "height": 1200,
-                  "alt": "Fitness Coach",
+                  "height": 1400,
+                  "alt": "Coach Aman Verma",
                   "thumbnails": {}
                 }
               ],
@@ -67,19 +107,43 @@
                 "name",
                 {
                   "__TYPE__": "FieldContent",
-                  "value": "Coach Aman Verma",
+                  "value": "Aman Verma",
                   "type": "Text"
                 }
               ],
               [
-                "designation",
+                "role",
+                {
+                  "__TYPE__": "FieldContent",
+                  "value": "Strength & Conditioning Coach",
+                  "type": "Text"
+                }
+              ],
+              [
+                "experience",
+                {
+                  "__TYPE__": "FieldContent",
+                  "value": "8+ Years",
+                  "type": "Text"
+                }
+              ],
+              [
+                "expertise",
+                {
+                  "__TYPE__": "FieldContent",
+                  "value": "Fitness & Conditioning",
+                  "type": "Text"
+                }
+              ],
+              [
+                "bio",
                 {
                   "__TYPE__": "StructuredTextContent",
                   "value": [
                     {
                       "type": "paragraph",
                       "content": {
-                        "text": "Strength & Conditioning Coach helping athletes improve endurance, agility and overall fitness."
+                        "text": "Focuses on athletic performance, injury prevention, strength training, and physical conditioning for players of all ages."
                       }
                     }
                   ]
@@ -96,8 +160,8 @@
                   "__TYPE__": "ImageContent",
                   "url": "https://images.unsplash.com/photo-1506794778202-cad84cf45f1d",
                   "width": 1200,
-                  "height": 1200,
-                  "alt": "Assistant Coach",
+                  "height": 1400,
+                  "alt": "Coach Vikas Singh",
                   "thumbnails": {}
                 }
               ],
@@ -105,19 +169,43 @@
                 "name",
                 {
                   "__TYPE__": "FieldContent",
-                  "value": "Coach Vikas Singh",
+                  "value": "Vikas Singh",
                   "type": "Text"
                 }
               ],
               [
-                "designation",
+                "role",
+                {
+                  "__TYPE__": "FieldContent",
+                  "value": "Assistant Basketball Coach",
+                  "type": "Text"
+                }
+              ],
+              [
+                "experience",
+                {
+                  "__TYPE__": "FieldContent",
+                  "value": "10+ Years",
+                  "type": "Text"
+                }
+              ],
+              [
+                "expertise",
+                {
+                  "__TYPE__": "FieldContent",
+                  "value": "Game Strategy",
+                  "type": "Text"
+                }
+              ],
+              [
+                "bio",
                 {
                   "__TYPE__": "StructuredTextContent",
                   "value": [
                     {
                       "type": "paragraph",
                       "content": {
-                        "text": "Assistant Basketball Coach specializing in player skill development, game strategy and team coordination."
+                        "text": "Experienced in tactical coaching, game planning, and building confident, team-oriented basketball players."
                       }
                     }
                   ]

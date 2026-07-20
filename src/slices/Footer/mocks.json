@@ -3,46 +3,69 @@
     "__TYPE__": "SharedSliceContent",
     "variation": "default",
     "primary": {
-      "footer_sections": [
+      "logo": {
+        "url": "https://images.unsplash.com/photo-1547347298-4074fc3086f0?w=400",
+        "alt": "RVS Sports Welfare Association"
+      },
+      "about": [
         {
-          "__TYPE__": "GroupItemContent",
-          "section_title": {
-            "__TYPE__": "FieldContent",
-            "value": "About Us",
-            "type": "Text"
-          },
-          "section_content": {
-            "__TYPE__": "StructuredTextContent",
-            "value": [
-              {
-                "type": "paragraph",
-                "content": {
-                  "text": "RVS Sports Academy - Developing young athletes."
-                }
-              }
-            ]
-          }
+          "type": "paragraph",
+          "text": "RVS Sports Welfare Association is committed to nurturing young talent through quality coaching, sports education, fitness, and community development. We inspire athletes to achieve excellence on and off the field."
         }
       ],
-      "copyright_text": {
-        "__TYPE__": "FieldContent",
-        "value": "© 2024 RVS Sports Academy. All rights reserved.",
-        "type": "Text"
-      },
-      "social_links": [
+      "address": [
         {
-          "__TYPE__": "GroupItemContent",
-          "social_label": {
-            "__TYPE__": "FieldContent",
-            "value": "Facebook",
-            "type": "Text"
-          },
-          "social_link": {
-            "__TYPE__": "LinkContent"
-          }
+          "type": "paragraph",
+          "text": "Lucknow, Uttar Pradesh, India"
         }
-      ]
+      ],
+      "phone": "+91 98765 43210",
+      "email": "info@rvssportsacademy.com",
+      "copyright": "© 2026 RVS Sports Welfare Association. All Rights Reserved."
     },
-    "items": []
+    "items": [
+      {
+        "link_title": "Home",
+        "link": {
+          "link_type": "Web",
+          "url": "/"
+        }
+      },
+      {
+        "link_title": "About Us",
+        "link": {
+          "link_type": "Web",
+          "url": "/about"
+        }
+      },
+      {
+        "link_title": "Training",
+        "link": {
+          "link_type": "Web",
+          "url": "/our-training"
+        }
+      },
+      {
+        "link_title": "Players",
+        "link": {
+          "link_type": "Web",
+          "url": "/our-players"
+        }
+      },
+      {
+        "link_title": "Gallery",
+        "link": {
+          "link_type": "Web",
+          "url": "/gallery"
+        }
+      },
+      {
+        "link_title": "Contact",
+        "link": {
+          "link_type": "Web",
+          "url": "/contact"
+        }
+      }
+    ]
   }
 ]

@@ -54,7 +54,7 @@ export default async function Footer() {
             placeholder="E-Mail"
             className="w-full mt-2 p-2 text-black rounded"
           />
-          <Button color="basketballOrangeDark" size="small" className="mt-3">
+          <Button variant="primaryDark" size="small" className="mt-3">
             SUBSCRIBE NOW
           </Button>
           <div className="flex flex-col sm:flex-row items-center sm:items-start gap-3 mt-3">

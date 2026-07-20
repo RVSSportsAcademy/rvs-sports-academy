@@ -1,0 +1,86 @@
+{
+  "id": "testimonial",
+  "type": "SharedSlice",
+  "name": "Testimonial",
+  "description": "Premium Testimonials",
+  "variations": [
+    {
+      "id": "default",
+      "name": "Default",
+      "docURL": "...",
+      "version": "initial",
+      "description": "Premium Testimonials",
+      "imageUrl": "",
+      "primary": {
+        "sub_heading": {
+          "type": "Text",
+          "config": {
+            "label": "Sub Heading",
+            "placeholder": "Testimonials"
+          }
+        },
+        "heading": {
+          "type": "Text",
+          "config": {
+            "label": "Heading",
+            "placeholder": "What Our Players Say"
+          }
+        },
+        "description": {
+          "type": "StructuredText",
+          "config": {
+            "label": "Description",
+            "multi": "paragraph,strong,em",
+            "allowTargetBlank": true
+          }
+        },
+        "testimonials": {
+          "type": "Group",
+          "config": {
+            "label": "Testimonials",
+            "repeat": true,
+            "fields": {
+              "image": {
+                "type": "Image",
+                "config": {
+                  "label": "Player Image",
+                  "constraint": {},
+                  "thumbnails": []
+                }
+              },
+              "name": {
+                "type": "Text",
+                "config": {
+                  "label": "Player Name",
+                  "placeholder": "Aarav Sharma"
+                }
+              },
+              "position": {
+                "type": "Text",
+                "config": {
+                  "label": "Position",
+                  "placeholder": "Point Guard"
+                }
+              },
+              "rating": {
+                "type": "Number",
+                "config": {
+                  "label": "Rating"
+                }
+              },
+              "review": {
+                "type": "StructuredText",
+                "config": {
+                  "label": "Review",
+                  "multi": "paragraph,strong,em",
+                  "allowTargetBlank": true
+                }
+              }
+            }
+          }
+        }
+      },
+      "items": {}
+    }
+  ]
+}

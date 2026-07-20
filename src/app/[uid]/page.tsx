@@ -23,7 +23,7 @@ export async function generateMetadata({
 	const page = await client.getByUID("page", uid).catch(() => notFound());
 
 	return {
-		title: `${page.data.meta_title} | RVS Sports Academy`,
+		title: `${page.data.meta_title} | RVS Sports Welfare Association`,
 		description: page.data.meta_description,
 		openGraph: {
 			title: page.data.meta_title || undefined,

@@ -1,0 +1,73 @@
+{
+  "id": "training_benefits",
+  "type": "SharedSlice",
+  "name": "TrainingBenefits",
+  "description": "Training Benefits Section",
+  "variations": [
+    {
+      "id": "default",
+      "name": "Default",
+      "docURL": "...",
+      "version": "initial",
+      "description": "Training Benefits",
+      "imageUrl": "",
+      "primary": {
+        "sub_heading": {
+          "type": "Text",
+          "config": {
+            "label": "Sub Heading",
+            "placeholder": "Why Choose Us"
+          }
+        },
+        "heading": {
+          "type": "Text",
+          "config": {
+            "label": "Heading",
+            "placeholder": "Benefits of Our Training"
+          }
+        },
+        "description": {
+          "type": "StructuredText",
+          "config": {
+            "label": "Description",
+            "multi": "paragraph,strong,em",
+            "allowTargetBlank": true
+          }
+        },
+        "benefits": {
+          "type": "Group",
+          "config": {
+            "label": "Benefits",
+            "repeat": true,
+            "fields": {
+              "icon": {
+                "type": "Image",
+                "config": {
+                  "label": "Icon",
+                  "constraint": {},
+                  "thumbnails": []
+                }
+              },
+              "title": {
+                "type": "Text",
+                "config": {
+                  "label": "Title",
+                  "placeholder": "Professional Coaching"
+                }
+              },
+              "description": {
+                "type": "StructuredText",
+                "config": {
+                  "label": "Description",
+                  "multi": "paragraph,strong,em",
+                  "allowTargetBlank": true
+                }
+              }
+            }
+          }
+        }
+      },
+      "items": {}
+    }
+  ]
+}

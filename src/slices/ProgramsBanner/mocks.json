@@ -1,0 +1,206 @@
+
+    [
+  {
+    "__TYPE__": "SharedSliceContent",
+    "variation": "default",
+    "primary": {
+      "subtitle": {
+        "__TYPE__": "FieldContent",
+        "value": "OUR PROGRAMS",
+        "type": "Text"
+      },
+      "title": {
+        "__TYPE__": "FieldContent",
+        "value": "Featured Sports Programs",
+        "type": "Text"
+      },
+      "description": {
+        "__TYPE__": "StructuredTextContent",
+        "value": [
+          {
+            "type": "paragraph",
+            "content": {
+              "text": "Explore our professionally designed sports training programs that help athletes improve their skills, fitness, discipline, and competitive performance."
+            }
+          }
+        ]
+      }
+    },
+    "items": [
+      {
+        "program_image": {
+          "__TYPE__": "ImageContent",
+          "url": "https://images.prismic.io/demo/basketball-program.jpg",
+          "width": 900,
+          "height": 600,
+          "alt": "Basketball Program",
+          "thumbnails": {}
+        },
+        "program_name": {
+          "__TYPE__": "FieldContent",
+          "value": "Basketball Elite Training",
+          "type": "Text"
+        },
+        "category": {
+          "__TYPE__": "FieldContent",
+          "value": "Basketball",
+          "type": "Text"
+        },
+        "age_group": {
+          "__TYPE__": "FieldContent",
+          "value": "8 - 18 Years",
+          "type": "Text"
+        },
+        "duration": {
+          "__TYPE__": "FieldContent",
+          "value": "12 Weeks",
+          "type": "Text"
+        },
+        "skill_level": {
+          "__TYPE__": "FieldContent",
+          "value": "Beginner • Intermediate • Advanced",
+          "type": "Text"
+        },
+        "description": {
+          "__TYPE__": "StructuredTextContent",
+          "value": [
+            {
+              "type": "paragraph",
+              "content": {
+                "text": "Develop shooting, dribbling, passing, defense, teamwork and game strategy through structured coaching sessions."
+              }
+            }
+          ]
+        },
+        "button_text": {
+          "__TYPE__": "FieldContent",
+          "value": "Learn More",
+          "type": "Text"
+        },
+        "button_link": {
+          "__TYPE__": "LinkContent",
+          "value": {
+            "link_type": "Web",
+            "url": "/contact"
+          }
+        }
+      },
+      {
+        "program_image": {
+          "__TYPE__": "ImageContent",
+          "url": "https://images.prismic.io/demo/fitness-program.jpg",
+          "width": 900,
+          "height": 600,
+          "alt": "Fitness Program",
+          "thumbnails": {}
+        },
+        "program_name": {
+          "__TYPE__": "FieldContent",
+          "value": "Strength & Fitness",
+          "type": "Text"
+        },
+        "category": {
+          "__TYPE__": "FieldContent",
+          "value": "Fitness",
+          "type": "Text"
+        },
+        "age_group": {
+          "__TYPE__": "FieldContent",
+          "value": "15+ Years",
+          "type": "Text"
+        },
+        "duration": {
+          "__TYPE__": "FieldContent",
+          "value": "8 Weeks",
+          "type": "Text"
+        },
+        "skill_level": {
+          "__TYPE__": "FieldContent",
+          "value": "All Levels",
+          "type": "Text"
+        },
+        "description": {
+          "__TYPE__": "StructuredTextContent",
+          "value": [
+            {
+              "type": "paragraph",
+              "content": {
+                "text": "Improve endurance, strength, agility, mobility and overall athletic performance with expert trainers."
+              }
+            }
+          ]
+        },
+        "button_text": {
+          "__TYPE__": "FieldContent",
+          "value": "Learn More",
+          "type": "Text"
+        },
+        "button_link": {
+          "__TYPE__": "LinkContent",
+          "value": {
+            "link_type": "Web",
+            "url": "/contact"
+          }
+        }
+      },
+      {
+        "program_image": {
+          "__TYPE__": "ImageContent",
+          "url": "https://images.prismic.io/demo/summer-camp.jpg",
+          "width": 900,
+          "height": 600,
+          "alt": "Summer Camp",
+          "thumbnails": {}
+        },
+        "program_name": {
+          "__TYPE__": "FieldContent",
+          "value": "Summer Sports Camp",
+          "type": "Text"
+        },
+        "category": {
+          "__TYPE__": "FieldContent",
+          "value": "Camp",
+          "type": "Text"
+        },
+        "age_group": {
+          "__TYPE__": "FieldContent",
+          "value": "10 - 16 Years",
+          "type": "Text"
+        },
+        "duration": {
+          "__TYPE__": "FieldContent",
+          "value": "4 Weeks",
+          "type": "Text"
+        },
+        "skill_level": {
+          "__TYPE__": "FieldContent",
+          "value": "Beginner to Intermediate",
+          "type": "Text"
+        },
+        "description": {
+          "__TYPE__": "StructuredTextContent",
+          "value": [
+            {
+              "type": "paragraph",
+              "content": {
+                "text": "An exciting summer camp focused on sports skills, leadership, teamwork, fitness and fun competitions."
+              }
+            }
+          ]
+        },
+        "button_text": {
+          "__TYPE__": "FieldContent",
+          "value": "Learn More",
+          "type": "Text"
+        },
+        "button_link": {
+          "__TYPE__": "LinkContent",
+          "value": {
+            "link_type": "Web",
+            "url": "/contact"
+          }
+        }
+      }
+    ]
+  }
+]

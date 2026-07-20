@@ -3,7 +3,7 @@
 import dynamic from "next/dynamic";
 
 export const components = {
-  about: dynamic(() => import("./About")),
+  about: dynamic(() => import("./AboutBanner")),
   achievements: dynamic(() => import("./Achievements")),
   blog: dynamic(() => import("./Blog")),
   contact: dynamic(() => import("./Contact")),
@@ -22,7 +22,7 @@ export const components = {
   program: dynamic(() => import("./Program")),
   sponsors: dynamic(() => import("./Sponsors")),
   team: dynamic(() => import("./Team")),
-  training: dynamic(() => import("./Training")),
+  training: dynamic(() => import("./TrainingMethodology")),
   welcome: dynamic(() => import("./Welcome")),
   why_choose_us: dynamic(() => import("./WhyChooseUs")),
 };

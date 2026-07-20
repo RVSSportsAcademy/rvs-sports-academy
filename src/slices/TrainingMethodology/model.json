@@ -1,0 +1,97 @@
+{
+  "id": "training",
+  "type": "SharedSlice",
+  "name": "Training",
+  "description": "Premium Training Section",
+  "variations": [
+    {
+      "id": "default",
+      "name": "Default",
+      "docURL": "...",
+      "version": "initial",
+      "description": "Premium Training Programs",
+      "imageUrl": "",
+      "primary": {
+        "subtitle": {
+          "type": "Text",
+          "config": {
+            "label": "Subtitle",
+            "placeholder": "TRAINING PROGRAMS"
+          }
+        },
+        "heading": {
+          "type": "Text",
+          "config": {
+            "label": "Heading",
+            "placeholder": "Professional Training Programs"
+          }
+        },
+        "description": {
+          "type": "StructuredText",
+          "config": {
+            "label": "Description",
+            "multi": "paragraph,strong,em"
+          }
+        },
+        "button_text": {
+          "type": "Text",
+          "config": {
+            "label": "Button Text",
+            "placeholder": "Enroll Now"
+          }
+        },
+        "button_link": {
+          "type": "Link",
+          "config": {
+            "label": "Button Link",
+            "allowTargetBlank": true,
+            "allowText": true
+          }
+        }
+      },
+      "items": {
+        "image": {
+          "type": "Image",
+          "config": {
+            "label": "Plan Image",
+            "constraint": {},
+            "thumbnails": []
+          }
+        },
+        "title": {
+          "type": "Text",
+          "config": {
+            "label": "Plan Title"
+          }
+        },
+        "price": {
+          "type": "Text",
+          "config": {
+            "label": "Price"
+          }
+        },
+        "duration": {
+          "type": "Text",
+          "config": {
+            "label": "Duration"
+          }
+        },
+        "description": {
+          "type": "StructuredText",
+          "config": {
+            "label": "Description",
+            "multi": "paragraph,strong,em"
+          }
+        },
+        "features": {
+          "type": "StructuredText",
+          "config": {
+            "label": "Features",
+            "multi": "list-item"
+          }
+        }
+      }
+    }
+  ]
+}
+

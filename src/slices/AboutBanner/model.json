@@ -1,0 +1,63 @@
+{
+  "id": "about_banner",
+  "type": "SharedSlice",
+  "name": "AboutBanner",
+  "description": "About Page Banner",
+  "variations": [
+    {
+      "id": "default",
+      "name": "Default",
+      "docURL": "...",
+      "version": "initial",
+      "description": "About Banner",
+      "imageUrl": "",
+      "primary": {
+        "background_image": {
+          "type": "Image",
+          "config": {
+            "label": "Background Image",
+            "constraint": {},
+            "thumbnails": []
+          }
+        },
+        "sub_heading": {
+          "type": "Text",
+          "config": {
+            "label": "Sub Heading",
+            "placeholder": "Welcome to"
+          }
+        },
+        "heading": {
+          "type": "Text",
+          "config": {
+            "label": "Heading",
+            "placeholder": "About RVS Sports Academy"
+          }
+        },
+        "description": {
+          "type": "StructuredText",
+          "config": {
+            "label": "Description",
+            "multi": "paragraph,strong,em",
+            "allowTargetBlank": true
+          }
+        },
+        "button_text": {
+          "type": "Text",
+          "config": {
+            "label": "Button Text",
+            "placeholder": "Learn More"
+          }
+        },
+        "button_link": {
+          "type": "Link",
+          "config": {
+            "label": "Button Link",
+            "allowTargetBlank": true
+          }
+        }
+      },
+      "items": {}
+    }
+  ]
+}

@@ -1,51 +1,65 @@
 import { PrismicNextImage } from "@prismicio/next";
 import { cn } from "@/libs/utils";
 import { Content } from "@prismicio/client";
-import { PrismicRichText, SliceComponentProps } from "@prismicio/react";
-import { oswald, montserrat } from "@/libs/fonts";
-/**
- * Props for `Team`.
- */
+import { SliceComponentProps } from "@prismicio/react";
+
 export type TeamProps = SliceComponentProps<Content.AboutSlice>;
 
-/**
- * Component for "Team" Section.
- */
 const Team = ({ slice }: TeamProps): JSX.Element => {
   return (
     <section
       data-slice-type={slice.slice_type}
       data-slice-variation={slice.variation}
-      className={cn("bg-gray-50  ")}
+      className={cn("bg-gray-50 py-20")}
     >
-      <div className="flex flex-col items-center justify-center">
-        <h1 className="text-4xl md:text-5xl lg:text-6xl text-center pb-20 pt-20 uppercase text-black font-bold">
-          The best of professionals
-        </h1>
-      </div>
-      <div className="flex flex-col md:flex md:flex-row justify-center  items-center gap-11">
-        {slice.primary.trainer.map((team, index) => (
-          <div
-            key={index}
-            className="flex flex-col items-center md tracking-tighter gap-11 pt-7 justify-center"
-          >
-            <div className="">
-              <div className="flex flex-col   justify-center">
+      <div className="container mx-auto px-6">
+        {/* Heading */}
+        <div className="mb-16 text-center">
+          <span className="rounded-full bg-orange-100 px-5 py-2 text-sm font-semibold uppercase tracking-[3px] text-orange-500">
+            Meet Our Team
+          </span>
+
+          <h2 className="mt-6 text-4xl font-bold text-deepBlue md:text-5xl">
+            The Best Professionals
+          </h2>
+
+          <p className="mx-auto mt-4 max-w-2xl text-lg text-gray-600">
+            Our experienced coaches are dedicated to developing skills,
+            discipline, teamwork, and confidence in every athlete.
+          </p>
+        </div>
+
+        {/* Team Grid */}
+        <div className="grid gap-10 sm:grid-cols-2 lg:grid-cols-3">
+          {slice.primary.trainer.map((trainer, index) => (
+            <div
+              key={index}
+              className="overflow-hidden rounded-3xl bg-white shadow-lg transition-all duration-300 hover:-translate-y-2 hover:shadow-2xl"
+            >
+              {/* Image */}
+              <div className="overflow-hidden">
                 <PrismicNextImage
-                  className="w-60 h-96 bg-gray-100 "
-                  field={team.trainer_image}
-                  alt=""
+                  field={trainer.trainer_image}
+                  fallbackAlt=""
+                  className="h-96 w-full object-cover transition-transform duration-500 hover:scale-110"
                 />
-                <h1 className="text-xl uppercase font-oswald text-black  font-bold">
-                  {team.trainer_name}
-                </h1>
-                <p className="text-orange-500 font-bold pb-20 font-roboto uppercase">
-                  {team.trainer_title}
+              </div>
+
+              {/* Content */}
+              <div className="p-6 text-center">
+                <h3 className="text-2xl font-bold text-deepBlue">
+                  {trainer.trainer_name}
+                </h3>
+
+                <div className="mx-auto my-4 h-1 w-16 rounded-full bg-orange-500"></div>
+
+                <p className="font-semibold uppercase tracking-wide text-orange-500">
+                  {trainer.trainer_title}
                 </p>
               </div>
             </div>
-          </div>
-        ))}
+          ))}
+        </div>
       </div>
     </section>
   );

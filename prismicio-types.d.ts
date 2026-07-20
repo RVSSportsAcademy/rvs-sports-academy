@@ -4,6 +4,68 @@ import type * as prismic from "@prismicio/client";
 
 type Simplify<T> = { [KeyType in keyof T]: T[KeyType] };
 
+type PickContentRelationshipFieldData<
+  TRelationship extends
+    | prismic.CustomTypeModelFetchCustomTypeLevel1
+    | prismic.CustomTypeModelFetchCustomTypeLevel2
+    | prismic.CustomTypeModelFetchGroupLevel1
+    | prismic.CustomTypeModelFetchGroupLevel2,
+  TData extends Record<
+    string,
+    | prismic.AnyRegularField
+    | prismic.GroupField
+    | prismic.NestedGroupField
+    | prismic.SliceZone
+  >,
+  TLang extends string,
+> =
+  // Content relationship fields
+  {
+    [
+      TSubRelationship in Extract<
+        TRelationship["fields"][number],
+        prismic.CustomTypeModelFetchContentRelationshipLevel1
+      > as TSubRelationship["id"]
+    ]: ContentRelationshipFieldWithData<TSubRelationship["customtypes"], TLang>;
+  } & // Group
+  {
+    [
+      TGroup in Extract<
+        TRelationship["fields"][number],
+        | prismic.CustomTypeModelFetchGroupLevel1
+        | prismic.CustomTypeModelFetchGroupLevel2
+      > as TGroup["id"]
+    ]: TData[TGroup["id"]] extends prismic.GroupField<infer TGroupData>
+      ? prismic.GroupField<
+          PickContentRelationshipFieldData<TGroup, TGroupData, TLang>
+        >
+      : never;
+  } & // Other fields
+  {
+    [
+      TFieldKey in Extract<TRelationship["fields"][number], string>
+    ]: TFieldKey extends keyof TData ? TData[TFieldKey] : never;
+  };
+
+type ContentRelationshipFieldWithData<
+  TCustomType extends
+    | readonly (prismic.CustomTypeModelFetchCustomTypeLevel1 | string)[]
+    | readonly (prismic.CustomTypeModelFetchCustomTypeLevel2 | string)[],
+  TLang extends string = string,
+> = {
+  [
+    ID in Exclude<TCustomType[number], string>["id"]
+  ]: prismic.ContentRelationshipField<
+    ID,
+    TLang,
+    PickContentRelationshipFieldData<
+      Extract<TCustomType[number], { id: ID }>,
+      Extract<prismic.Content.AllDocumentTypes, { type: ID }>["data"],
+      TLang
+    >
+  >;
+}[Exclude<TCustomType[number], string>["id"]];
+
 type HomepageDocumentDataSlicesSlice =
   | EventsSlice
   | TeamSlice
@@ -23,7 +85,7 @@ interface HomepageDocumentData {
    * - **Placeholder**: *None*
    * - **API ID Path**: homepage.title
    * - **Tab**: Main
-   * - **Documentation**: https://prismic.io/docs/field#key-text
+   * - **Documentation**: https://prismic.io/docs/fields/text
    */
   title: prismic.KeyTextField;
 
@@ -34,17 +96,17 @@ interface HomepageDocumentData {
    * - **Placeholder**: *None*
    * - **API ID Path**: homepage.slices[]
    * - **Tab**: Main
-   * - **Documentation**: https://prismic.io/docs/field#slices
+   * - **Documentation**: https://prismic.io/docs/slices
    */
-  slices: prismic.SliceZone<HomepageDocumentDataSlicesSlice> /**
+  slices: prismic.SliceZone<HomepageDocumentDataSlicesSlice>; /**
    * Meta Title field in *Homepage*
    *
    * - **Field Type**: Text
    * - **Placeholder**: A title of the page used for social media and search engines
    * - **API ID Path**: homepage.meta_title
    * - **Tab**: SEO & Metadata
-   * - **Documentation**: https://prismic.io/docs/field#key-text
-   */;
+   * - **Documentation**: https://prismic.io/docs/fields/text
+   */
   meta_title: prismic.KeyTextField;
 
   /**
@@ -54,7 +116,7 @@ interface HomepageDocumentData {
    * - **Placeholder**: A brief summary of the page
    * - **API ID Path**: homepage.meta_description
    * - **Tab**: SEO & Metadata
-   * - **Documentation**: https://prismic.io/docs/field#key-text
+   * - **Documentation**: https://prismic.io/docs/fields/text
    */
   meta_description: prismic.KeyTextField;
 
@@ -65,7 +127,7 @@ interface HomepageDocumentData {
    * - **Placeholder**: *None*
    * - **API ID Path**: homepage.meta_image
    * - **Tab**: SEO & Metadata
-   * - **Documentation**: https://prismic.io/docs/field#image
+   * - **Documentation**: https://prismic.io/docs/fields/image
    */
   meta_image: prismic.ImageField<never>;
 }
@@ -75,7 +137,7 @@ interface HomepageDocumentData {
  *
  * - **API ID**: `homepage`
  * - **Repeatable**: `false`
- * - **Documentation**: https://prismic.io/docs/custom-types
+ * - **Documentation**: https://prismic.io/docs/content-modeling
  *
  * @typeParam Lang - Language API ID of the document.
  */
@@ -87,11 +149,7 @@ export type HomepageDocument<Lang extends string = string> =
   >;
 
 type PageDocumentDataSlicesSlice =
-  | TrainingSlice
-  | GalleryPageSlice
-  | PlayersSlice
-  | ContactSlice
-  | AboutSlice;
+  TrainingSlice | GalleryPageSlice | PlayersSlice | ContactSlice | AboutSlice;
 
 /**
  * Content for page documents
@@ -104,7 +162,7 @@ interface PageDocumentData {
    * - **Placeholder**: *None*
    * - **API ID Path**: page.heading
    * - **Tab**: Main
-   * - **Documentation**: https://prismic.io/docs/field#key-text
+   * - **Documentation**: https://prismic.io/docs/fields/text
    */
   heading: prismic.KeyTextField;
 
@@ -115,7 +173,7 @@ interface PageDocumentData {
    * - **Placeholder**: *None*
    * - **API ID Path**: page.description
    * - **Tab**: Main
-   * - **Documentation**: https://prismic.io/docs/field#key-text
+   * - **Documentation**: https://prismic.io/docs/fields/text
    */
   description: prismic.KeyTextField;
 
@@ -126,7 +184,7 @@ interface PageDocumentData {
    * - **Placeholder**: *None*
    * - **API ID Path**: page.background_image
    * - **Tab**: Main
-   * - **Documentation**: https://prismic.io/docs/field#image
+   * - **Documentation**: https://prismic.io/docs/fields/image
    */
   background_image: prismic.ImageField<never>;
 
@@ -137,17 +195,17 @@ interface PageDocumentData {
    * - **Placeholder**: *None*
    * - **API ID Path**: page.slices[]
    * - **Tab**: Main
-   * - **Documentation**: https://prismic.io/docs/field#slices
+   * - **Documentation**: https://prismic.io/docs/slices
    */
-  slices: prismic.SliceZone<PageDocumentDataSlicesSlice> /**
+  slices: prismic.SliceZone<PageDocumentDataSlicesSlice>; /**
    * Meta Title field in *page*
    *
    * - **Field Type**: Text
    * - **Placeholder**: A title of the page used for social media and search engines
    * - **API ID Path**: page.meta_title
    * - **Tab**: SEO & Metadata
-   * - **Documentation**: https://prismic.io/docs/field#key-text
-   */;
+   * - **Documentation**: https://prismic.io/docs/fields/text
+   */
   meta_title: prismic.KeyTextField;
 
   /**
@@ -157,7 +215,7 @@ interface PageDocumentData {
    * - **Placeholder**: A brief summary of the page
    * - **API ID Path**: page.meta_description
    * - **Tab**: SEO & Metadata
-   * - **Documentation**: https://prismic.io/docs/field#key-text
+   * - **Documentation**: https://prismic.io/docs/fields/text
    */
   meta_description: prismic.KeyTextField;
 
@@ -168,7 +226,7 @@ interface PageDocumentData {
    * - **Placeholder**: *None*
    * - **API ID Path**: page.meta_image
    * - **Tab**: SEO & Metadata
-   * - **Documentation**: https://prismic.io/docs/field#image
+   * - **Documentation**: https://prismic.io/docs/fields/image
    */
   meta_image: prismic.ImageField<never>;
 }
@@ -178,7 +236,7 @@ interface PageDocumentData {
  *
  * - **API ID**: `page`
  * - **Repeatable**: `true`
- * - **Documentation**: https://prismic.io/docs/custom-types
+ * - **Documentation**: https://prismic.io/docs/content-modeling
  *
  * @typeParam Lang - Language API ID of the document.
  */
@@ -195,7 +253,7 @@ export interface SettingsDocumentDataNavigationsItem {
    * - **Field Type**: Text
    * - **Placeholder**: *None*
    * - **API ID Path**: settings.navigations[].link_label
-   * - **Documentation**: https://prismic.io/docs/field#key-text
+   * - **Documentation**: https://prismic.io/docs/fields/text
    */
   link_label: prismic.KeyTextField;
 
@@ -205,9 +263,9 @@ export interface SettingsDocumentDataNavigationsItem {
    * - **Field Type**: Link
    * - **Placeholder**: *None*
    * - **API ID Path**: settings.navigations[].link
-   * - **Documentation**: https://prismic.io/docs/field#link-content-relationship
+   * - **Documentation**: https://prismic.io/docs/fields/link
    */
-  link: prismic.LinkField;
+  link: prismic.LinkField<string, string, unknown, prismic.FieldState, never>;
 }
 
 /**
@@ -221,7 +279,7 @@ interface SettingsDocumentData {
    * - **Placeholder**: *None*
    * - **API ID Path**: settings.site_logo
    * - **Tab**: Main
-   * - **Documentation**: https://prismic.io/docs/field#image
+   * - **Documentation**: https://prismic.io/docs/fields/image
    */
   site_logo: prismic.ImageField<never>;
 
@@ -232,7 +290,7 @@ interface SettingsDocumentData {
    * - **Placeholder**: *None*
    * - **API ID Path**: settings.site_title
    * - **Tab**: Main
-   * - **Documentation**: https://prismic.io/docs/field#key-text
+   * - **Documentation**: https://prismic.io/docs/fields/text
    */
   site_title: prismic.KeyTextField;
 
@@ -243,7 +301,7 @@ interface SettingsDocumentData {
    * - **Placeholder**: *None*
    * - **API ID Path**: settings.site_slogan
    * - **Tab**: Main
-   * - **Documentation**: https://prismic.io/docs/field#key-text
+   * - **Documentation**: https://prismic.io/docs/fields/text
    */
   site_slogan: prismic.KeyTextField;
 
@@ -254,7 +312,7 @@ interface SettingsDocumentData {
    * - **Placeholder**: *None*
    * - **API ID Path**: settings.meta_description
    * - **Tab**: Main
-   * - **Documentation**: https://prismic.io/docs/field#key-text
+   * - **Documentation**: https://prismic.io/docs/fields/text
    */
   meta_description: prismic.KeyTextField;
 
@@ -265,7 +323,7 @@ interface SettingsDocumentData {
    * - **Placeholder**: *None*
    * - **API ID Path**: settings.og_image
    * - **Tab**: Main
-   * - **Documentation**: https://prismic.io/docs/field#image
+   * - **Documentation**: https://prismic.io/docs/fields/image
    */
   og_image: prismic.ImageField<never>;
 
@@ -276,7 +334,7 @@ interface SettingsDocumentData {
    * - **Placeholder**: *None*
    * - **API ID Path**: settings.navigations[]
    * - **Tab**: Main
-   * - **Documentation**: https://prismic.io/docs/field#group
+   * - **Documentation**: https://prismic.io/docs/fields/repeatable-group
    */
   navigations: prismic.GroupField<
     Simplify<SettingsDocumentDataNavigationsItem>
@@ -289,7 +347,7 @@ interface SettingsDocumentData {
    * - **Placeholder**: *None*
    * - **API ID Path**: settings.contact_number_label
    * - **Tab**: Main
-   * - **Documentation**: https://prismic.io/docs/field#key-text
+   * - **Documentation**: https://prismic.io/docs/fields/text
    */
   contact_number_label: prismic.KeyTextField;
 
@@ -300,9 +358,15 @@ interface SettingsDocumentData {
    * - **Placeholder**: *None*
    * - **API ID Path**: settings.contact_number
    * - **Tab**: Main
-   * - **Documentation**: https://prismic.io/docs/field#link-content-relationship
+   * - **Documentation**: https://prismic.io/docs/fields/link
    */
-  contact_number: prismic.LinkField;
+  contact_number: prismic.LinkField<
+    string,
+    string,
+    unknown,
+    prismic.FieldState,
+    never
+  >;
 
   /**
    * Contact Email Label field in *Settings*
@@ -311,7 +375,7 @@ interface SettingsDocumentData {
    * - **Placeholder**: *None*
    * - **API ID Path**: settings.contact_email_label
    * - **Tab**: Main
-   * - **Documentation**: https://prismic.io/docs/field#key-text
+   * - **Documentation**: https://prismic.io/docs/fields/text
    */
   contact_email_label: prismic.KeyTextField;
 
@@ -322,9 +386,15 @@ interface SettingsDocumentData {
    * - **Placeholder**: *None*
    * - **API ID Path**: settings.contact_email
    * - **Tab**: Main
-   * - **Documentation**: https://prismic.io/docs/field#link-content-relationship
+   * - **Documentation**: https://prismic.io/docs/fields/link
    */
-  contact_email: prismic.LinkField;
+  contact_email: prismic.LinkField<
+    string,
+    string,
+    unknown,
+    prismic.FieldState,
+    never
+  >;
 
   /**
    * CTA Text field in *Settings*
@@ -333,7 +403,7 @@ interface SettingsDocumentData {
    * - **Placeholder**: *None*
    * - **API ID Path**: settings.cta_text
    * - **Tab**: Main
-   * - **Documentation**: https://prismic.io/docs/field#key-text
+   * - **Documentation**: https://prismic.io/docs/fields/text
    */
   cta_text: prismic.KeyTextField;
 
@@ -344,9 +414,15 @@ interface SettingsDocumentData {
    * - **Placeholder**: *None*
    * - **API ID Path**: settings.cta_link
    * - **Tab**: Main
-   * - **Documentation**: https://prismic.io/docs/field#link-content-relationship
+   * - **Documentation**: https://prismic.io/docs/fields/link
    */
-  cta_link: prismic.LinkField;
+  cta_link: prismic.LinkField<
+    string,
+    string,
+    unknown,
+    prismic.FieldState,
+    never
+  >;
 
   /**
    * Address field in *Settings*
@@ -355,7 +431,7 @@ interface SettingsDocumentData {
    * - **Placeholder**: *None*
    * - **API ID Path**: settings.address
    * - **Tab**: Main
-   * - **Documentation**: https://prismic.io/docs/field#key-text
+   * - **Documentation**: https://prismic.io/docs/fields/text
    */
   address: prismic.KeyTextField;
 }
@@ -365,7 +441,7 @@ interface SettingsDocumentData {
  *
  * - **API ID**: `settings`
  * - **Repeatable**: `true`
- * - **Documentation**: https://prismic.io/docs/custom-types
+ * - **Documentation**: https://prismic.io/docs/content-modeling
  *
  * @typeParam Lang - Language API ID of the document.
  */
@@ -377,9 +453,7 @@ export type SettingsDocument<Lang extends string = string> =
   >;
 
 export type AllDocumentTypes =
-  | HomepageDocument
-  | PageDocument
-  | SettingsDocument;
+  HomepageDocument | PageDocument | SettingsDocument;
 
 /**
  * Item in *About → Default → Primary → About Cards*
@@ -391,7 +465,7 @@ export interface AboutSliceDefaultPrimaryAboutCardsItem {
    * - **Field Type**: Image
    * - **Placeholder**: *None*
    * - **API ID Path**: about.default.primary.about_cards[].image
-   * - **Documentation**: https://prismic.io/docs/field#image
+   * - **Documentation**: https://prismic.io/docs/fields/image
    */
   image: prismic.ImageField<never>;
 
@@ -401,7 +475,7 @@ export interface AboutSliceDefaultPrimaryAboutCardsItem {
    * - **Field Type**: Image
    * - **Placeholder**: *None*
    * - **API ID Path**: about.default.primary.about_cards[].icon
-   * - **Documentation**: https://prismic.io/docs/field#image
+   * - **Documentation**: https://prismic.io/docs/fields/image
    */
   icon: prismic.ImageField<never>;
 
@@ -409,9 +483,9 @@ export interface AboutSliceDefaultPrimaryAboutCardsItem {
    * Title field in *About → Default → Primary → About Cards*
    *
    * - **Field Type**: Text
-   * - **Placeholder**: *None*
+   * - **Placeholder**: Professional Coaching
    * - **API ID Path**: about.default.primary.about_cards[].title
-   * - **Documentation**: https://prismic.io/docs/field#key-text
+   * - **Documentation**: https://prismic.io/docs/fields/text
    */
   title: prismic.KeyTextField;
 
@@ -421,7 +495,7 @@ export interface AboutSliceDefaultPrimaryAboutCardsItem {
    * - **Field Type**: Rich Text
    * - **Placeholder**: *None*
    * - **API ID Path**: about.default.primary.about_cards[].description
-   * - **Documentation**: https://prismic.io/docs/field#rich-text-title
+   * - **Documentation**: https://prismic.io/docs/fields/rich-text
    */
   description: prismic.RichTextField;
 }
@@ -436,7 +510,7 @@ export interface AboutSliceDefaultPrimaryTrainerItem {
    * - **Field Type**: Image
    * - **Placeholder**: *None*
    * - **API ID Path**: about.default.primary.trainer[].trainer_image
-   * - **Documentation**: https://prismic.io/docs/field#image
+   * - **Documentation**: https://prismic.io/docs/fields/image
    */
   trainer_image: prismic.ImageField<never>;
 
@@ -444,21 +518,31 @@ export interface AboutSliceDefaultPrimaryTrainerItem {
    * Trainer Name field in *About → Default → Primary → Trainer*
    *
    * - **Field Type**: Text
-   * - **Placeholder**: *None*
+   * - **Placeholder**: Rahul Sharma
    * - **API ID Path**: about.default.primary.trainer[].trainer_name
-   * - **Documentation**: https://prismic.io/docs/field#key-text
+   * - **Documentation**: https://prismic.io/docs/fields/text
    */
   trainer_name: prismic.KeyTextField;
 
   /**
-   * Trainer Title field in *About → Default → Primary → Trainer*
+   * Trainer Position field in *About → Default → Primary → Trainer*
    *
    * - **Field Type**: Text
-   * - **Placeholder**: *None*
+   * - **Placeholder**: Head Coach
    * - **API ID Path**: about.default.primary.trainer[].trainer_title
-   * - **Documentation**: https://prismic.io/docs/field#key-text
+   * - **Documentation**: https://prismic.io/docs/fields/text
    */
   trainer_title: prismic.KeyTextField;
+
+  /**
+   * Trainer Description field in *About → Default → Primary → Trainer*
+   *
+   * - **Field Type**: Text
+   * - **Placeholder**: Certified Coach with 10+ years of experience
+   * - **API ID Path**: about.default.primary.trainer[].trainer_description
+   * - **Documentation**: https://prismic.io/docs/fields/text
+   */
+  trainer_description: prismic.KeyTextField;
 }
 
 /**
@@ -466,16 +550,14 @@ export interface AboutSliceDefaultPrimaryTrainerItem {
  */
 export interface AboutSliceDefaultPrimary {
   /**
-   * About Cards field in *About → Default → Primary*
+   * Banner Title field in *About → Default → Primary*
    *
-   * - **Field Type**: Group
-   * - **Placeholder**: *None*
-   * - **API ID Path**: about.default.primary.about_cards[]
-   * - **Documentation**: https://prismic.io/docs/field#group
+   * - **Field Type**: Text
+   * - **Placeholder**: About Us
+   * - **API ID Path**: about.default.primary.banner_title
+   * - **Documentation**: https://prismic.io/docs/fields/text
    */
-  about_cards: prismic.GroupField<
-    Simplify<AboutSliceDefaultPrimaryAboutCardsItem>
-  >;
+  banner_title: prismic.KeyTextField;
 
   /**
    * Background Image field in *About → Default → Primary*
@@ -483,7 +565,7 @@ export interface AboutSliceDefaultPrimary {
    * - **Field Type**: Image
    * - **Placeholder**: *None*
    * - **API ID Path**: about.default.primary.background_image
-   * - **Documentation**: https://prismic.io/docs/field#image
+   * - **Documentation**: https://prismic.io/docs/fields/image
    */
   background_image: prismic.ImageField<never>;
 
@@ -491,9 +573,9 @@ export interface AboutSliceDefaultPrimary {
    * Sub Heading field in *About → Default → Primary*
    *
    * - **Field Type**: Text
-   * - **Placeholder**: *None*
+   * - **Placeholder**: About Us
    * - **API ID Path**: about.default.primary.sub_heading
-   * - **Documentation**: https://prismic.io/docs/field#key-text
+   * - **Documentation**: https://prismic.io/docs/fields/text
    */
   sub_heading: prismic.KeyTextField;
 
@@ -501,9 +583,9 @@ export interface AboutSliceDefaultPrimary {
    * Heading field in *About → Default → Primary*
    *
    * - **Field Type**: Text
-   * - **Placeholder**: *None*
+   * - **Placeholder**: Building Future Champions Through Sports
    * - **API ID Path**: about.default.primary.heading
-   * - **Documentation**: https://prismic.io/docs/field#key-text
+   * - **Documentation**: https://prismic.io/docs/fields/text
    */
   heading: prismic.KeyTextField;
 
@@ -513,7 +595,7 @@ export interface AboutSliceDefaultPrimary {
    * - **Field Type**: Rich Text
    * - **Placeholder**: *None*
    * - **API ID Path**: about.default.primary.description
-   * - **Documentation**: https://prismic.io/docs/field#rich-text-title
+   * - **Documentation**: https://prismic.io/docs/fields/rich-text
    */
   description: prismic.RichTextField;
 
@@ -521,9 +603,9 @@ export interface AboutSliceDefaultPrimary {
    * Button Text field in *About → Default → Primary*
    *
    * - **Field Type**: Text
-   * - **Placeholder**: *None*
+   * - **Placeholder**: Learn More
    * - **API ID Path**: about.default.primary.button_text
-   * - **Documentation**: https://prismic.io/docs/field#key-text
+   * - **Documentation**: https://prismic.io/docs/fields/text
    */
   button_text: prismic.KeyTextField;
 
@@ -533,17 +615,75 @@ export interface AboutSliceDefaultPrimary {
    * - **Field Type**: Link
    * - **Placeholder**: *None*
    * - **API ID Path**: about.default.primary.button_link
-   * - **Documentation**: https://prismic.io/docs/field#link-content-relationship
+   * - **Documentation**: https://prismic.io/docs/fields/link
    */
-  button_link: prismic.LinkField;
+  button_link: prismic.LinkField<
+    string,
+    string,
+    unknown,
+    prismic.FieldState,
+    never
+  >;
 
   /**
-   * Trainer Title field in *About → Default → Primary*
+   * Students Count field in *About → Default → Primary*
+   *
+   * - **Field Type**: Number
+   * - **Placeholder**: 500
+   * - **API ID Path**: about.default.primary.students_count
+   * - **Documentation**: https://prismic.io/docs/fields/number
+   */
+  students_count: prismic.NumberField;
+
+  /**
+   * Expert Coaches field in *About → Default → Primary*
+   *
+   * - **Field Type**: Number
+   * - **Placeholder**: 25
+   * - **API ID Path**: about.default.primary.coaches_count
+   * - **Documentation**: https://prismic.io/docs/fields/number
+   */
+  coaches_count: prismic.NumberField;
+
+  /**
+   * Championships field in *About → Default → Primary*
+   *
+   * - **Field Type**: Number
+   * - **Placeholder**: 50
+   * - **API ID Path**: about.default.primary.championships_count
+   * - **Documentation**: https://prismic.io/docs/fields/number
+   */
+  championships_count: prismic.NumberField;
+
+  /**
+   * Years Experience field in *About → Default → Primary*
+   *
+   * - **Field Type**: Number
+   * - **Placeholder**: 10
+   * - **API ID Path**: about.default.primary.experience_count
+   * - **Documentation**: https://prismic.io/docs/fields/number
+   */
+  experience_count: prismic.NumberField;
+
+  /**
+   * About Cards field in *About → Default → Primary*
+   *
+   * - **Field Type**: Group
+   * - **Placeholder**: *None*
+   * - **API ID Path**: about.default.primary.about_cards[]
+   * - **Documentation**: https://prismic.io/docs/fields/repeatable-group
+   */
+  about_cards: prismic.GroupField<
+    Simplify<AboutSliceDefaultPrimaryAboutCardsItem>
+  >;
+
+  /**
+   * Section Title field in *About → Default → Primary*
    *
    * - **Field Type**: Text
-   * - **Placeholder**: *None*
+   * - **Placeholder**: Meet Our Coaches
    * - **API ID Path**: about.default.primary.trainer_title
-   * - **Documentation**: https://prismic.io/docs/field#key-text
+   * - **Documentation**: https://prismic.io/docs/fields/text
    */
   trainer_title: prismic.KeyTextField;
 
@@ -553,57 +693,67 @@ export interface AboutSliceDefaultPrimary {
    * - **Field Type**: Group
    * - **Placeholder**: *None*
    * - **API ID Path**: about.default.primary.trainer[]
-   * - **Documentation**: https://prismic.io/docs/field#group
+   * - **Documentation**: https://prismic.io/docs/fields/repeatable-group
    */
   trainer: prismic.GroupField<Simplify<AboutSliceDefaultPrimaryTrainerItem>>;
 
   /**
-   * Newsletter Title field in *About → Default → Primary*
+   * Testimonial Heading field in *About → Default → Primary*
    *
    * - **Field Type**: Text
-   * - **Placeholder**: *None*
+   * - **Placeholder**: What Our Athletes Say
+   * - **API ID Path**: about.default.primary.testimonial_heading
+   * - **Documentation**: https://prismic.io/docs/fields/text
+   */
+  testimonial_heading: prismic.KeyTextField;
+
+  /**
+   * Person Name field in *About → Default → Primary*
+   *
+   * - **Field Type**: Text
+   * - **Placeholder**: Aarav Singh
    * - **API ID Path**: about.default.primary.newsletter_title
-   * - **Documentation**: https://prismic.io/docs/field#key-text
+   * - **Documentation**: https://prismic.io/docs/fields/text
    */
   newsletter_title: prismic.KeyTextField;
 
   /**
-   * NewsletterDiscription field in *About → Default → Primary*
+   * Person Position field in *About → Default → Primary*
    *
-   * - **Field Type**: Rich Text
-   * - **Placeholder**: *None*
-   * - **API ID Path**: about.default.primary.newsletterdiscription
-   * - **Documentation**: https://prismic.io/docs/field#rich-text-title
+   * - **Field Type**: Text
+   * - **Placeholder**: Basketball Player
+   * - **API ID Path**: about.default.primary.newsletter_heading
+   * - **Documentation**: https://prismic.io/docs/fields/text
    */
-  newsletterdiscription: prismic.RichTextField;
+  newsletter_heading: prismic.KeyTextField;
 
   /**
-   * Newsletter Image field in *About → Default → Primary*
+   * Person Image field in *About → Default → Primary*
    *
    * - **Field Type**: Image
    * - **Placeholder**: *None*
    * - **API ID Path**: about.default.primary.newsletter_image
-   * - **Documentation**: https://prismic.io/docs/field#image
+   * - **Documentation**: https://prismic.io/docs/fields/image
    */
   newsletter_image: prismic.ImageField<never>;
 
   /**
-   * Newsletter Heading field in *About → Default → Primary*
+   * Testimonial field in *About → Default → Primary*
    *
-   * - **Field Type**: Text
+   * - **Field Type**: Rich Text
    * - **Placeholder**: *None*
-   * - **API ID Path**: about.default.primary.newsletter_heading
-   * - **Documentation**: https://prismic.io/docs/field#key-text
+   * - **API ID Path**: about.default.primary.newsletterdiscription
+   * - **Documentation**: https://prismic.io/docs/fields/rich-text
    */
-  newsletter_heading: prismic.KeyTextField;
+  newsletterdiscription: prismic.RichTextField;
 }
 
 /**
  * Default variation for About Slice
  *
  * - **API ID**: `default`
- * - **Description**: Default
- * - **Documentation**: https://prismic.io/docs/slice
+ * - **Description**: Premium About Section
+ * - **Documentation**: https://prismic.io/docs/slices
  */
 export type AboutSliceDefault = prismic.SharedSliceVariation<
   "default",
@@ -620,34 +770,54 @@ type AboutSliceVariation = AboutSliceDefault;
  * About Shared Slice
  *
  * - **API ID**: `about`
- * - **Description**: About
- * - **Documentation**: https://prismic.io/docs/slice
+ * - **Description**: About Section
+ * - **Documentation**: https://prismic.io/docs/slices
  */
 export type AboutSlice = prismic.SharedSlice<"about", AboutSliceVariation>;
 
 /**
- * Item in *Achievements → Default → Primary → Achievements*
+ * Item in *Achievements → Default → Primary → Achievement Cards*
  */
 export interface AchievementsSliceDefaultPrimaryAchievementsItem {
   /**
-   * Achievement Number field in *Achievements → Default → Primary → Achievements*
+   * Achievement Icon field in *Achievements → Default → Primary → Achievement Cards*
+   *
+   * - **Field Type**: Image
+   * - **Placeholder**: *None*
+   * - **API ID Path**: achievements.default.primary.achievements[].achievement_icon
+   * - **Documentation**: https://prismic.io/docs/fields/image
+   */
+  achievement_icon: prismic.ImageField<never>;
+
+  /**
+   * Achievement Number field in *Achievements → Default → Primary → Achievement Cards*
    *
    * - **Field Type**: Text
-   * - **Placeholder**: *None*
+   * - **Placeholder**: 500+
    * - **API ID Path**: achievements.default.primary.achievements[].achievement_number
-   * - **Documentation**: https://prismic.io/docs/field#key-text
+   * - **Documentation**: https://prismic.io/docs/fields/text
    */
   achievement_number: prismic.KeyTextField;
 
   /**
-   * Achievement Label field in *Achievements → Default → Primary → Achievements*
+   * Achievement Title field in *Achievements → Default → Primary → Achievement Cards*
    *
    * - **Field Type**: Text
-   * - **Placeholder**: *None*
+   * - **Placeholder**: Students Trained
    * - **API ID Path**: achievements.default.primary.achievements[].achievement_label
-   * - **Documentation**: https://prismic.io/docs/field#key-text
+   * - **Documentation**: https://prismic.io/docs/fields/text
    */
   achievement_label: prismic.KeyTextField;
+
+  /**
+   * Achievement Description field in *Achievements → Default → Primary → Achievement Cards*
+   *
+   * - **Field Type**: Text
+   * - **Placeholder**: Short description
+   * - **API ID Path**: achievements.default.primary.achievements[].achievement_description
+   * - **Documentation**: https://prismic.io/docs/fields/text
+   */
+  achievement_description: prismic.KeyTextField;
 }
 
 /**
@@ -655,22 +825,22 @@ export interface AchievementsSliceDefaultPrimaryAchievementsItem {
  */
 export interface AchievementsSliceDefaultPrimary {
   /**
-   * Title field in *Achievements → Default → Primary*
+   * Section Title field in *Achievements → Default → Primary*
    *
    * - **Field Type**: Text
-   * - **Placeholder**: *None*
+   * - **Placeholder**: Our Achievements
    * - **API ID Path**: achievements.default.primary.title
-   * - **Documentation**: https://prismic.io/docs/field#key-text
+   * - **Documentation**: https://prismic.io/docs/fields/text
    */
   title: prismic.KeyTextField;
 
   /**
-   * Achievements field in *Achievements → Default → Primary*
+   * Achievement Cards field in *Achievements → Default → Primary*
    *
    * - **Field Type**: Group
    * - **Placeholder**: *None*
    * - **API ID Path**: achievements.default.primary.achievements[]
-   * - **Documentation**: https://prismic.io/docs/field#group
+   * - **Documentation**: https://prismic.io/docs/fields/repeatable-group
    */
   achievements: prismic.GroupField<
     Simplify<AchievementsSliceDefaultPrimaryAchievementsItem>
@@ -681,8 +851,8 @@ export interface AchievementsSliceDefaultPrimary {
  * Default variation for Achievements Slice
  *
  * - **API ID**: `default`
- * - **Description**: Default
- * - **Documentation**: https://prismic.io/docs/slice
+ * - **Description**: Achievements Cards
+ * - **Documentation**: https://prismic.io/docs/slices
  */
 export type AchievementsSliceDefault = prismic.SharedSliceVariation<
   "default",
@@ -699,8 +869,8 @@ type AchievementsSliceVariation = AchievementsSliceDefault;
  * Achievements Shared Slice
  *
  * - **API ID**: `achievements`
- * - **Description**: Achievements section
- * - **Documentation**: https://prismic.io/docs/slice
+ * - **Description**: Achievements Section
+ * - **Documentation**: https://prismic.io/docs/slices
  */
 export type AchievementsSlice = prismic.SharedSlice<
   "achievements",
@@ -717,7 +887,7 @@ export interface BlogSliceDefaultPrimaryBlogItem {
    * - **Field Type**: Image
    * - **Placeholder**: *None*
    * - **API ID Path**: blog.default.primary.blog[].image
-   * - **Documentation**: https://prismic.io/docs/field#image
+   * - **Documentation**: https://prismic.io/docs/fields/image
    */
   image: prismic.ImageField<never>;
 
@@ -727,9 +897,15 @@ export interface BlogSliceDefaultPrimaryBlogItem {
    * - **Field Type**: Link
    * - **Placeholder**: *None*
    * - **API ID Path**: blog.default.primary.blog[].heading
-   * - **Documentation**: https://prismic.io/docs/field#link-content-relationship
+   * - **Documentation**: https://prismic.io/docs/fields/link
    */
-  heading: prismic.LinkField;
+  heading: prismic.LinkField<
+    string,
+    string,
+    unknown,
+    prismic.FieldState,
+    never
+  >;
 
   /**
    * Description field in *Blog → Default → Primary → Blog*
@@ -737,7 +913,7 @@ export interface BlogSliceDefaultPrimaryBlogItem {
    * - **Field Type**: Rich Text
    * - **Placeholder**: *None*
    * - **API ID Path**: blog.default.primary.blog[].description
-   * - **Documentation**: https://prismic.io/docs/field#rich-text-title
+   * - **Documentation**: https://prismic.io/docs/fields/rich-text
    */
   description: prismic.RichTextField;
 }
@@ -752,7 +928,7 @@ export interface BlogSliceDefaultPrimary {
    * - **Field Type**: Text
    * - **Placeholder**: *None*
    * - **API ID Path**: blog.default.primary.heading
-   * - **Documentation**: https://prismic.io/docs/field#key-text
+   * - **Documentation**: https://prismic.io/docs/fields/text
    */
   heading: prismic.KeyTextField;
 
@@ -762,7 +938,7 @@ export interface BlogSliceDefaultPrimary {
    * - **Field Type**: Group
    * - **Placeholder**: *None*
    * - **API ID Path**: blog.default.primary.blog[]
-   * - **Documentation**: https://prismic.io/docs/field#group
+   * - **Documentation**: https://prismic.io/docs/fields/repeatable-group
    */
   blog: prismic.GroupField<Simplify<BlogSliceDefaultPrimaryBlogItem>>;
 }
@@ -772,7 +948,7 @@ export interface BlogSliceDefaultPrimary {
  *
  * - **API ID**: `default`
  * - **Description**: Default
- * - **Documentation**: https://prismic.io/docs/slice
+ * - **Documentation**: https://prismic.io/docs/slices
  */
 export type BlogSliceDefault = prismic.SharedSliceVariation<
   "default",
@@ -790,7 +966,7 @@ type BlogSliceVariation = BlogSliceDefault;
  *
  * - **API ID**: `blog`
  * - **Description**: Blog
- * - **Documentation**: https://prismic.io/docs/slice
+ * - **Documentation**: https://prismic.io/docs/slices
  */
 export type BlogSlice = prismic.SharedSlice<"blog", BlogSliceVariation>;
 
@@ -804,7 +980,7 @@ export interface ContactSliceDefaultPrimaryContactItem {
    * - **Field Type**: Number
    * - **Placeholder**: *None*
    * - **API ID Path**: contact.default.primary.contact[].phone
-   * - **Documentation**: https://prismic.io/docs/field#number
+   * - **Documentation**: https://prismic.io/docs/fields/number
    */
   phone: prismic.NumberField;
 
@@ -814,7 +990,7 @@ export interface ContactSliceDefaultPrimaryContactItem {
    * - **Field Type**: Number
    * - **Placeholder**: *None*
    * - **API ID Path**: contact.default.primary.contact[].calls
-   * - **Documentation**: https://prismic.io/docs/field#number
+   * - **Documentation**: https://prismic.io/docs/fields/number
    */
   calls: prismic.NumberField;
 
@@ -824,7 +1000,7 @@ export interface ContactSliceDefaultPrimaryContactItem {
    * - **Field Type**: Text
    * - **Placeholder**: *None*
    * - **API ID Path**: contact.default.primary.contact[].email
-   * - **Documentation**: https://prismic.io/docs/field#key-text
+   * - **Documentation**: https://prismic.io/docs/fields/text
    */
   email: prismic.KeyTextField;
 }
@@ -839,7 +1015,7 @@ export interface ContactSliceDefaultPrimaryAddressItem {
    * - **Field Type**: Rich Text
    * - **Placeholder**: *None*
    * - **API ID Path**: contact.default.primary.address[].officeaddress
-   * - **Documentation**: https://prismic.io/docs/field#rich-text-title
+   * - **Documentation**: https://prismic.io/docs/fields/rich-text
    */
   officeaddress: prismic.RichTextField;
 
@@ -849,7 +1025,7 @@ export interface ContactSliceDefaultPrimaryAddressItem {
    * - **Field Type**: Number
    * - **Placeholder**: *None*
    * - **API ID Path**: contact.default.primary.address[].pincode
-   * - **Documentation**: https://prismic.io/docs/field#number
+   * - **Documentation**: https://prismic.io/docs/fields/number
    */
   pincode: prismic.NumberField;
 
@@ -859,7 +1035,7 @@ export interface ContactSliceDefaultPrimaryAddressItem {
    * - **Field Type**: Text
    * - **Placeholder**: *None*
    * - **API ID Path**: contact.default.primary.address[].timings
-   * - **Documentation**: https://prismic.io/docs/field#key-text
+   * - **Documentation**: https://prismic.io/docs/fields/text
    */
   timings: prismic.KeyTextField;
 }
@@ -874,7 +1050,7 @@ export interface ContactSliceDefaultPrimary {
    * - **Field Type**: GeoPoint
    * - **Placeholder**: *None*
    * - **API ID Path**: contact.default.primary.location
-   * - **Documentation**: https://prismic.io/docs/field#geopoint
+   * - **Documentation**: https://prismic.io/docs/fields/geopoint
    */
   location: prismic.GeoPointField;
 
@@ -884,7 +1060,7 @@ export interface ContactSliceDefaultPrimary {
    * - **Field Type**: Group
    * - **Placeholder**: *None*
    * - **API ID Path**: contact.default.primary.contact[]
-   * - **Documentation**: https://prismic.io/docs/field#group
+   * - **Documentation**: https://prismic.io/docs/fields/repeatable-group
    */
   contact: prismic.GroupField<Simplify<ContactSliceDefaultPrimaryContactItem>>;
 
@@ -894,7 +1070,7 @@ export interface ContactSliceDefaultPrimary {
    * - **Field Type**: Group
    * - **Placeholder**: *None*
    * - **API ID Path**: contact.default.primary.address[]
-   * - **Documentation**: https://prismic.io/docs/field#group
+   * - **Documentation**: https://prismic.io/docs/fields/repeatable-group
    */
   address: prismic.GroupField<Simplify<ContactSliceDefaultPrimaryAddressItem>>;
 }
@@ -904,7 +1080,7 @@ export interface ContactSliceDefaultPrimary {
  *
  * - **API ID**: `default`
  * - **Description**: Default
- * - **Documentation**: https://prismic.io/docs/slice
+ * - **Documentation**: https://prismic.io/docs/slices
  */
 export type ContactSliceDefault = prismic.SharedSliceVariation<
   "default",
@@ -922,7 +1098,7 @@ type ContactSliceVariation = ContactSliceDefault;
  *
  * - **API ID**: `contact`
  * - **Description**: Contact
- * - **Documentation**: https://prismic.io/docs/slice
+ * - **Documentation**: https://prismic.io/docs/slices
  */
 export type ContactSlice = prismic.SharedSlice<
   "contact",
@@ -939,7 +1115,7 @@ export interface ContentListSliceDefaultPrimary {
    * - **Field Type**: Select
    * - **Placeholder**: *None*
    * - **API ID Path**: content_list.default.primary.content_type
-   * - **Documentation**: https://prismic.io/docs/field#select
+   * - **Documentation**: https://prismic.io/docs/fields/select
    */
   content_type: prismic.SelectField<"Blogs" | "Our Programs">;
 
@@ -949,7 +1125,7 @@ export interface ContentListSliceDefaultPrimary {
    * - **Field Type**: Text
    * - **Placeholder**: *None*
    * - **API ID Path**: content_list.default.primary.view_more_text
-   * - **Documentation**: https://prismic.io/docs/field#key-text
+   * - **Documentation**: https://prismic.io/docs/fields/text
    */
   view_more_text: prismic.KeyTextField;
 }
@@ -959,7 +1135,7 @@ export interface ContentListSliceDefaultPrimary {
  *
  * - **API ID**: `default`
  * - **Description**: Default
- * - **Documentation**: https://prismic.io/docs/slice
+ * - **Documentation**: https://prismic.io/docs/slices
  */
 export type ContentListSliceDefault = prismic.SharedSliceVariation<
   "default",
@@ -977,7 +1153,7 @@ type ContentListSliceVariation = ContentListSliceDefault;
  *
  * - **API ID**: `content_list`
  * - **Description**: ContentList
- * - **Documentation**: https://prismic.io/docs/slice
+ * - **Documentation**: https://prismic.io/docs/slices
  */
 export type ContentListSlice = prismic.SharedSlice<
   "content_list",
@@ -994,7 +1170,7 @@ export interface EventsSliceDefaultPrimaryEventCardsItem {
    * - **Field Type**: Image
    * - **Placeholder**: *None*
    * - **API ID Path**: events.default.primary.event_cards[].event_image
-   * - **Documentation**: https://prismic.io/docs/field#image
+   * - **Documentation**: https://prismic.io/docs/fields/image
    */
   event_image: prismic.ImageField<never>;
 
@@ -1004,7 +1180,7 @@ export interface EventsSliceDefaultPrimaryEventCardsItem {
    * - **Field Type**: Text
    * - **Placeholder**: *None*
    * - **API ID Path**: events.default.primary.event_cards[].event_title
-   * - **Documentation**: https://prismic.io/docs/field#key-text
+   * - **Documentation**: https://prismic.io/docs/fields/text
    */
   event_title: prismic.KeyTextField;
 
@@ -1014,7 +1190,7 @@ export interface EventsSliceDefaultPrimaryEventCardsItem {
    * - **Field Type**: Date
    * - **Placeholder**: *None*
    * - **API ID Path**: events.default.primary.event_cards[].event_date
-   * - **Documentation**: https://prismic.io/docs/field#date
+   * - **Documentation**: https://prismic.io/docs/fields/date
    */
   event_date: prismic.DateField;
 
@@ -1024,7 +1200,7 @@ export interface EventsSliceDefaultPrimaryEventCardsItem {
    * - **Field Type**: Text
    * - **Placeholder**: *None*
    * - **API ID Path**: events.default.primary.event_cards[].event_location
-   * - **Documentation**: https://prismic.io/docs/field#key-text
+   * - **Documentation**: https://prismic.io/docs/fields/text
    */
   event_location: prismic.KeyTextField;
 
@@ -1034,7 +1210,7 @@ export interface EventsSliceDefaultPrimaryEventCardsItem {
    * - **Field Type**: Rich Text
    * - **Placeholder**: *None*
    * - **API ID Path**: events.default.primary.event_cards[].description
-   * - **Documentation**: https://prismic.io/docs/field#rich-text-title
+   * - **Documentation**: https://prismic.io/docs/fields/rich-text
    */
   description: prismic.RichTextField;
 
@@ -1044,7 +1220,7 @@ export interface EventsSliceDefaultPrimaryEventCardsItem {
    * - **Field Type**: Text
    * - **Placeholder**: *None*
    * - **API ID Path**: events.default.primary.event_cards[].button_text
-   * - **Documentation**: https://prismic.io/docs/field#key-text
+   * - **Documentation**: https://prismic.io/docs/fields/text
    */
   button_text: prismic.KeyTextField;
 
@@ -1054,9 +1230,15 @@ export interface EventsSliceDefaultPrimaryEventCardsItem {
    * - **Field Type**: Link
    * - **Placeholder**: *None*
    * - **API ID Path**: events.default.primary.event_cards[].button_link
-   * - **Documentation**: https://prismic.io/docs/field#link-content-relationship
+   * - **Documentation**: https://prismic.io/docs/fields/link
    */
-  button_link: prismic.LinkField;
+  button_link: prismic.LinkField<
+    string,
+    string,
+    unknown,
+    prismic.FieldState,
+    never
+  >;
 }
 
 /**
@@ -1069,7 +1251,7 @@ export interface EventsSliceDefaultPrimary {
    * - **Field Type**: Text
    * - **Placeholder**: *None*
    * - **API ID Path**: events.default.primary.title
-   * - **Documentation**: https://prismic.io/docs/field#key-text
+   * - **Documentation**: https://prismic.io/docs/fields/text
    */
   title: prismic.KeyTextField;
 
@@ -1079,7 +1261,7 @@ export interface EventsSliceDefaultPrimary {
    * - **Field Type**: Rich Text
    * - **Placeholder**: *None*
    * - **API ID Path**: events.default.primary.description
-   * - **Documentation**: https://prismic.io/docs/field#rich-text-title
+   * - **Documentation**: https://prismic.io/docs/fields/rich-text
    */
   description: prismic.RichTextField;
 
@@ -1089,7 +1271,7 @@ export interface EventsSliceDefaultPrimary {
    * - **Field Type**: Group
    * - **Placeholder**: *None*
    * - **API ID Path**: events.default.primary.event_cards[]
-   * - **Documentation**: https://prismic.io/docs/field#group
+   * - **Documentation**: https://prismic.io/docs/fields/repeatable-group
    */
   event_cards: prismic.GroupField<
     Simplify<EventsSliceDefaultPrimaryEventCardsItem>
@@ -1101,7 +1283,7 @@ export interface EventsSliceDefaultPrimary {
  *
  * - **API ID**: `default`
  * - **Description**: Default
- * - **Documentation**: https://prismic.io/docs/slice
+ * - **Documentation**: https://prismic.io/docs/slices
  */
 export type EventsSliceDefault = prismic.SharedSliceVariation<
   "default",
@@ -1119,7 +1301,7 @@ type EventsSliceVariation = EventsSliceDefault;
  *
  * - **API ID**: `events`
  * - **Description**: Events
- * - **Documentation**: https://prismic.io/docs/slice
+ * - **Documentation**: https://prismic.io/docs/slices
  */
 export type EventsSlice = prismic.SharedSlice<"events", EventsSliceVariation>;
 
@@ -1133,7 +1315,7 @@ export interface FacilitiesSliceDefaultPrimaryFacilitiesItem {
    * - **Field Type**: Text
    * - **Placeholder**: *None*
    * - **API ID Path**: facilities.default.primary.facilities[].facility_name
-   * - **Documentation**: https://prismic.io/docs/field#key-text
+   * - **Documentation**: https://prismic.io/docs/fields/text
    */
   facility_name: prismic.KeyTextField;
 
@@ -1143,7 +1325,7 @@ export interface FacilitiesSliceDefaultPrimaryFacilitiesItem {
    * - **Field Type**: Image
    * - **Placeholder**: *None*
    * - **API ID Path**: facilities.default.primary.facilities[].facility_image
-   * - **Documentation**: https://prismic.io/docs/field#image
+   * - **Documentation**: https://prismic.io/docs/fields/image
    */
   facility_image: prismic.ImageField<never>;
 
@@ -1153,7 +1335,7 @@ export interface FacilitiesSliceDefaultPrimaryFacilitiesItem {
    * - **Field Type**: Rich Text
    * - **Placeholder**: *None*
    * - **API ID Path**: facilities.default.primary.facilities[].facility_description
-   * - **Documentation**: https://prismic.io/docs/field#rich-text-title
+   * - **Documentation**: https://prismic.io/docs/fields/rich-text
    */
   facility_description: prismic.RichTextField;
 }
@@ -1168,7 +1350,7 @@ export interface FacilitiesSliceDefaultPrimary {
    * - **Field Type**: Text
    * - **Placeholder**: *None*
    * - **API ID Path**: facilities.default.primary.title
-   * - **Documentation**: https://prismic.io/docs/field#key-text
+   * - **Documentation**: https://prismic.io/docs/fields/text
    */
   title: prismic.KeyTextField;
 
@@ -1178,7 +1360,7 @@ export interface FacilitiesSliceDefaultPrimary {
    * - **Field Type**: Group
    * - **Placeholder**: *None*
    * - **API ID Path**: facilities.default.primary.facilities[]
-   * - **Documentation**: https://prismic.io/docs/field#group
+   * - **Documentation**: https://prismic.io/docs/fields/repeatable-group
    */
   facilities: prismic.GroupField<
     Simplify<FacilitiesSliceDefaultPrimaryFacilitiesItem>
@@ -1190,7 +1372,7 @@ export interface FacilitiesSliceDefaultPrimary {
  *
  * - **API ID**: `default`
  * - **Description**: Default
- * - **Documentation**: https://prismic.io/docs/slice
+ * - **Documentation**: https://prismic.io/docs/slices
  */
 export type FacilitiesSliceDefault = prismic.SharedSliceVariation<
   "default",
@@ -1208,7 +1390,7 @@ type FacilitiesSliceVariation = FacilitiesSliceDefault;
  *
  * - **API ID**: `facilities`
  * - **Description**: Facilities section
- * - **Documentation**: https://prismic.io/docs/slice
+ * - **Documentation**: https://prismic.io/docs/slices
  */
 export type FacilitiesSlice = prismic.SharedSlice<
   "facilities",
@@ -1225,7 +1407,7 @@ export interface FaqSliceDefaultPrimaryQuestionsItem {
    * - **Field Type**: Rich Text
    * - **Placeholder**: *None*
    * - **API ID Path**: faq.default.primary.questions[].description
-   * - **Documentation**: https://prismic.io/docs/field#rich-text-title
+   * - **Documentation**: https://prismic.io/docs/fields/rich-text
    */
   description: prismic.RichTextField;
 
@@ -1235,7 +1417,7 @@ export interface FaqSliceDefaultPrimaryQuestionsItem {
    * - **Field Type**: Image
    * - **Placeholder**: *None*
    * - **API ID Path**: faq.default.primary.questions[].image
-   * - **Documentation**: https://prismic.io/docs/field#image
+   * - **Documentation**: https://prismic.io/docs/fields/image
    */
   image: prismic.ImageField<never>;
 }
@@ -1250,7 +1432,7 @@ export interface FaqSliceDefaultPrimary {
    * - **Field Type**: Text
    * - **Placeholder**: *None*
    * - **API ID Path**: faq.default.primary.heading
-   * - **Documentation**: https://prismic.io/docs/field#key-text
+   * - **Documentation**: https://prismic.io/docs/fields/text
    */
   heading: prismic.KeyTextField;
 
@@ -1260,7 +1442,7 @@ export interface FaqSliceDefaultPrimary {
    * - **Field Type**: Group
    * - **Placeholder**: *None*
    * - **API ID Path**: faq.default.primary.questions[]
-   * - **Documentation**: https://prismic.io/docs/field#group
+   * - **Documentation**: https://prismic.io/docs/fields/repeatable-group
    */
   questions: prismic.GroupField<Simplify<FaqSliceDefaultPrimaryQuestionsItem>>;
 }
@@ -1270,7 +1452,7 @@ export interface FaqSliceDefaultPrimary {
  *
  * - **API ID**: `default`
  * - **Description**: Default
- * - **Documentation**: https://prismic.io/docs/slice
+ * - **Documentation**: https://prismic.io/docs/slices
  */
 export type FaqSliceDefault = prismic.SharedSliceVariation<
   "default",
@@ -1288,7 +1470,7 @@ type FaqSliceVariation = FaqSliceDefault;
  *
  * - **API ID**: `faq`
  * - **Description**: Faq
- * - **Documentation**: https://prismic.io/docs/slice
+ * - **Documentation**: https://prismic.io/docs/slices
  */
 export type FaqSlice = prismic.SharedSlice<"faq", FaqSliceVariation>;
 
@@ -1302,7 +1484,7 @@ export interface FooterSliceDefaultPrimaryFooterSectionsItem {
    * - **Field Type**: Text
    * - **Placeholder**: *None*
    * - **API ID Path**: footer.default.primary.footer_sections[].section_title
-   * - **Documentation**: https://prismic.io/docs/field#key-text
+   * - **Documentation**: https://prismic.io/docs/fields/text
    */
   section_title: prismic.KeyTextField;
 
@@ -1312,7 +1494,7 @@ export interface FooterSliceDefaultPrimaryFooterSectionsItem {
    * - **Field Type**: Rich Text
    * - **Placeholder**: *None*
    * - **API ID Path**: footer.default.primary.footer_sections[].section_content
-   * - **Documentation**: https://prismic.io/docs/field#rich-text-title
+   * - **Documentation**: https://prismic.io/docs/fields/rich-text
    */
   section_content: prismic.RichTextField;
 }
@@ -1327,7 +1509,7 @@ export interface FooterSliceDefaultPrimarySocialLinksItem {
    * - **Field Type**: Text
    * - **Placeholder**: *None*
    * - **API ID Path**: footer.default.primary.social_links[].social_label
-   * - **Documentation**: https://prismic.io/docs/field#key-text
+   * - **Documentation**: https://prismic.io/docs/fields/text
    */
   social_label: prismic.KeyTextField;
 
@@ -1337,9 +1519,15 @@ export interface FooterSliceDefaultPrimarySocialLinksItem {
    * - **Field Type**: Link
    * - **Placeholder**: *None*
    * - **API ID Path**: footer.default.primary.social_links[].social_link
-   * - **Documentation**: https://prismic.io/docs/field#link-content-relationship
+   * - **Documentation**: https://prismic.io/docs/fields/link
    */
-  social_link: prismic.LinkField;
+  social_link: prismic.LinkField<
+    string,
+    string,
+    unknown,
+    prismic.FieldState,
+    never
+  >;
 }
 
 /**
@@ -1352,7 +1540,7 @@ export interface FooterSliceDefaultPrimary {
    * - **Field Type**: Group
    * - **Placeholder**: *None*
    * - **API ID Path**: footer.default.primary.footer_sections[]
-   * - **Documentation**: https://prismic.io/docs/field#group
+   * - **Documentation**: https://prismic.io/docs/fields/repeatable-group
    */
   footer_sections: prismic.GroupField<
     Simplify<FooterSliceDefaultPrimaryFooterSectionsItem>
@@ -1364,7 +1552,7 @@ export interface FooterSliceDefaultPrimary {
    * - **Field Type**: Text
    * - **Placeholder**: *None*
    * - **API ID Path**: footer.default.primary.copyright_text
-   * - **Documentation**: https://prismic.io/docs/field#key-text
+   * - **Documentation**: https://prismic.io/docs/fields/text
    */
   copyright_text: prismic.KeyTextField;
 
@@ -1374,7 +1562,7 @@ export interface FooterSliceDefaultPrimary {
    * - **Field Type**: Group
    * - **Placeholder**: *None*
    * - **API ID Path**: footer.default.primary.social_links[]
-   * - **Documentation**: https://prismic.io/docs/field#group
+   * - **Documentation**: https://prismic.io/docs/fields/repeatable-group
    */
   social_links: prismic.GroupField<
     Simplify<FooterSliceDefaultPrimarySocialLinksItem>
@@ -1386,7 +1574,7 @@ export interface FooterSliceDefaultPrimary {
  *
  * - **API ID**: `default`
  * - **Description**: Default
- * - **Documentation**: https://prismic.io/docs/slice
+ * - **Documentation**: https://prismic.io/docs/slices
  */
 export type FooterSliceDefault = prismic.SharedSliceVariation<
   "default",
@@ -1404,7 +1592,7 @@ type FooterSliceVariation = FooterSliceDefault;
  *
  * - **API ID**: `footer`
  * - **Description**: Footer section
- * - **Documentation**: https://prismic.io/docs/slice
+ * - **Documentation**: https://prismic.io/docs/slices
  */
 export type FooterSlice = prismic.SharedSlice<"footer", FooterSliceVariation>;
 
@@ -1418,7 +1606,7 @@ export interface FreeTrialSliceDefaultPrimaryTitleItem {
    * - **Field Type**: Text
    * - **Placeholder**: *None*
    * - **API ID Path**: free_trial.default.primary.title[].sub_heading
-   * - **Documentation**: https://prismic.io/docs/field#key-text
+   * - **Documentation**: https://prismic.io/docs/fields/text
    */
   sub_heading: prismic.KeyTextField;
 
@@ -1428,7 +1616,7 @@ export interface FreeTrialSliceDefaultPrimaryTitleItem {
    * - **Field Type**: Text
    * - **Placeholder**: *None*
    * - **API ID Path**: free_trial.default.primary.title[].heading
-   * - **Documentation**: https://prismic.io/docs/field#key-text
+   * - **Documentation**: https://prismic.io/docs/fields/text
    */
   heading: prismic.KeyTextField;
 
@@ -1438,7 +1626,7 @@ export interface FreeTrialSliceDefaultPrimaryTitleItem {
    * - **Field Type**: Text
    * - **Placeholder**: *None*
    * - **API ID Path**: free_trial.default.primary.title[].link_label
-   * - **Documentation**: https://prismic.io/docs/field#key-text
+   * - **Documentation**: https://prismic.io/docs/fields/text
    */
   link_label: prismic.KeyTextField;
 
@@ -1448,9 +1636,9 @@ export interface FreeTrialSliceDefaultPrimaryTitleItem {
    * - **Field Type**: Link
    * - **Placeholder**: *None*
    * - **API ID Path**: free_trial.default.primary.title[].link
-   * - **Documentation**: https://prismic.io/docs/field#link-content-relationship
+   * - **Documentation**: https://prismic.io/docs/fields/link
    */
-  link: prismic.LinkField;
+  link: prismic.LinkField<string, string, unknown, prismic.FieldState, never>;
 }
 
 /**
@@ -1463,7 +1651,7 @@ export interface FreeTrialSliceDefaultPrimary {
    * - **Field Type**: Group
    * - **Placeholder**: *None*
    * - **API ID Path**: free_trial.default.primary.title[]
-   * - **Documentation**: https://prismic.io/docs/field#group
+   * - **Documentation**: https://prismic.io/docs/fields/repeatable-group
    */
   title: prismic.GroupField<Simplify<FreeTrialSliceDefaultPrimaryTitleItem>>;
 
@@ -1473,7 +1661,7 @@ export interface FreeTrialSliceDefaultPrimary {
    * - **Field Type**: Image
    * - **Placeholder**: *None*
    * - **API ID Path**: free_trial.default.primary.image
-   * - **Documentation**: https://prismic.io/docs/field#image
+   * - **Documentation**: https://prismic.io/docs/fields/image
    */
   image: prismic.ImageField<never>;
 
@@ -1483,7 +1671,7 @@ export interface FreeTrialSliceDefaultPrimary {
    * - **Field Type**: Text
    * - **Placeholder**: *None*
    * - **API ID Path**: free_trial.default.primary.overtext
-   * - **Documentation**: https://prismic.io/docs/field#key-text
+   * - **Documentation**: https://prismic.io/docs/fields/text
    */
   overtext: prismic.KeyTextField;
 }
@@ -1493,7 +1681,7 @@ export interface FreeTrialSliceDefaultPrimary {
  *
  * - **API ID**: `default`
  * - **Description**: Default
- * - **Documentation**: https://prismic.io/docs/slice
+ * - **Documentation**: https://prismic.io/docs/slices
  */
 export type FreeTrialSliceDefault = prismic.SharedSliceVariation<
   "default",
@@ -1511,7 +1699,7 @@ type FreeTrialSliceVariation = FreeTrialSliceDefault;
  *
  * - **API ID**: `free_trial`
  * - **Description**: FreeTrial
- * - **Documentation**: https://prismic.io/docs/slice
+ * - **Documentation**: https://prismic.io/docs/slices
  */
 export type FreeTrialSlice = prismic.SharedSlice<
   "free_trial",
@@ -1528,7 +1716,7 @@ export interface GallerySliceDefaultPrimaryGalleryTextItem {
    * - **Field Type**: Text
    * - **Placeholder**: *None*
    * - **API ID Path**: gallery.default.primary.gallery_text[].heading
-   * - **Documentation**: https://prismic.io/docs/field#key-text
+   * - **Documentation**: https://prismic.io/docs/fields/text
    */
   heading: prismic.KeyTextField;
 
@@ -1538,7 +1726,7 @@ export interface GallerySliceDefaultPrimaryGalleryTextItem {
    * - **Field Type**: Image
    * - **Placeholder**: *None*
    * - **API ID Path**: gallery.default.primary.gallery_text[].image
-   * - **Documentation**: https://prismic.io/docs/field#image
+   * - **Documentation**: https://prismic.io/docs/fields/image
    */
   image: prismic.ImageField<never>;
 }
@@ -1553,7 +1741,7 @@ export interface GallerySliceDefaultPrimaryGalleryImageItem {
    * - **Field Type**: Image
    * - **Placeholder**: *None*
    * - **API ID Path**: gallery.default.primary.gallery_image[].image
-   * - **Documentation**: https://prismic.io/docs/field#image
+   * - **Documentation**: https://prismic.io/docs/fields/image
    */
   image: prismic.ImageField<never>;
 
@@ -1563,7 +1751,7 @@ export interface GallerySliceDefaultPrimaryGalleryImageItem {
    * - **Field Type**: Image
    * - **Placeholder**: *None*
    * - **API ID Path**: gallery.default.primary.gallery_image[].image2
-   * - **Documentation**: https://prismic.io/docs/field#image
+   * - **Documentation**: https://prismic.io/docs/fields/image
    */
   image2: prismic.ImageField<never>;
 
@@ -1573,7 +1761,7 @@ export interface GallerySliceDefaultPrimaryGalleryImageItem {
    * - **Field Type**: Image
    * - **Placeholder**: *None*
    * - **API ID Path**: gallery.default.primary.gallery_image[].image3
-   * - **Documentation**: https://prismic.io/docs/field#image
+   * - **Documentation**: https://prismic.io/docs/fields/image
    */
   image3: prismic.ImageField<never>;
 }
@@ -1588,7 +1776,7 @@ export interface GallerySliceDefaultPrimaryGalleryDescriptionItem {
    * - **Field Type**: Image
    * - **Placeholder**: *None*
    * - **API ID Path**: gallery.default.primary.gallery_description[].image
-   * - **Documentation**: https://prismic.io/docs/field#image
+   * - **Documentation**: https://prismic.io/docs/fields/image
    */
   image: prismic.ImageField<never>;
 
@@ -1598,7 +1786,7 @@ export interface GallerySliceDefaultPrimaryGalleryDescriptionItem {
    * - **Field Type**: Image
    * - **Placeholder**: *None*
    * - **API ID Path**: gallery.default.primary.gallery_description[].image2
-   * - **Documentation**: https://prismic.io/docs/field#image
+   * - **Documentation**: https://prismic.io/docs/fields/image
    */
   image2: prismic.ImageField<never>;
 
@@ -1608,7 +1796,7 @@ export interface GallerySliceDefaultPrimaryGalleryDescriptionItem {
    * - **Field Type**: Rich Text
    * - **Placeholder**: *None*
    * - **API ID Path**: gallery.default.primary.gallery_description[].image_description
-   * - **Documentation**: https://prismic.io/docs/field#rich-text-title
+   * - **Documentation**: https://prismic.io/docs/fields/rich-text
    */
   image_description: prismic.RichTextField;
 
@@ -1618,7 +1806,7 @@ export interface GallerySliceDefaultPrimaryGalleryDescriptionItem {
    * - **Field Type**: Text
    * - **Placeholder**: *None*
    * - **API ID Path**: gallery.default.primary.gallery_description[].name
-   * - **Documentation**: https://prismic.io/docs/field#key-text
+   * - **Documentation**: https://prismic.io/docs/fields/text
    */
   name: prismic.KeyTextField;
 
@@ -1628,7 +1816,7 @@ export interface GallerySliceDefaultPrimaryGalleryDescriptionItem {
    * - **Field Type**: Text
    * - **Placeholder**: *None*
    * - **API ID Path**: gallery.default.primary.gallery_description[].position
-   * - **Documentation**: https://prismic.io/docs/field#key-text
+   * - **Documentation**: https://prismic.io/docs/fields/text
    */
   position: prismic.KeyTextField;
 }
@@ -1643,7 +1831,7 @@ export interface GallerySliceDefaultPrimary {
    * - **Field Type**: Image
    * - **Placeholder**: *None*
    * - **API ID Path**: gallery.default.primary.image
-   * - **Documentation**: https://prismic.io/docs/field#image
+   * - **Documentation**: https://prismic.io/docs/fields/image
    */
   image: prismic.ImageField<never>;
 
@@ -1653,7 +1841,7 @@ export interface GallerySliceDefaultPrimary {
    * - **Field Type**: Group
    * - **Placeholder**: *None*
    * - **API ID Path**: gallery.default.primary.gallery_text[]
-   * - **Documentation**: https://prismic.io/docs/field#group
+   * - **Documentation**: https://prismic.io/docs/fields/repeatable-group
    */
   gallery_text: prismic.GroupField<
     Simplify<GallerySliceDefaultPrimaryGalleryTextItem>
@@ -1665,7 +1853,7 @@ export interface GallerySliceDefaultPrimary {
    * - **Field Type**: Group
    * - **Placeholder**: *None*
    * - **API ID Path**: gallery.default.primary.gallery_image[]
-   * - **Documentation**: https://prismic.io/docs/field#group
+   * - **Documentation**: https://prismic.io/docs/fields/repeatable-group
    */
   gallery_image: prismic.GroupField<
     Simplify<GallerySliceDefaultPrimaryGalleryImageItem>
@@ -1677,7 +1865,7 @@ export interface GallerySliceDefaultPrimary {
    * - **Field Type**: Group
    * - **Placeholder**: *None*
    * - **API ID Path**: gallery.default.primary.gallery_description[]
-   * - **Documentation**: https://prismic.io/docs/field#group
+   * - **Documentation**: https://prismic.io/docs/fields/repeatable-group
    */
   gallery_description: prismic.GroupField<
     Simplify<GallerySliceDefaultPrimaryGalleryDescriptionItem>
@@ -1689,7 +1877,7 @@ export interface GallerySliceDefaultPrimary {
  *
  * - **API ID**: `default`
  * - **Description**: Default
- * - **Documentation**: https://prismic.io/docs/slice
+ * - **Documentation**: https://prismic.io/docs/slices
  */
 export type GallerySliceDefault = prismic.SharedSliceVariation<
   "default",
@@ -1707,7 +1895,7 @@ type GallerySliceVariation = GallerySliceDefault;
  *
  * - **API ID**: `gallery`
  * - **Description**: Gallery
- * - **Documentation**: https://prismic.io/docs/slice
+ * - **Documentation**: https://prismic.io/docs/slices
  */
 export type GallerySlice = prismic.SharedSlice<
   "gallery",
@@ -1724,7 +1912,7 @@ export interface GalleryPageSliceDefaultPrimaryImageItem {
    * - **Field Type**: Image
    * - **Placeholder**: *None*
    * - **API ID Path**: gallery_page.default.primary.image[].image
-   * - **Documentation**: https://prismic.io/docs/field#image
+   * - **Documentation**: https://prismic.io/docs/fields/image
    */
   image: prismic.ImageField<never>;
 }
@@ -1739,7 +1927,7 @@ export interface GalleryPageSliceDefaultPrimary {
    * - **Field Type**: Text
    * - **Placeholder**: *None*
    * - **API ID Path**: gallery_page.default.primary.heading
-   * - **Documentation**: https://prismic.io/docs/field#key-text
+   * - **Documentation**: https://prismic.io/docs/fields/text
    */
   heading: prismic.KeyTextField;
 
@@ -1749,7 +1937,7 @@ export interface GalleryPageSliceDefaultPrimary {
    * - **Field Type**: Rich Text
    * - **Placeholder**: *None*
    * - **API ID Path**: gallery_page.default.primary.description
-   * - **Documentation**: https://prismic.io/docs/field#rich-text-title
+   * - **Documentation**: https://prismic.io/docs/fields/rich-text
    */
   description: prismic.RichTextField;
 
@@ -1759,7 +1947,7 @@ export interface GalleryPageSliceDefaultPrimary {
    * - **Field Type**: Group
    * - **Placeholder**: *None*
    * - **API ID Path**: gallery_page.default.primary.image[]
-   * - **Documentation**: https://prismic.io/docs/field#group
+   * - **Documentation**: https://prismic.io/docs/fields/repeatable-group
    */
   image: prismic.GroupField<Simplify<GalleryPageSliceDefaultPrimaryImageItem>>;
 }
@@ -1769,7 +1957,7 @@ export interface GalleryPageSliceDefaultPrimary {
  *
  * - **API ID**: `default`
  * - **Description**: Default
- * - **Documentation**: https://prismic.io/docs/slice
+ * - **Documentation**: https://prismic.io/docs/slices
  */
 export type GalleryPageSliceDefault = prismic.SharedSliceVariation<
   "default",
@@ -1787,7 +1975,7 @@ type GalleryPageSliceVariation = GalleryPageSliceDefault;
  *
  * - **API ID**: `gallery_page`
  * - **Description**: GalleryPage
- * - **Documentation**: https://prismic.io/docs/slice
+ * - **Documentation**: https://prismic.io/docs/slices
  */
 export type GalleryPageSlice = prismic.SharedSlice<
   "gallery_page",
@@ -1799,22 +1987,22 @@ export type GalleryPageSlice = prismic.SharedSlice<
  */
 export interface HeroSliceDefaultPrimary {
   /**
-   * Subtitle field in *Hero → Default → Primary*
+   * Eyebrow field in *Hero → Default → Primary*
    *
    * - **Field Type**: Text
-   * - **Placeholder**: Empowering Youth Through Sports
-   * - **API ID Path**: hero.default.primary.subtitle
-   * - **Documentation**: https://prismic.io/docs/field#key-text
+   * - **Placeholder**: RVS Sports Welfare Association
+   * - **API ID Path**: hero.default.primary.eyebrow
+   * - **Documentation**: https://prismic.io/docs/fields/text
    */
-  subtitle: prismic.KeyTextField;
+  eyebrow: prismic.KeyTextField;
 
   /**
    * Title field in *Hero → Default → Primary*
    *
    * - **Field Type**: Text
-   * - **Placeholder**: Build Champions, Build Character
+   * - **Placeholder**: Build Champions. Build Character.
    * - **API ID Path**: hero.default.primary.title
-   * - **Documentation**: https://prismic.io/docs/field#key-text
+   * - **Documentation**: https://prismic.io/docs/fields/text
    */
   title: prismic.KeyTextField;
 
@@ -1822,114 +2010,111 @@ export interface HeroSliceDefaultPrimary {
    * Description field in *Hero → Default → Primary*
    *
    * - **Field Type**: Text
-   * - **Placeholder**: Professional coaching with certified coaches and world-class facilities.
-   * - **API ID Path**: hero.default.primary.paragraph
-   * - **Documentation**: https://prismic.io/docs/field#key-text
+   * - **Placeholder**: Professional basketball coaching, leadership and community development.
+   * - **API ID Path**: hero.default.primary.description
+   * - **Documentation**: https://prismic.io/docs/fields/text
    */
-  paragraph: prismic.KeyTextField;
+  description: prismic.KeyTextField;
 
   /**
-   * Hero Image field in *Hero → Default → Primary*
+   * Background Image field in *Hero → Default → Primary*
    *
    * - **Field Type**: Image
    * - **Placeholder**: *None*
    * - **API ID Path**: hero.default.primary.hero_image
-   * - **Documentation**: https://prismic.io/docs/field#image
+   * - **Documentation**: https://prismic.io/docs/fields/image
    */
   hero_image: prismic.ImageField<never>;
 
   /**
-   * Primary Button Label field in *Hero → Default → Primary*
+   * Primary Button Text field in *Hero → Default → Primary*
    *
    * - **Field Type**: Text
-   * - **Placeholder**: Join Now
-   * - **API ID Path**: hero.default.primary.link_label
-   * - **Documentation**: https://prismic.io/docs/field#key-text
+   * - **Placeholder**: *None*
+   * - **API ID Path**: hero.default.primary.primary_button_text
+   * - **Documentation**: https://prismic.io/docs/fields/text
    */
-  link_label: prismic.KeyTextField;
+  primary_button_text: prismic.KeyTextField;
 
   /**
    * Primary Button Link field in *Hero → Default → Primary*
    *
    * - **Field Type**: Link
    * - **Placeholder**: *None*
-   * - **API ID Path**: hero.default.primary.link
-   * - **Documentation**: https://prismic.io/docs/field#link-content-relationship
+   * - **API ID Path**: hero.default.primary.primary_button_link
+   * - **Documentation**: https://prismic.io/docs/fields/link
    */
-  link: prismic.LinkField;
+  primary_button_link: prismic.LinkField<
+    string,
+    string,
+    unknown,
+    prismic.FieldState,
+    never
+  >;
 
   /**
-   * Secondary Button Label field in *Hero → Default → Primary*
+   * Secondary Button Text field in *Hero → Default → Primary*
    *
    * - **Field Type**: Text
-   * - **Placeholder**: Explore Programs
-   * - **API ID Path**: hero.default.primary.secondary_link_label
-   * - **Documentation**: https://prismic.io/docs/field#key-text
+   * - **Placeholder**: *None*
+   * - **API ID Path**: hero.default.primary.secondary_button_text
+   * - **Documentation**: https://prismic.io/docs/fields/text
    */
-  secondary_link_label: prismic.KeyTextField;
+  secondary_button_text: prismic.KeyTextField;
 
   /**
    * Secondary Button Link field in *Hero → Default → Primary*
    *
    * - **Field Type**: Link
    * - **Placeholder**: *None*
-   * - **API ID Path**: hero.default.primary.secondary_link
-   * - **Documentation**: https://prismic.io/docs/field#link-content-relationship
+   * - **API ID Path**: hero.default.primary.secondary_button_link
+   * - **Documentation**: https://prismic.io/docs/fields/link
    */
-  secondary_link: prismic.LinkField;
+  secondary_button_link: prismic.LinkField<
+    string,
+    string,
+    unknown,
+    prismic.FieldState,
+    never
+  >;
+}
+
+/**
+ * Primary content in *Hero → Items*
+ */
+export interface HeroSliceDefaultItem {
+  /**
+   * Statistic Number field in *Hero → Items*
+   *
+   * - **Field Type**: Text
+   * - **Placeholder**: 500+
+   * - **API ID Path**: hero.items[].stat_number
+   * - **Documentation**: https://prismic.io/docs/fields/text
+   */
+  stat_number: prismic.KeyTextField;
 
   /**
-   * Students Count field in *Hero → Default → Primary*
+   * Statistic Label field in *Hero → Items*
    *
-   * - **Field Type**: Number
-   * - **Placeholder**: 500
-   * - **API ID Path**: hero.default.primary.students_count
-   * - **Documentation**: https://prismic.io/docs/field#number
+   * - **Field Type**: Text
+   * - **Placeholder**: Athletes
+   * - **API ID Path**: hero.items[].stat_label
+   * - **Documentation**: https://prismic.io/docs/fields/text
    */
-  students_count: prismic.NumberField;
-
-  /**
-   * Coaches Count field in *Hero → Default → Primary*
-   *
-   * - **Field Type**: Number
-   * - **Placeholder**: 25
-   * - **API ID Path**: hero.default.primary.coaches_count
-   * - **Documentation**: https://prismic.io/docs/field#number
-   */
-  coaches_count: prismic.NumberField;
-
-  /**
-   * Tournaments Count field in *Hero → Default → Primary*
-   *
-   * - **Field Type**: Number
-   * - **Placeholder**: 50
-   * - **API ID Path**: hero.default.primary.tournaments_count
-   * - **Documentation**: https://prismic.io/docs/field#number
-   */
-  tournaments_count: prismic.NumberField;
-
-  /**
-   * Years of Experience field in *Hero → Default → Primary*
-   *
-   * - **Field Type**: Number
-   * - **Placeholder**: 10
-   * - **API ID Path**: hero.default.primary.experience_count
-   * - **Documentation**: https://prismic.io/docs/field#number
-   */
-  experience_count: prismic.NumberField;
+  stat_label: prismic.KeyTextField;
 }
 
 /**
  * Default variation for Hero Slice
  *
  * - **API ID**: `default`
- * - **Description**: Professional Sports Hero
- * - **Documentation**: https://prismic.io/docs/slice
+ * - **Description**: Premium Sports Academy Hero
+ * - **Documentation**: https://prismic.io/docs/slices
  */
 export type HeroSliceDefault = prismic.SharedSliceVariation<
   "default",
   Simplify<HeroSliceDefaultPrimary>,
-  never
+  Simplify<HeroSliceDefaultItem>
 >;
 
 /**
@@ -1941,8 +2126,8 @@ type HeroSliceVariation = HeroSliceDefault;
  * Hero Shared Slice
  *
  * - **API ID**: `hero`
- * - **Description**: Professional Hero Section
- * - **Documentation**: https://prismic.io/docs/slice
+ * - **Description**: Premium Hero Section
+ * - **Documentation**: https://prismic.io/docs/slices
  */
 export type HeroSlice = prismic.SharedSlice<"hero", HeroSliceVariation>;
 
@@ -1956,7 +2141,7 @@ export interface MembershipSliceDefaultPrimaryMembershipPlansItem {
    * - **Field Type**: Text
    * - **Placeholder**: *None*
    * - **API ID Path**: membership.default.primary.membership_plans[].plan_name
-   * - **Documentation**: https://prismic.io/docs/field#key-text
+   * - **Documentation**: https://prismic.io/docs/fields/text
    */
   plan_name: prismic.KeyTextField;
 
@@ -1966,7 +2151,7 @@ export interface MembershipSliceDefaultPrimaryMembershipPlansItem {
    * - **Field Type**: Text
    * - **Placeholder**: *None*
    * - **API ID Path**: membership.default.primary.membership_plans[].plan_price
-   * - **Documentation**: https://prismic.io/docs/field#key-text
+   * - **Documentation**: https://prismic.io/docs/fields/text
    */
   plan_price: prismic.KeyTextField;
 
@@ -1976,7 +2161,7 @@ export interface MembershipSliceDefaultPrimaryMembershipPlansItem {
    * - **Field Type**: Rich Text
    * - **Placeholder**: *None*
    * - **API ID Path**: membership.default.primary.membership_plans[].plan_features
-   * - **Documentation**: https://prismic.io/docs/field#rich-text-title
+   * - **Documentation**: https://prismic.io/docs/fields/rich-text
    */
   plan_features: prismic.RichTextField;
 
@@ -1986,7 +2171,7 @@ export interface MembershipSliceDefaultPrimaryMembershipPlansItem {
    * - **Field Type**: Text
    * - **Placeholder**: *None*
    * - **API ID Path**: membership.default.primary.membership_plans[].plan_button_label
-   * - **Documentation**: https://prismic.io/docs/field#key-text
+   * - **Documentation**: https://prismic.io/docs/fields/text
    */
   plan_button_label: prismic.KeyTextField;
 
@@ -1996,9 +2181,15 @@ export interface MembershipSliceDefaultPrimaryMembershipPlansItem {
    * - **Field Type**: Link
    * - **Placeholder**: *None*
    * - **API ID Path**: membership.default.primary.membership_plans[].plan_button
-   * - **Documentation**: https://prismic.io/docs/field#link-content-relationship
+   * - **Documentation**: https://prismic.io/docs/fields/link
    */
-  plan_button: prismic.LinkField;
+  plan_button: prismic.LinkField<
+    string,
+    string,
+    unknown,
+    prismic.FieldState,
+    never
+  >;
 }
 
 /**
@@ -2011,7 +2202,7 @@ export interface MembershipSliceDefaultPrimary {
    * - **Field Type**: Text
    * - **Placeholder**: *None*
    * - **API ID Path**: membership.default.primary.title
-   * - **Documentation**: https://prismic.io/docs/field#key-text
+   * - **Documentation**: https://prismic.io/docs/fields/text
    */
   title: prismic.KeyTextField;
 
@@ -2021,7 +2212,7 @@ export interface MembershipSliceDefaultPrimary {
    * - **Field Type**: Group
    * - **Placeholder**: *None*
    * - **API ID Path**: membership.default.primary.membership_plans[]
-   * - **Documentation**: https://prismic.io/docs/field#group
+   * - **Documentation**: https://prismic.io/docs/fields/repeatable-group
    */
   membership_plans: prismic.GroupField<
     Simplify<MembershipSliceDefaultPrimaryMembershipPlansItem>
@@ -2033,7 +2224,7 @@ export interface MembershipSliceDefaultPrimary {
  *
  * - **API ID**: `default`
  * - **Description**: Default
- * - **Documentation**: https://prismic.io/docs/slice
+ * - **Documentation**: https://prismic.io/docs/slices
  */
 export type MembershipSliceDefault = prismic.SharedSliceVariation<
   "default",
@@ -2051,7 +2242,7 @@ type MembershipSliceVariation = MembershipSliceDefault;
  *
  * - **API ID**: `membership`
  * - **Description**: Membership plans section
- * - **Documentation**: https://prismic.io/docs/slice
+ * - **Documentation**: https://prismic.io/docs/slices
  */
 export type MembershipSlice = prismic.SharedSlice<
   "membership",
@@ -2063,42 +2254,92 @@ export type MembershipSlice = prismic.SharedSlice<
  */
 export interface MissionVisionSliceDefaultPrimary {
   /**
-   * Title field in *MissionVision → Default → Primary*
+   * Subtitle field in *MissionVision → Default → Primary*
    *
    * - **Field Type**: Text
-   * - **Placeholder**: *None*
+   * - **Placeholder**: Our Purpose
+   * - **API ID Path**: mission_vision.default.primary.subtitle
+   * - **Documentation**: https://prismic.io/docs/fields/text
+   */
+  subtitle: prismic.KeyTextField;
+
+  /**
+   * Main Title field in *MissionVision → Default → Primary*
+   *
+   * - **Field Type**: Text
+   * - **Placeholder**: Empowering Athletes Through Purpose
    * - **API ID Path**: mission_vision.default.primary.title
-   * - **Documentation**: https://prismic.io/docs/field#key-text
+   * - **Documentation**: https://prismic.io/docs/fields/text
    */
   title: prismic.KeyTextField;
 
   /**
-   * Mission field in *MissionVision → Default → Primary*
+   * Mission Title field in *MissionVision → Default → Primary*
+   *
+   * - **Field Type**: Text
+   * - **Placeholder**: Our Mission
+   * - **API ID Path**: mission_vision.default.primary.mission_title
+   * - **Documentation**: https://prismic.io/docs/fields/text
+   */
+  mission_title: prismic.KeyTextField;
+
+  /**
+   * Mission Description field in *MissionVision → Default → Primary*
    *
    * - **Field Type**: Rich Text
-   * - **Placeholder**: *None*
+   * - **Placeholder**: Write your mission...
    * - **API ID Path**: mission_vision.default.primary.mission
-   * - **Documentation**: https://prismic.io/docs/field#rich-text-title
+   * - **Documentation**: https://prismic.io/docs/fields/rich-text
    */
   mission: prismic.RichTextField;
 
   /**
-   * Vision field in *MissionVision → Default → Primary*
+   * Vision Title field in *MissionVision → Default → Primary*
+   *
+   * - **Field Type**: Text
+   * - **Placeholder**: Our Vision
+   * - **API ID Path**: mission_vision.default.primary.vision_title
+   * - **Documentation**: https://prismic.io/docs/fields/text
+   */
+  vision_title: prismic.KeyTextField;
+
+  /**
+   * Vision Description field in *MissionVision → Default → Primary*
    *
    * - **Field Type**: Rich Text
-   * - **Placeholder**: *None*
+   * - **Placeholder**: Write your vision...
    * - **API ID Path**: mission_vision.default.primary.vision
-   * - **Documentation**: https://prismic.io/docs/field#rich-text-title
+   * - **Documentation**: https://prismic.io/docs/fields/rich-text
    */
   vision: prismic.RichTextField;
+
+  /**
+   * Bottom Heading field in *MissionVision → Default → Primary*
+   *
+   * - **Field Type**: Text
+   * - **Placeholder**: Building Champions On and Off the Court
+   * - **API ID Path**: mission_vision.default.primary.bottom_heading
+   * - **Documentation**: https://prismic.io/docs/fields/text
+   */
+  bottom_heading: prismic.KeyTextField;
+
+  /**
+   * Bottom Description field in *MissionVision → Default → Primary*
+   *
+   * - **Field Type**: Rich Text
+   * - **Placeholder**: Write bottom section...
+   * - **API ID Path**: mission_vision.default.primary.bottom_description
+   * - **Documentation**: https://prismic.io/docs/fields/rich-text
+   */
+  bottom_description: prismic.RichTextField;
 }
 
 /**
  * Default variation for MissionVision Slice
  *
  * - **API ID**: `default`
- * - **Description**: Default
- * - **Documentation**: https://prismic.io/docs/slice
+ * - **Description**: Premium Mission & Vision Section
+ * - **Documentation**: https://prismic.io/docs/slices
  */
 export type MissionVisionSliceDefault = prismic.SharedSliceVariation<
   "default",
@@ -2115,8 +2356,8 @@ type MissionVisionSliceVariation = MissionVisionSliceDefault;
  * MissionVision Shared Slice
  *
  * - **API ID**: `mission_vision`
- * - **Description**: Mission and Vision section
- * - **Documentation**: https://prismic.io/docs/slice
+ * - **Description**: Mission and Vision Section
+ * - **Documentation**: https://prismic.io/docs/slices
  */
 export type MissionVisionSlice = prismic.SharedSlice<
   "mission_vision",
@@ -2128,24 +2369,54 @@ export type MissionVisionSlice = prismic.SharedSlice<
  */
 export interface PlayersSliceDefaultPrimaryPlayersItem {
   /**
-   * Image field in *Players → Default → Primary → Players*
+   * Player Image field in *Players → Default → Primary → Players*
    *
    * - **Field Type**: Image
    * - **Placeholder**: *None*
    * - **API ID Path**: players.default.primary.players[].image
-   * - **Documentation**: https://prismic.io/docs/field#image
+   * - **Documentation**: https://prismic.io/docs/fields/image
    */
   image: prismic.ImageField<never>;
 
   /**
-   * Name field in *Players → Default → Primary → Players*
+   * Player Name field in *Players → Default → Primary → Players*
    *
    * - **Field Type**: Text
-   * - **Placeholder**: *None*
+   * - **Placeholder**: Aarav Sharma
    * - **API ID Path**: players.default.primary.players[].name
-   * - **Documentation**: https://prismic.io/docs/field#key-text
+   * - **Documentation**: https://prismic.io/docs/fields/text
    */
   name: prismic.KeyTextField;
+
+  /**
+   * Playing Position field in *Players → Default → Primary → Players*
+   *
+   * - **Field Type**: Text
+   * - **Placeholder**: Point Guard
+   * - **API ID Path**: players.default.primary.players[].position
+   * - **Documentation**: https://prismic.io/docs/fields/text
+   */
+  position: prismic.KeyTextField;
+
+  /**
+   * Jersey Number field in *Players → Default → Primary → Players*
+   *
+   * - **Field Type**: Text
+   * - **Placeholder**: #07
+   * - **API ID Path**: players.default.primary.players[].jersey_number
+   * - **Documentation**: https://prismic.io/docs/fields/text
+   */
+  jersey_number: prismic.KeyTextField;
+
+  /**
+   * Experience field in *Players → Default → Primary → Players*
+   *
+   * - **Field Type**: Text
+   * - **Placeholder**: 5 Years
+   * - **API ID Path**: players.default.primary.players[].experience
+   * - **Documentation**: https://prismic.io/docs/fields/text
+   */
+  experience: prismic.KeyTextField;
 
   /**
    * Player Description field in *Players → Default → Primary → Players*
@@ -2153,9 +2424,83 @@ export interface PlayersSliceDefaultPrimaryPlayersItem {
    * - **Field Type**: Rich Text
    * - **Placeholder**: *None*
    * - **API ID Path**: players.default.primary.players[].player_description
-   * - **Documentation**: https://prismic.io/docs/field#rich-text-title
+   * - **Documentation**: https://prismic.io/docs/fields/rich-text
    */
   player_description: prismic.RichTextField;
+
+  /**
+   * Achievements field in *Players → Default → Primary → Players*
+   *
+   * - **Field Type**: Rich Text
+   * - **Placeholder**: *None*
+   * - **API ID Path**: players.default.primary.players[].achievements
+   * - **Documentation**: https://prismic.io/docs/fields/rich-text
+   */
+  achievements: prismic.RichTextField;
+
+  /**
+   * Instagram field in *Players → Default → Primary → Players*
+   *
+   * - **Field Type**: Link
+   * - **Placeholder**: *None*
+   * - **API ID Path**: players.default.primary.players[].instagram
+   * - **Documentation**: https://prismic.io/docs/fields/link
+   */
+  instagram: prismic.LinkField<
+    string,
+    string,
+    unknown,
+    prismic.FieldState,
+    never
+  >;
+
+  /**
+   * Facebook field in *Players → Default → Primary → Players*
+   *
+   * - **Field Type**: Link
+   * - **Placeholder**: *None*
+   * - **API ID Path**: players.default.primary.players[].facebook
+   * - **Documentation**: https://prismic.io/docs/fields/link
+   */
+  facebook: prismic.LinkField<
+    string,
+    string,
+    unknown,
+    prismic.FieldState,
+    never
+  >;
+
+  /**
+   * LinkedIn field in *Players → Default → Primary → Players*
+   *
+   * - **Field Type**: Link
+   * - **Placeholder**: *None*
+   * - **API ID Path**: players.default.primary.players[].linkedin
+   * - **Documentation**: https://prismic.io/docs/fields/link
+   */
+  linkedin: prismic.LinkField<
+    string,
+    string,
+    unknown,
+    prismic.FieldState,
+    never
+  >;
+
+  /**
+   * Profile Link field in *Players → Default → Primary → Players*
+   *
+   * - **Field Type**: Link
+   * - **Placeholder**: *None*
+   * - **API ID Path**: players.default.primary.players[].profile_link
+   * - **Documentation**: https://prismic.io/docs/fields/link
+   */
+  profile_link: prismic.LinkField<
+    string,
+    string,
+    unknown,
+    prismic.FieldState,
+    never
+  >;
 }
 
 /**
@@ -2163,12 +2508,22 @@ export interface PlayersSliceDefaultPrimaryPlayersItem {
  */
 export interface PlayersSliceDefaultPrimary {
   /**
+   * Subtitle field in *Players → Default → Primary*
+   *
+   * - **Field Type**: Text
+   * - **Placeholder**: Meet Our Team
+   * - **API ID Path**: players.default.primary.subtitle
+   * - **Documentation**: https://prismic.io/docs/fields/text
+   */
+  subtitle: prismic.KeyTextField;
+
+  /**
    * Heading field in *Players → Default → Primary*
    *
    * - **Field Type**: Text
-   * - **Placeholder**: *None*
+   * - **Placeholder**: Our Professional Players
    * - **API ID Path**: players.default.primary.heading
-   * - **Documentation**: https://prismic.io/docs/field#key-text
+   * - **Documentation**: https://prismic.io/docs/fields/text
    */
   heading: prismic.KeyTextField;
 
@@ -2178,7 +2533,7 @@ export interface PlayersSliceDefaultPrimary {
    * - **Field Type**: Rich Text
    * - **Placeholder**: *None*
    * - **API ID Path**: players.default.primary.description
-   * - **Documentation**: https://prismic.io/docs/field#rich-text-title
+   * - **Documentation**: https://prismic.io/docs/fields/rich-text
    */
   description: prismic.RichTextField;
 
@@ -2188,7 +2543,7 @@ export interface PlayersSliceDefaultPrimary {
    * - **Field Type**: Group
    * - **Placeholder**: *None*
    * - **API ID Path**: players.default.primary.players[]
-   * - **Documentation**: https://prismic.io/docs/field#group
+   * - **Documentation**: https://prismic.io/docs/fields/repeatable-group
    */
   players: prismic.GroupField<Simplify<PlayersSliceDefaultPrimaryPlayersItem>>;
 }
@@ -2197,8 +2552,8 @@ export interface PlayersSliceDefaultPrimary {
  * Default variation for Players Slice
  *
  * - **API ID**: `default`
- * - **Description**: Default
- * - **Documentation**: https://prismic.io/docs/slice
+ * - **Description**: Premium Players Section
+ * - **Documentation**: https://prismic.io/docs/slices
  */
 export type PlayersSliceDefault = prismic.SharedSliceVariation<
   "default",
@@ -2215,8 +2570,8 @@ type PlayersSliceVariation = PlayersSliceDefault;
  * Players Shared Slice
  *
  * - **API ID**: `players`
- * - **Description**: Players
- * - **Documentation**: https://prismic.io/docs/slice
+ * - **Description**: Premium Players Section
+ * - **Documentation**: https://prismic.io/docs/slices
  */
 export type PlayersSlice = prismic.SharedSlice<
   "players",
@@ -2224,15 +2579,164 @@ export type PlayersSlice = prismic.SharedSlice<
 >;
 
 /**
+ * Item in *Program → Default → Primary → Basketball Card*
+ */
+export interface ProgramSliceDefaultPrimaryBasketballCardItem {
+  /**
+   * Basketball Card Image field in *Program → Default → Primary → Basketball Card*
+   *
+   * - **Field Type**: Image
+   * - **Placeholder**: *None*
+   * - **API ID Path**: program.default.primary.basketball_card[].basketball_card_image
+   * - **Documentation**: https://prismic.io/docs/fields/image
+   */
+  basketball_card_image: prismic.ImageField<never>;
+
+  /**
+   * Basketball Card Heading field in *Program → Default → Primary → Basketball Card*
+   *
+   * - **Field Type**: Text
+   * - **Placeholder**: *None*
+   * - **API ID Path**: program.default.primary.basketball_card[].basketball_card_heading
+   * - **Documentation**: https://prismic.io/docs/fields/text
+   */
+  basketball_card_heading: prismic.KeyTextField;
+
+  /**
+   * Basketball Card Description field in *Program → Default → Primary → Basketball Card*
+   *
+   * - **Field Type**: Rich Text
+   * - **Placeholder**: *None*
+   * - **API ID Path**: program.default.primary.basketball_card[].basketball_card_description
+   * - **Documentation**: https://prismic.io/docs/fields/rich-text
+   */
+  basketball_card_description: prismic.RichTextField;
+}
+
+/**
+ * Item in *Program → Default → Primary → Community Card*
+ */
+export interface ProgramSliceDefaultPrimaryCommunityCardItem {
+  /**
+   * Community Card Image field in *Program → Default → Primary → Community Card*
+   *
+   * - **Field Type**: Image
+   * - **Placeholder**: *None*
+   * - **API ID Path**: program.default.primary.community_card[].community_card_image
+   * - **Documentation**: https://prismic.io/docs/fields/image
+   */
+  community_card_image: prismic.ImageField<never>;
+
+  /**
+   * Community Card Heading field in *Program → Default → Primary → Community Card*
+   *
+   * - **Field Type**: Text
+   * - **Placeholder**: *None*
+   * - **API ID Path**: program.default.primary.community_card[].community_card_heading
+   * - **Documentation**: https://prismic.io/docs/fields/text
+   */
+  community_card_heading: prismic.KeyTextField;
+
+  /**
+   * Community Card Description field in *Program → Default → Primary → Community Card*
+   *
+   * - **Field Type**: Rich Text
+   * - **Placeholder**: *None*
+   * - **API ID Path**: program.default.primary.community_card[].community_card_description
+   * - **Documentation**: https://prismic.io/docs/fields/rich-text
+   */
+  community_card_description: prismic.RichTextField;
+}
+
+/**
+ * Primary content in *Program → Default → Primary*
+ */
+export interface ProgramSliceDefaultPrimary {
+  /**
+   * Basketball training session field in *Program → Default → Primary*
+   *
+   * - **Field Type**: Image
+   * - **Placeholder**: *None*
+   * - **API ID Path**: program.default.primary.image
+   * - **Documentation**: https://prismic.io/docs/fields/image
+   */
+  image: prismic.ImageField<never>;
+
+  /**
+   * Secondary Image field in *Program → Default → Primary*
+   *
+   * - **Field Type**: Image
+   * - **Placeholder**: *None*
+   * - **API ID Path**: program.default.primary.smallimage
+   * - **Documentation**: https://prismic.io/docs/fields/image
+   */
+  smallimage: prismic.ImageField<never>;
+
+  /**
+   * Sub Heading field in *Program → Default → Primary*
+   *
+   * - **Field Type**: Text
+   * - **Placeholder**: *None*
+   * - **API ID Path**: program.default.primary.sub_heading
+   * - **Documentation**: https://prismic.io/docs/fields/text
+   */
+  sub_heading: prismic.KeyTextField;
+
+  /**
+   * Heading field in *Program → Default → Primary*
+   *
+   * - **Field Type**: Text
+   * - **Placeholder**: *None*
+   * - **API ID Path**: program.default.primary.heading
+   * - **Documentation**: https://prismic.io/docs/fields/text
+   */
+  heading: prismic.KeyTextField;
+
+  /**
+   * Description field in *Program → Default → Primary*
+   *
+   * - **Field Type**: Rich Text
+   * - **Placeholder**: *None*
+   * - **API ID Path**: program.default.primary.description
+   * - **Documentation**: https://prismic.io/docs/fields/rich-text
+   */
+  description: prismic.RichTextField;
+
+  /**
+   * Basketball Card field in *Program → Default → Primary*
+   *
+   * - **Field Type**: Group
+   * - **Placeholder**: *None*
+   * - **API ID Path**: program.default.primary.basketball_card[]
+   * - **Documentation**: https://prismic.io/docs/fields/repeatable-group
+   */
+  basketball_card: prismic.GroupField<
+    Simplify<ProgramSliceDefaultPrimaryBasketballCardItem>
+  >;
+
+  /**
+   * Community Card field in *Program → Default → Primary*
+   *
+   * - **Field Type**: Group
+   * - **Placeholder**: *None*
+   * - **API ID Path**: program.default.primary.community_card[]
+   * - **Documentation**: https://prismic.io/docs/fields/repeatable-group
+   */
+  community_card: prismic.GroupField<
+    Simplify<ProgramSliceDefaultPrimaryCommunityCardItem>
+  >;
+}
+
+/**
  * Default variation for Program Slice
  *
  * - **API ID**: `default`
  * - **Description**: Default
- * - **Documentation**: https://prismic.io/docs/slice
+ * - **Documentation**: https://prismic.io/docs/slices
  */
 export type ProgramSliceDefault = prismic.SharedSliceVariation<
   "default",
-  Record<string, never>,
+  Simplify<ProgramSliceDefaultPrimary>,
   never
 >;
 
@@ -2246,7 +2750,7 @@ type ProgramSliceVariation = ProgramSliceDefault;
  *
  * - **API ID**: `program`
  * - **Description**: Program
- * - **Documentation**: https://prismic.io/docs/slice
+ * - **Documentation**: https://prismic.io/docs/slices
  */
 export type ProgramSlice = prismic.SharedSlice<
   "program",
@@ -2261,9 +2765,9 @@ export interface SponsorsSliceDefaultPrimarySponsorsItem {
    * Sponsor Name field in *Sponsors → Default → Primary → Sponsors*
    *
    * - **Field Type**: Text
-   * - **Placeholder**: *None*
+   * - **Placeholder**: Nike
    * - **API ID Path**: sponsors.default.primary.sponsors[].sponsor_name
-   * - **Documentation**: https://prismic.io/docs/field#key-text
+   * - **Documentation**: https://prismic.io/docs/fields/text
    */
   sponsor_name: prismic.KeyTextField;
 
@@ -2273,9 +2777,35 @@ export interface SponsorsSliceDefaultPrimarySponsorsItem {
    * - **Field Type**: Image
    * - **Placeholder**: *None*
    * - **API ID Path**: sponsors.default.primary.sponsors[].sponsor_logo
-   * - **Documentation**: https://prismic.io/docs/field#image
+   * - **Documentation**: https://prismic.io/docs/fields/image
    */
   sponsor_logo: prismic.ImageField<never>;
+
+  /**
+   * Sponsor Description field in *Sponsors → Default → Primary → Sponsors*
+   *
+   * - **Field Type**: Rich Text
+   * - **Placeholder**: Official Sports Equipment Partner
+   * - **API ID Path**: sponsors.default.primary.sponsors[].sponsor_description
+   * - **Documentation**: https://prismic.io/docs/fields/rich-text
+   */
+  sponsor_description: prismic.RichTextField;
+
+  /**
+   * Sponsor Website field in *Sponsors → Default → Primary → Sponsors*
+   *
+   * - **Field Type**: Link
+   * - **Placeholder**: *None*
+   * - **API ID Path**: sponsors.default.primary.sponsors[].sponsor_link
+   * - **Documentation**: https://prismic.io/docs/fields/link
+   */
+  sponsor_link: prismic.LinkField<
+    string,
+    string,
+    unknown,
+    prismic.FieldState,
+    never
+  >;
 }
 
 /**
@@ -2283,14 +2813,34 @@ export interface SponsorsSliceDefaultPrimarySponsorsItem {
  */
 export interface SponsorsSliceDefaultPrimary {
   /**
+   * Subtitle field in *Sponsors → Default → Primary*
+   *
+   * - **Field Type**: Text
+   * - **Placeholder**: Our Partners
+   * - **API ID Path**: sponsors.default.primary.subtitle
+   * - **Documentation**: https://prismic.io/docs/fields/text
+   */
+  subtitle: prismic.KeyTextField;
+
+  /**
    * Title field in *Sponsors → Default → Primary*
    *
    * - **Field Type**: Text
-   * - **Placeholder**: *None*
+   * - **Placeholder**: Our Trusted Sponsors
    * - **API ID Path**: sponsors.default.primary.title
-   * - **Documentation**: https://prismic.io/docs/field#key-text
+   * - **Documentation**: https://prismic.io/docs/fields/text
    */
   title: prismic.KeyTextField;
+
+  /**
+   * Description field in *Sponsors → Default → Primary*
+   *
+   * - **Field Type**: Rich Text
+   * - **Placeholder**: Describe your sponsors section
+   * - **API ID Path**: sponsors.default.primary.description
+   * - **Documentation**: https://prismic.io/docs/fields/rich-text
+   */
+  description: prismic.RichTextField;
 
   /**
    * Sponsors field in *Sponsors → Default → Primary*
@@ -2298,7 +2848,7 @@ export interface SponsorsSliceDefaultPrimary {
    * - **Field Type**: Group
    * - **Placeholder**: *None*
    * - **API ID Path**: sponsors.default.primary.sponsors[]
-   * - **Documentation**: https://prismic.io/docs/field#group
+   * - **Documentation**: https://prismic.io/docs/fields/repeatable-group
    */
   sponsors: prismic.GroupField<
     Simplify<SponsorsSliceDefaultPrimarySponsorsItem>
@@ -2309,8 +2859,8 @@ export interface SponsorsSliceDefaultPrimary {
  * Default variation for Sponsors Slice
  *
  * - **API ID**: `default`
- * - **Description**: Default
- * - **Documentation**: https://prismic.io/docs/slice
+ * - **Description**: Premium Sponsors Section
+ * - **Documentation**: https://prismic.io/docs/slices
  */
 export type SponsorsSliceDefault = prismic.SharedSliceVariation<
   "default",
@@ -2327,8 +2877,8 @@ type SponsorsSliceVariation = SponsorsSliceDefault;
  * Sponsors Shared Slice
  *
  * - **API ID**: `sponsors`
- * - **Description**: Sponsors section
- * - **Documentation**: https://prismic.io/docs/slice
+ * - **Description**: Premium Sponsors Section
+ * - **Documentation**: https://prismic.io/docs/slices
  */
 export type SponsorsSlice = prismic.SharedSlice<
   "sponsors",
@@ -2345,7 +2895,7 @@ export interface TeamSliceDefaultPrimaryCoachesItem {
    * - **Field Type**: Image
    * - **Placeholder**: *None*
    * - **API ID Path**: team.default.primary.coaches[].image
-   * - **Documentation**: https://prismic.io/docs/field#image
+   * - **Documentation**: https://prismic.io/docs/fields/image
    */
   image: prismic.ImageField<never>;
 
@@ -2355,7 +2905,7 @@ export interface TeamSliceDefaultPrimaryCoachesItem {
    * - **Field Type**: Text
    * - **Placeholder**: *None*
    * - **API ID Path**: team.default.primary.coaches[].name
-   * - **Documentation**: https://prismic.io/docs/field#key-text
+   * - **Documentation**: https://prismic.io/docs/fields/text
    */
   name: prismic.KeyTextField;
 
@@ -2363,9 +2913,9 @@ export interface TeamSliceDefaultPrimaryCoachesItem {
    * Designation field in *Team → Default → Primary → Coaches*
    *
    * - **Field Type**: Rich Text
-   * - **Placeholder**: *None*
+   * - **Placeholder**: Head Basketball Coach
    * - **API ID Path**: team.default.primary.coaches[].designation
-   * - **Documentation**: https://prismic.io/docs/field#rich-text-title
+   * - **Documentation**: https://prismic.io/docs/fields/rich-text
    */
   designation: prismic.RichTextField;
 }
@@ -2380,7 +2930,7 @@ export interface TeamSliceDefaultPrimary {
    * - **Field Type**: Text
    * - **Placeholder**: *None*
    * - **API ID Path**: team.default.primary.heading
-   * - **Documentation**: https://prismic.io/docs/field#key-text
+   * - **Documentation**: https://prismic.io/docs/fields/text
    */
   heading: prismic.KeyTextField;
 
@@ -2390,7 +2940,7 @@ export interface TeamSliceDefaultPrimary {
    * - **Field Type**: Group
    * - **Placeholder**: *None*
    * - **API ID Path**: team.default.primary.coaches[]
-   * - **Documentation**: https://prismic.io/docs/field#group
+   * - **Documentation**: https://prismic.io/docs/fields/repeatable-group
    */
   coaches: prismic.GroupField<Simplify<TeamSliceDefaultPrimaryCoachesItem>>;
 }
@@ -2400,7 +2950,7 @@ export interface TeamSliceDefaultPrimary {
  *
  * - **API ID**: `default`
  * - **Description**: Default
- * - **Documentation**: https://prismic.io/docs/slice
+ * - **Documentation**: https://prismic.io/docs/slices
  */
 export type TeamSliceDefault = prismic.SharedSliceVariation<
   "default",
@@ -2418,53 +2968,73 @@ type TeamSliceVariation = TeamSliceDefault;
  *
  * - **API ID**: `team`
  * - **Description**: Team
- * - **Documentation**: https://prismic.io/docs/slice
+ * - **Documentation**: https://prismic.io/docs/slices
  */
 export type TeamSlice = prismic.SharedSlice<"team", TeamSliceVariation>;
 
 /**
- * Item in *Training → Default → Primary → Plans*
+ * Item in *Training → Default → Primary → Training Plans*
  */
 export interface TrainingSliceDefaultPrimaryPlansItem {
   /**
-   * Image field in *Training → Default → Primary → Plans*
+   * Plan Image field in *Training → Default → Primary → Training Plans*
    *
    * - **Field Type**: Image
    * - **Placeholder**: *None*
    * - **API ID Path**: training.default.primary.plans[].image
-   * - **Documentation**: https://prismic.io/docs/field#image
+   * - **Documentation**: https://prismic.io/docs/fields/image
    */
   image: prismic.ImageField<never>;
 
   /**
-   * Title field in *Training → Default → Primary → Plans*
+   * Plan Title field in *Training → Default → Primary → Training Plans*
    *
    * - **Field Type**: Text
-   * - **Placeholder**: *None*
+   * - **Placeholder**: Basketball Fundamentals
    * - **API ID Path**: training.default.primary.plans[].title
-   * - **Documentation**: https://prismic.io/docs/field#key-text
+   * - **Documentation**: https://prismic.io/docs/fields/text
    */
   title: prismic.KeyTextField;
 
   /**
-   * Price field in *Training → Default → Primary → Plans*
+   * Price field in *Training → Default → Primary → Training Plans*
    *
    * - **Field Type**: Text
-   * - **Placeholder**: *None*
+   * - **Placeholder**: ₹2,500 / Month
    * - **API ID Path**: training.default.primary.plans[].price
-   * - **Documentation**: https://prismic.io/docs/field#key-text
+   * - **Documentation**: https://prismic.io/docs/fields/text
    */
   price: prismic.KeyTextField;
 
   /**
-   * Description field in *Training → Default → Primary → Plans*
+   * Duration field in *Training → Default → Primary → Training Plans*
+   *
+   * - **Field Type**: Text
+   * - **Placeholder**: 3 Months
+   * - **API ID Path**: training.default.primary.plans[].duration
+   * - **Documentation**: https://prismic.io/docs/fields/text
+   */
+  duration: prismic.KeyTextField;
+
+  /**
+   * Description field in *Training → Default → Primary → Training Plans*
    *
    * - **Field Type**: Rich Text
    * - **Placeholder**: *None*
    * - **API ID Path**: training.default.primary.plans[].description
-   * - **Documentation**: https://prismic.io/docs/field#rich-text-title
+   * - **Documentation**: https://prismic.io/docs/fields/rich-text
    */
   description: prismic.RichTextField;
+
+  /**
+   * Features field in *Training → Default → Primary → Training Plans*
+   *
+   * - **Field Type**: Rich Text
+   * - **Placeholder**: *None*
+   * - **API ID Path**: training.default.primary.plans[].features
+   * - **Documentation**: https://prismic.io/docs/fields/rich-text
+   */
+  features: prismic.RichTextField;
 }
 
 /**
@@ -2472,12 +3042,22 @@ export interface TrainingSliceDefaultPrimaryPlansItem {
  */
 export interface TrainingSliceDefaultPrimary {
   /**
+   * Subtitle field in *Training → Default → Primary*
+   *
+   * - **Field Type**: Text
+   * - **Placeholder**: Training Programs
+   * - **API ID Path**: training.default.primary.subtitle
+   * - **Documentation**: https://prismic.io/docs/fields/text
+   */
+  subtitle: prismic.KeyTextField;
+
+  /**
    * Heading field in *Training → Default → Primary*
    *
    * - **Field Type**: Text
-   * - **Placeholder**: *None*
+   * - **Placeholder**: Professional Training Programs
    * - **API ID Path**: training.default.primary.heading
-   * - **Documentation**: https://prismic.io/docs/field#key-text
+   * - **Documentation**: https://prismic.io/docs/fields/text
    */
   heading: prismic.KeyTextField;
 
@@ -2487,17 +3067,43 @@ export interface TrainingSliceDefaultPrimary {
    * - **Field Type**: Rich Text
    * - **Placeholder**: *None*
    * - **API ID Path**: training.default.primary.description
-   * - **Documentation**: https://prismic.io/docs/field#rich-text-title
+   * - **Documentation**: https://prismic.io/docs/fields/rich-text
    */
   description: prismic.RichTextField;
 
   /**
-   * Plans field in *Training → Default → Primary*
+   * Button Text field in *Training → Default → Primary*
+   *
+   * - **Field Type**: Text
+   * - **Placeholder**: Enroll Now
+   * - **API ID Path**: training.default.primary.button_text
+   * - **Documentation**: https://prismic.io/docs/fields/text
+   */
+  button_text: prismic.KeyTextField;
+
+  /**
+   * Button Link field in *Training → Default → Primary*
+   *
+   * - **Field Type**: Link
+   * - **Placeholder**: *None*
+   * - **API ID Path**: training.default.primary.button_link
+   * - **Documentation**: https://prismic.io/docs/fields/link
+   */
+  button_link: prismic.LinkField<
+    string,
+    string,
+    unknown,
+    prismic.FieldState,
+    never
+  >;
+
+  /**
+   * Training Plans field in *Training → Default → Primary*
    *
    * - **Field Type**: Group
    * - **Placeholder**: *None*
    * - **API ID Path**: training.default.primary.plans[]
-   * - **Documentation**: https://prismic.io/docs/field#group
+   * - **Documentation**: https://prismic.io/docs/fields/repeatable-group
    */
   plans: prismic.GroupField<Simplify<TrainingSliceDefaultPrimaryPlansItem>>;
 }
@@ -2506,8 +3112,8 @@ export interface TrainingSliceDefaultPrimary {
  * Default variation for Training Slice
  *
  * - **API ID**: `default`
- * - **Description**: Default
- * - **Documentation**: https://prismic.io/docs/slice
+ * - **Description**: Premium Training Programs
+ * - **Documentation**: https://prismic.io/docs/slices
  */
 export type TrainingSliceDefault = prismic.SharedSliceVariation<
   "default",
@@ -2524,8 +3130,8 @@ type TrainingSliceVariation = TrainingSliceDefault;
  * Training Shared Slice
  *
  * - **API ID**: `training`
- * - **Description**: Training
- * - **Documentation**: https://prismic.io/docs/slice
+ * - **Description**: Premium Training Section
+ * - **Documentation**: https://prismic.io/docs/slices
  */
 export type TrainingSlice = prismic.SharedSlice<
   "training",
@@ -2542,7 +3148,7 @@ export interface WelcomeSliceDefaultPrimary {
    * - **Field Type**: Image
    * - **Placeholder**: *None*
    * - **API ID Path**: welcome.default.primary.image
-   * - **Documentation**: https://prismic.io/docs/field#image
+   * - **Documentation**: https://prismic.io/docs/fields/image
    */
   image: prismic.ImageField<never>;
 
@@ -2552,7 +3158,7 @@ export interface WelcomeSliceDefaultPrimary {
    * - **Field Type**: Text
    * - **Placeholder**: *None*
    * - **API ID Path**: welcome.default.primary.sub_heading
-   * - **Documentation**: https://prismic.io/docs/field#key-text
+   * - **Documentation**: https://prismic.io/docs/fields/text
    */
   sub_heading: prismic.KeyTextField;
 
@@ -2562,7 +3168,7 @@ export interface WelcomeSliceDefaultPrimary {
    * - **Field Type**: Text
    * - **Placeholder**: *None*
    * - **API ID Path**: welcome.default.primary.heading
-   * - **Documentation**: https://prismic.io/docs/field#key-text
+   * - **Documentation**: https://prismic.io/docs/fields/text
    */
   heading: prismic.KeyTextField;
 
@@ -2572,7 +3178,7 @@ export interface WelcomeSliceDefaultPrimary {
    * - **Field Type**: Rich Text
    * - **Placeholder**: *None*
    * - **API ID Path**: welcome.default.primary.description
-   * - **Documentation**: https://prismic.io/docs/field#rich-text-title
+   * - **Documentation**: https://prismic.io/docs/fields/rich-text
    */
   description: prismic.RichTextField;
 
@@ -2582,7 +3188,7 @@ export interface WelcomeSliceDefaultPrimary {
    * - **Field Type**: Text
    * - **Placeholder**: *None*
    * - **API ID Path**: welcome.default.primary.button_label
-   * - **Documentation**: https://prismic.io/docs/field#key-text
+   * - **Documentation**: https://prismic.io/docs/fields/text
    */
   button_label: prismic.KeyTextField;
 
@@ -2592,9 +3198,15 @@ export interface WelcomeSliceDefaultPrimary {
    * - **Field Type**: Link
    * - **Placeholder**: *None*
    * - **API ID Path**: welcome.default.primary.button_link
-   * - **Documentation**: https://prismic.io/docs/field#link-content-relationship
+   * - **Documentation**: https://prismic.io/docs/fields/link
    */
-  button_link: prismic.LinkField;
+  button_link: prismic.LinkField<
+    string,
+    string,
+    unknown,
+    prismic.FieldState,
+    never
+  >;
 }
 
 /**
@@ -2602,7 +3214,7 @@ export interface WelcomeSliceDefaultPrimary {
  *
  * - **API ID**: `default`
  * - **Description**: Default
- * - **Documentation**: https://prismic.io/docs/slice
+ * - **Documentation**: https://prismic.io/docs/slices
  */
 export type WelcomeSliceDefault = prismic.SharedSliceVariation<
   "default",
@@ -2620,7 +3232,7 @@ type WelcomeSliceVariation = WelcomeSliceDefault;
  *
  * - **API ID**: `welcome`
  * - **Description**: Welcome Section
- * - **Documentation**: https://prismic.io/docs/slice
+ * - **Documentation**: https://prismic.io/docs/slices
  */
 export type WelcomeSlice = prismic.SharedSlice<
   "welcome",
@@ -2632,12 +3244,22 @@ export type WelcomeSlice = prismic.SharedSlice<
  */
 export interface WhyChooseUsSliceDefaultPrimaryReasonsItem {
   /**
+   * Reason Icon field in *WhyChooseUs → Default → Primary → Reasons*
+   *
+   * - **Field Type**: Image
+   * - **Placeholder**: *None*
+   * - **API ID Path**: why_choose_us.default.primary.reasons[].reason_icon
+   * - **Documentation**: https://prismic.io/docs/fields/image
+   */
+  reason_icon: prismic.ImageField<never>;
+
+  /**
    * Reason Title field in *WhyChooseUs → Default → Primary → Reasons*
    *
    * - **Field Type**: Text
-   * - **Placeholder**: *None*
+   * - **Placeholder**: Expert Coaching
    * - **API ID Path**: why_choose_us.default.primary.reasons[].reason_title
-   * - **Documentation**: https://prismic.io/docs/field#key-text
+   * - **Documentation**: https://prismic.io/docs/fields/text
    */
   reason_title: prismic.KeyTextField;
 
@@ -2647,7 +3269,7 @@ export interface WhyChooseUsSliceDefaultPrimaryReasonsItem {
    * - **Field Type**: Rich Text
    * - **Placeholder**: *None*
    * - **API ID Path**: why_choose_us.default.primary.reasons[].reason_description
-   * - **Documentation**: https://prismic.io/docs/field#rich-text-title
+   * - **Documentation**: https://prismic.io/docs/fields/rich-text
    */
   reason_description: prismic.RichTextField;
 }
@@ -2657,14 +3279,60 @@ export interface WhyChooseUsSliceDefaultPrimaryReasonsItem {
  */
 export interface WhyChooseUsSliceDefaultPrimary {
   /**
+   * Subtitle field in *WhyChooseUs → Default → Primary*
+   *
+   * - **Field Type**: Text
+   * - **Placeholder**: Why Choose Us
+   * - **API ID Path**: why_choose_us.default.primary.subtitle
+   * - **Documentation**: https://prismic.io/docs/fields/text
+   */
+  subtitle: prismic.KeyTextField;
+
+  /**
    * Title field in *WhyChooseUs → Default → Primary*
    *
    * - **Field Type**: Text
-   * - **Placeholder**: *None*
+   * - **Placeholder**: Why Choose RVS Sports Academy
    * - **API ID Path**: why_choose_us.default.primary.title
-   * - **Documentation**: https://prismic.io/docs/field#key-text
+   * - **Documentation**: https://prismic.io/docs/fields/text
    */
   title: prismic.KeyTextField;
+
+  /**
+   * Section Description field in *WhyChooseUs → Default → Primary*
+   *
+   * - **Field Type**: Rich Text
+   * - **Placeholder**: *None*
+   * - **API ID Path**: why_choose_us.default.primary.description
+   * - **Documentation**: https://prismic.io/docs/fields/rich-text
+   */
+  description: prismic.RichTextField;
+
+  /**
+   * Button Text field in *WhyChooseUs → Default → Primary*
+   *
+   * - **Field Type**: Text
+   * - **Placeholder**: Join Now
+   * - **API ID Path**: why_choose_us.default.primary.button_text
+   * - **Documentation**: https://prismic.io/docs/fields/text
+   */
+  button_text: prismic.KeyTextField;
+
+  /**
+   * Button Link field in *WhyChooseUs → Default → Primary*
+   *
+   * - **Field Type**: Link
+   * - **Placeholder**: *None*
+   * - **API ID Path**: why_choose_us.default.primary.button_link
+   * - **Documentation**: https://prismic.io/docs/fields/link
+   */
+  button_link: prismic.LinkField<
+    string,
+    string,
+    unknown,
+    prismic.FieldState,
+    never
+  >;
 
   /**
    * Reasons field in *WhyChooseUs → Default → Primary*
@@ -2672,7 +3340,7 @@ export interface WhyChooseUsSliceDefaultPrimary {
    * - **Field Type**: Group
    * - **Placeholder**: *None*
    * - **API ID Path**: why_choose_us.default.primary.reasons[]
-   * - **Documentation**: https://prismic.io/docs/field#group
+   * - **Documentation**: https://prismic.io/docs/fields/repeatable-group
    */
   reasons: prismic.GroupField<
     Simplify<WhyChooseUsSliceDefaultPrimaryReasonsItem>
@@ -2683,8 +3351,8 @@ export interface WhyChooseUsSliceDefaultPrimary {
  * Default variation for WhyChooseUs Slice
  *
  * - **API ID**: `default`
- * - **Description**: Default
- * - **Documentation**: https://prismic.io/docs/slice
+ * - **Description**: Premium Why Choose Us
+ * - **Documentation**: https://prismic.io/docs/slices
  */
 export type WhyChooseUsSliceDefault = prismic.SharedSliceVariation<
   "default",
@@ -2701,8 +3369,8 @@ type WhyChooseUsSliceVariation = WhyChooseUsSliceDefault;
  * WhyChooseUs Shared Slice
  *
  * - **API ID**: `why_choose_us`
- * - **Description**: Why Choose Us section
- * - **Documentation**: https://prismic.io/docs/slice
+ * - **Description**: Premium Why Choose Us Section
+ * - **Documentation**: https://prismic.io/docs/slices
  */
 export type WhyChooseUsSlice = prismic.SharedSlice<
   "why_choose_us",
@@ -2806,6 +3474,7 @@ declare module "@prismicio/client" {
       GalleryPageSliceDefault,
       HeroSlice,
       HeroSliceDefaultPrimary,
+      HeroSliceDefaultItem,
       HeroSliceVariation,
       HeroSliceDefault,
       MembershipSlice,
@@ -2823,6 +3492,9 @@ declare module "@prismicio/client" {
       PlayersSliceVariation,
       PlayersSliceDefault,
       ProgramSlice,
+      ProgramSliceDefaultPrimaryBasketballCardItem,
+      ProgramSliceDefaultPrimaryCommunityCardItem,
+      ProgramSliceDefaultPrimary,
       ProgramSliceVariation,
       ProgramSliceDefault,
       SponsorsSlice,

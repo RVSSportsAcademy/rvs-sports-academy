@@ -18,7 +18,7 @@ export async function generateMetadata(): Promise<Metadata> {
   const settings = await client.getSingle("settings");
 
 	return {
-		title: page.data.meta_title + " | " + settings.data.site_title  || "RVS Sports Academy",
+		title: page.data.meta_title + " | " + settings.data.site_title  || "RVS Sports Welfare Association",
 		description: page.data.meta_description,
 	};
 }

@@ -1,251 +1,115 @@
 [
-	{
-		"__TYPE__": "SharedSliceContent",
-		"variation": "default",
-		"primary": {
-			"about_cards": {
-				"__TYPE__": "GroupContentType",
-				"value": [
-					{
-						"__TYPE__": "GroupItemContent",
-						"value": [
-							[
-								"image",
-								{
-									"origin": {
-										"id": "main",
-										"url": "https://images.unsplash.com/photo-1587905069134-008460d7a636",
-										"width": 3935,
-										"height": 5894
-									},
-									"url": "https://images.unsplash.com/photo-1587905069134-008460d7a636",
-									"width": 3935,
-									"height": 5894,
-									"edit": {
-										"zoom": 1,
-										"crop": {
-											"x": 0,
-											"y": 0
-										},
-										"background": "transparent"
-									},
-									"credits": null,
-									"alt": null,
-									"__TYPE__": "ImageContent",
-									"thumbnails": {}
-								}
-							],
-							[
-								"icon",
-								{
-									"origin": {
-										"id": "main",
-										"url": "https://images.unsplash.com/photo-1593642532973-d31b6557fa68",
-										"width": 8640,
-										"height": 8640
-									},
-									"url": "https://images.unsplash.com/photo-1593642532973-d31b6557fa68",
-									"width": 8640,
-									"height": 8640,
-									"edit": {
-										"zoom": 1,
-										"crop": {
-											"x": 0,
-											"y": 0
-										},
-										"background": "transparent"
-									},
-									"credits": null,
-									"alt": null,
-									"__TYPE__": "ImageContent",
-									"thumbnails": {}
-								}
-							],
-							[
-								"title",
-								{
-									"__TYPE__": "FieldContent",
-									"value": "mind",
-									"type": "Text"
-								}
-							],
-							[
-								"description",
-								{
-									"__TYPE__": "StructuredTextContent",
-									"value": [
-										{
-											"type": "paragraph",
-											"content": {
-												"text": "Velit cillum culpa officia velit Lorem. Ullamco eiusmod voluptate consequat excepteur et sit sint pariatur minim irure."
-											}
-										}
-									]
-								}
-							]
-						]
-					}
-				]
-			},
-			"background_image": {
-				"origin": {
-					"id": "main",
-					"url": "https://images.unsplash.com/photo-1591012911207-0dbac31f37da",
-					"width": 4000,
-					"height": 4000
-				},
-				"url": "https://images.unsplash.com/photo-1591012911207-0dbac31f37da",
-				"width": 4000,
-				"height": 4000,
-				"edit": {
-					"zoom": 1,
-					"crop": {
-						"x": 0,
-						"y": 0
-					},
-					"background": "transparent"
-				},
-				"credits": null,
-				"alt": null,
-				"__TYPE__": "ImageContent",
-				"thumbnails": {}
-			},
-			"sub_heading": {
-				"__TYPE__": "FieldContent",
-				"value": "probably",
-				"type": "Text"
-			},
-			"heading": {
-				"__TYPE__": "FieldContent",
-				"value": "get",
-				"type": "Text"
-			},
-			"description": {
-				"__TYPE__": "StructuredTextContent",
-				"value": [
-					{
-						"type": "paragraph",
-						"content": {
-							"text": "Officia quis commodo exercitation sint voluptate in. Cillum proident nulla irure nisi magna veniam veniam aliqua cupidatat quis deserunt non. Dolore minim exercitation exercitation in."
-						}
-					}
-				]
-			},
-			"button_text": {
-				"__TYPE__": "FieldContent",
-				"value": "rays",
-				"type": "Text"
-			},
-			"button_link": {
-				"__TYPE__": "LinkContent",
-				"value": {
-					"__TYPE__": "ExternalLink",
-					"url": "http://google.com",
-					"text": "sit"
-				}
-			},
-			"trainer_title": {
-				"__TYPE__": "FieldContent",
-				"value": "herself",
-				"type": "Text"
-			},
-			"trainer": {
-				"__TYPE__": "GroupContentType",
-				"value": [
-					{
-						"__TYPE__": "GroupItemContent",
-						"value": [
-							[
-								"trainer_image",
-								{
-									"origin": {
-										"id": "main",
-										"url": "https://images.unsplash.com/photo-1525547719571-a2d4ac8945e2",
-										"width": 3648,
-										"height": 4560
-									},
-									"url": "https://images.unsplash.com/photo-1525547719571-a2d4ac8945e2",
-									"width": 3648,
-									"height": 4560,
-									"edit": {
-										"zoom": 1,
-										"crop": {
-											"x": 0,
-											"y": 0
-										},
-										"background": "transparent"
-									},
-									"credits": null,
-									"alt": null,
-									"__TYPE__": "ImageContent",
-									"thumbnails": {}
-								}
-							],
-							[
-								"trainer_name",
-								{
-									"__TYPE__": "FieldContent",
-									"value": "whispered",
-									"type": "Text"
-								}
-							],
-							[
-								"trainer_title",
-								{
-									"__TYPE__": "FieldContent",
-									"value": "next",
-									"type": "Text"
-								}
-							]
-						]
-					}
-				]
-			},
-			"newsletter_title": {
-				"__TYPE__": "FieldContent",
-				"value": "watch",
-				"type": "Text"
-			},
-			"newsletter_image": {
-				"origin": {
-					"id": "main",
-					"url": "https://images.unsplash.com/photo-1587653915936-5623ea0b949a",
-					"width": 4000,
-					"height": 4000
-				},
-				"url": "https://images.unsplash.com/photo-1587653915936-5623ea0b949a",
-				"width": 4000,
-				"height": 4000,
-				"edit": {
-					"zoom": 1,
-					"crop": {
-						"x": 0,
-						"y": 0
-					},
-					"background": "transparent"
-				},
-				"credits": null,
-				"alt": null,
-				"__TYPE__": "ImageContent",
-				"thumbnails": {}
-			},
-			"newsletterdiscription": {
-				"__TYPE__": "StructuredTextContent",
-				"value": [
-					{
-						"type": "paragraph",
-						"content": {
-							"text": "Duis enim commodo esse cupidatat magna sint."
-						}
-					}
-				]
-			},
-			"newsletter_heading": {
-				"__TYPE__": "FieldContent",
-				"value": "stop",
-				"type": "Text"
-			}
-		},
-		"items": []
-	}
+  {
+    "__TYPE__": "SharedSliceContent",
+    "variation": "default",
+    "primary": {
+      "subtitle": {
+        "__TYPE__": "FieldContent",
+        "value": "OUR STORY",
+        "type": "Text"
+      },
+      "title": {
+        "__TYPE__": "FieldContent",
+        "value": "Empowering Athletes. Inspiring Excellence.",
+        "type": "Text"
+      },
+      "description": {
+        "__TYPE__": "StructuredTextContent",
+        "value": [
+          {
+            "type": "paragraph",
+            "content": {
+              "text": "RVS Sports Academy was founded with a vision to nurture young talent by providing world-class coaching, discipline, leadership, and opportunities to excel in sports. We believe every athlete deserves the right environment to grow both on and off the field."
+            }
+          }
+        ]
+      },
+      "main_image": {
+        "__TYPE__": "ImageContent",
+        "url": "https://images.prismic.io/demo/basketball-player.jpg",
+        "width": 900,
+        "height": 1200,
+        "alt": "Basketball Training",
+        "thumbnails": {}
+      },
+      "secondary_image": {
+        "__TYPE__": "ImageContent",
+        "url": "https://images.prismic.io/demo/team.jpg",
+        "width": 700,
+        "height": 700,
+        "alt": "Team Celebration",
+        "thumbnails": {}
+      }
+    },
+    "items": [
+      {
+        "feature_title": {
+          "__TYPE__": "FieldContent",
+          "value": "Professional Coaching",
+          "type": "Text"
+        },
+        "stat_number": {
+          "__TYPE__": "FieldContent",
+          "value": "500+",
+          "type": "Text"
+        },
+        "stat_label": {
+          "__TYPE__": "FieldContent",
+          "value": "Athletes Trained",
+          "type": "Text"
+        }
+      },
+      {
+        "feature_title": {
+          "__TYPE__": "FieldContent",
+          "value": "Certified Coaches",
+          "type": "Text"
+        },
+        "stat_number": {
+          "__TYPE__": "FieldContent",
+          "value": "50+",
+          "type": "Text"
+        },
+        "stat_label": {
+          "__TYPE__": "FieldContent",
+          "value": "Expert Mentors",
+          "type": "Text"
+        }
+      },
+      {
+        "feature_title": {
+          "__TYPE__": "FieldContent",
+          "value": "Community Development",
+          "type": "Text"
+        },
+        "stat_number": {
+          "__TYPE__": "FieldContent",
+          "value": "15+",
+          "type": "Text"
+        },
+        "stat_label": {
+          "__TYPE__": "FieldContent",
+          "value": "Years of Excellence",
+          "type": "Text"
+        }
+      },
+      {
+        "feature_title": {
+          "__TYPE__": "FieldContent",
+          "value": "Championship Success",
+          "type": "Text"
+        },
+        "stat_number": {
+          "__TYPE__": "FieldContent",
+          "value": "10+",
+          "type": "Text"
+        },
+        "stat_label": {
+          "__TYPE__": "FieldContent",
+          "value": "Major Titles",
+          "type": "Text"
+        }
+      }
+    ]
+  }
 ]

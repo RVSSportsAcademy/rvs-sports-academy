@@ -4,6 +4,7 @@ import { useState } from "react";
 import Link from "next/link";
 import Image from "next/image";
 import { Menu, X } from "lucide-react";
+import logo from "@/assets/rvs-logo.png";
 
 const Navbar = () => {
   const [isOpen, setIsOpen] = useState(false);
@@ -12,8 +13,24 @@ const Navbar = () => {
     <header className="sticky top-0 left-0 z-50 flex items-center justify-between w-full px-6 py-4 bg-white border-b-2 border-gray-300 shadow-md">
       {/* Logo */}
       <div className="flex items-center gap-2">
-        <Image src="/rvs-logo.png" alt="RVS Sports Academy " width={50} height={50}/>
-        <Link href="/"><h1 className="text-2xl font-bold">RVS Sports Academy</h1></Link>
+       <Image
+  src={logo}
+  alt="RVS Sports Welfare Association"
+  width={55}
+  height={55}
+  priority
+/>
+
+<Link href="/">
+  <div className="leading-tight">
+    <h1 className="text-lg font-bold">
+      RVS Sports Welfare
+    </h1>
+    <p className="text-xs font-semibold text-orange-600 uppercase">
+      Association
+    </p>
+  </div>
+</Link>
       </div>
 
       {/* Desktop Navigation */}

@@ -1,0 +1,80 @@
+{
+  "id": "journey_timeline",
+  "type": "SharedSlice",
+  "name": "JourneyTimeline",
+  "description": "Journey Timeline Section",
+  "variations": [
+    {
+      "id": "default",
+      "name": "Default",
+      "docURL": "...",
+      "version": "initial",
+      "description": "Journey Timeline",
+      "imageUrl": "",
+      "primary": {
+        "sub_heading": {
+          "type": "Text",
+          "config": {
+            "label": "Sub Heading",
+            "placeholder": "Our Journey"
+          }
+        },
+        "heading": {
+          "type": "Text",
+          "config": {
+            "label": "Heading",
+            "placeholder": "Milestones & Achievements"
+          }
+        },
+        "description": {
+          "type": "StructuredText",
+          "config": {
+            "label": "Description",
+            "multi": "paragraph,strong,em",
+            "allowTargetBlank": true
+          }
+        },
+        "timeline": {
+          "type": "Group",
+          "config": {
+            "label": "Timeline",
+            "repeat": true,
+            "fields": {
+              "year": {
+                "type": "Text",
+                "config": {
+                  "label": "Year",
+                  "placeholder": "2025"
+                }
+              },
+              "title": {
+                "type": "Text",
+                "config": {
+                  "label": "Title",
+                  "placeholder": "Academy Founded"
+                }
+              },
+              "description": {
+                "type": "StructuredText",
+                "config": {
+                  "label": "Description",
+                  "multi": "paragraph,strong,em",
+                  "allowTargetBlank": true
+                }
+              },
+              "image": {
+                "type": "Image",
+                "config": {
+                  "label": "Image",
+                  "constraint": {},
+                  "thumbnails": []
+                }
+              }
+            }
+          }
+        }
+      },
+      "items": {}
+    }
+  ]
+}

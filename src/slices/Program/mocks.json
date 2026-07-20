@@ -3,160 +3,80 @@
     "__TYPE__": "SharedSliceContent",
     "variation": "default",
     "primary": {
-      "image": {
-        "origin": {
-          "id": "main",
-          "url": "https://images.unsplash.com/photo-1546519638-68e109498ffc",
-          "width": 2500,
-          "height": 1667
-        },
-        "url": "https://images.unsplash.com/photo-1546519638-68e109498ffc",
-        "width": 2500,
-        "height": 1667,
-        "edit": {
-          "zoom": 1,
-          "crop": {
-            "x": 0,
-            "y": 0
-          },
-          "background": "transparent"
-        },
-        "credits": null,
-        "alt": "Basketball Training",
-        "__TYPE__": "ImageContent",
-        "thumbnails": {}
+      "sub_heading": "Our Programs",
+      "heading": "Unlock Your Potential Through Sports",
+      "description": [
+        {
+          "type": "paragraph",
+          "text": "Our professionally designed programs help athletes of all ages develop technical skills, physical fitness, teamwork, discipline, and confidence through structured coaching and competitive opportunities."
+        }
+      ],
+      "main_image": {
+        "url": "https://images.unsplash.com/photo-1546519638-68e109498ffc?w=1400",
+        "alt": "Basketball Training"
       },
-      "smallimage": {
-        "origin": {
-          "id": "main",
-          "url": "https://images.unsplash.com/photo-1517649763962-0c623066013b",
-          "width": 2500,
-          "height": 1667
-        },
-        "url": "https://images.unsplash.com/photo-1517649763962-0c623066013b",
-        "width": 2500,
-        "height": 1667,
-        "edit": {
-          "zoom": 1,
-          "crop": {
-            "x": 0,
-            "y": 0
-          },
-          "background": "transparent"
-        },
-        "credits": null,
-        "alt": "Sports Academy",
-        "__TYPE__": "ImageContent",
-        "thumbnails": {}
-      },
-      "sub_heading": {
-        "__TYPE__": "FieldContent",
-        "value": "Our Programs",
-        "type": "Text"
-      },
-      "heading": {
-        "__TYPE__": "FieldContent",
-        "value": "Train Like a Champion",
-        "type": "Text"
-      },
-      "description": {
-        "__TYPE__": "StructuredTextContent",
-        "value": [
-          {
-            "type": "paragraph",
-            "content": {
-              "text": "RVS Sports Academy provides structured coaching programs that focus on technical skills, physical fitness, teamwork and leadership for athletes of every age group."
-            }
-          }
-        ]
-      },
-      "basketball_card": {
-        "__TYPE__": "GroupContentType",
-        "value": [
-          {
-            "__TYPE__": "GroupItemContent",
-            "value": [
-              [
-                "basketball_card_image",
-                {
-                  "__TYPE__": "ImageContent",
-                  "url": "https://img.icons8.com/color/96/basketball.png",
-                  "width": 96,
-                  "height": 96,
-                  "alt": "Basketball",
-                  "thumbnails": {}
-                }
-              ],
-              [
-                "basketball_card_heading",
-                {
-                  "__TYPE__": "FieldContent",
-                  "value": "Basketball Coaching",
-                  "type": "Text"
-                }
-              ],
-              [
-                "basketball_card_description",
-                {
-                  "__TYPE__": "StructuredTextContent",
-                  "value": [
-                    {
-                      "type": "paragraph",
-                      "content": {
-                        "text": "Professional basketball coaching focusing on dribbling, shooting, passing, defence and game strategy."
-                      }
-                    }
-                  ]
-                }
-              ]
-            ]
-          }
-        ]
-      },
-      "community_card": {
-        "__TYPE__": "GroupContentType",
-        "value": [
-          {
-            "__TYPE__": "GroupItemContent",
-            "value": [
-              [
-                "community_card_image",
-                {
-                  "__TYPE__": "ImageContent",
-                  "url": "https://img.icons8.com/color/96/training.png",
-                  "width": 96,
-                  "height": 96,
-                  "alt": "Training",
-                  "thumbnails": {}
-                }
-              ],
-              [
-                "community_card_heading",
-                {
-                  "__TYPE__": "FieldContent",
-                  "value": "Fitness & Community",
-                  "type": "Text"
-                }
-              ],
-              [
-                "community_card_description",
-                {
-                  "__TYPE__": "StructuredTextContent",
-                  "value": [
-                    {
-                      "type": "paragraph",
-                      "content": {
-                        "text": "Strength training, endurance sessions, fitness camps and community sports initiatives that inspire healthy lifestyles."
-                      }
-                    }
-                  ]
-                }
-              ]
-            ]
-          }
-        ]
+      "cta_heading": "Ready to Start Your Journey?",
+      "cta_description": [
+        {
+          "type": "paragraph",
+          "text": "Join RVS Sports Academy today and train with experienced coaches in a motivating environment."
+        }
+      ],
+      "cta_button_text": "Enroll Now",
+      "cta_button_link": {
+        "link_type": "Web",
+        "url": "#"
       }
     },
-    "items": []
+    "items": [
+      {
+        "program_image": {
+          "url": "https://images.unsplash.com/photo-1517649763962-0c623066013b?w=800",
+          "alt": "Basketball Coaching"
+        },
+        "program_title": "Basketball Coaching",
+        "program_description": [
+          {
+            "type": "paragraph",
+            "text": "Professional basketball coaching for beginners and advanced players with skill-based training."
+          }
+        ],
+        "age_group": "8–18 Years",
+        "duration": "12 Weeks",
+        "level": "Beginner"
+      },
+      {
+        "program_image": {
+          "url": "https://images.unsplash.com/photo-1517836357463-d25dfeac3438?w=800",
+          "alt": "Fitness Training"
+        },
+        "program_title": "Fitness & Conditioning",
+        "program_description": [
+          {
+            "type": "paragraph",
+            "text": "Improve strength, endurance, agility, flexibility, and overall athletic performance."
+          }
+        ],
+        "age_group": "12+ Years",
+        "duration": "8 Weeks",
+        "level": "Intermediate"
+      },
+      {
+        "program_image": {
+          "url": "https://images.unsplash.com/photo-1517466787929-bc90951d0974?w=800",
+          "alt": "Tournament Preparation"
+        },
+        "program_title": "Tournament Preparation",
+        "program_description": [
+          {
+            "type": "paragraph",
+            "text": "Advanced training sessions focused on match strategy, teamwork, and competition readiness."
+          }
+        ],
+        "age_group": "15+ Years",
+        "duration": "16 Weeks",
+        "level": "Advanced"
+      }
+    ]
   }
 ]

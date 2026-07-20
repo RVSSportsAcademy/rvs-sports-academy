@@ -1,0 +1,124 @@
+[
+  {
+    "__TYPE__": "SharedSliceContent",
+    "variation": "default",
+    "primary": {
+      "subtitle": {
+        "__TYPE__": "FieldContent",
+        "value": "OUR LEADERSHIP",
+        "type": "Text"
+      },
+      "title": {
+        "__TYPE__": "FieldContent",
+        "value": "Meet Our Leadership Team",
+        "type": "Text"
+      },
+      "description": {
+        "__TYPE__": "StructuredTextContent",
+        "value": [
+          {
+            "type": "paragraph",
+            "content": {
+              "text": "Our experienced coaches and mentors are committed to developing athletes into confident leaders through professional coaching, discipline and teamwork."
+            }
+          }
+        ]
+      }
+    },
+    "items": [
+      {
+        "photo": {
+          "__TYPE__": "ImageContent",
+          "url": "https://images.prismic.io/demo/coach1.jpg",
+          "width": 600,
+          "height": 700,
+          "alt": "Head Coach",
+          "thumbnails": {}
+        },
+        "name": {
+          "__TYPE__": "FieldContent",
+          "value": "Rahul Sharma",
+          "type": "Text"
+        },
+        "designation": {
+          "__TYPE__": "FieldContent",
+          "value": "Head Coach",
+          "type": "Text"
+        },
+        "bio": {
+          "__TYPE__": "StructuredTextContent",
+          "value": [
+            {
+              "type": "paragraph",
+              "content": {
+                "text": "Over 15 years of coaching experience with a passion for developing future champions."
+              }
+            }
+          ]
+        }
+      },
+      {
+        "photo": {
+          "__TYPE__": "ImageContent",
+          "url": "https://images.prismic.io/demo/coach2.jpg",
+          "width": 600,
+          "height": 700,
+          "alt": "Technical Director",
+          "thumbnails": {}
+        },
+        "name": {
+          "__TYPE__": "FieldContent",
+          "value": "Priya Singh",
+          "type": "Text"
+        },
+        "designation": {
+          "__TYPE__": "FieldContent",
+          "value": "Technical Director",
+          "type": "Text"
+        },
+        "bio": {
+          "__TYPE__": "StructuredTextContent",
+          "value": [
+            {
+              "type": "paragraph",
+              "content": {
+                "text": "Specialist in athlete development, performance analysis and leadership mentoring."
+              }
+            }
+          ]
+        }
+      },
+      {
+        "photo": {
+          "__TYPE__": "ImageContent",
+          "url": "https://images.prismic.io/demo/coach3.jpg",
+          "width": 600,
+          "height": 700,
+          "alt": "Fitness Coach",
+          "thumbnails": {}
+        },
+        "name": {
+          "__TYPE__": "FieldContent",
+          "value": "Amit Verma",
+          "type": "Text"
+        },
+        "designation": {
+          "__TYPE__": "FieldContent",
+          "value": "Fitness Coach",
+          "type": "Text"
+        },
+        "bio": {
+          "__TYPE__": "StructuredTextContent",
+          "value": [
+            {
+              "type": "paragraph",
+              "content": {
+                "text": "Dedicated to improving athletic performance through strength, conditioning and recovery."
+              }
+            }
+          ]
+        }
+      }
+    ]
+  }
+]

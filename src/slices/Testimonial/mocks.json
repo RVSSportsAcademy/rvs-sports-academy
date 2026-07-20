@@ -1,0 +1,139 @@
+[
+  {
+    "__TYPE__": "SharedSliceContent",
+    "variation": "default",
+    "primary": {
+      "subtitle": {
+        "__TYPE__": "FieldContent",
+        "value": "TESTIMONIALS",
+        "type": "Text"
+      },
+      "title": {
+        "__TYPE__": "FieldContent",
+        "value": "What Our Athletes & Parents Say",
+        "type": "Text"
+      },
+      "description": {
+        "__TYPE__": "StructuredTextContent",
+        "value": [
+          {
+            "type": "paragraph",
+            "content": {
+              "text": "The trust of our athletes, parents and community motivates us to deliver excellence every single day."
+            }
+          }
+        ]
+      }
+    },
+    "items": [
+      {
+        "photo": {
+          "__TYPE__": "ImageContent",
+          "url": "https://images.prismic.io/demo/player1.jpg",
+          "width": 500,
+          "height": 500,
+          "alt": "Athlete",
+          "thumbnails": {}
+        },
+        "name": {
+          "__TYPE__": "FieldContent",
+          "value": "Rahul Sharma",
+          "type": "Text"
+        },
+        "designation": {
+          "__TYPE__": "FieldContent",
+          "value": "National Basketball Player",
+          "type": "Text"
+        },
+        "rating": {
+          "__TYPE__": "FieldContent",
+          "value": 5,
+          "type": "Number"
+        },
+        "testimonial": {
+          "__TYPE__": "StructuredTextContent",
+          "value": [
+            {
+              "type": "paragraph",
+              "content": {
+                "text": "The coaching, discipline and motivation I received completely transformed my confidence and performance."
+              }
+            }
+          ]
+        }
+      },
+      {
+        "photo": {
+          "__TYPE__": "ImageContent",
+          "url": "https://images.prismic.io/demo/parent1.jpg",
+          "width": 500,
+          "height": 500,
+          "alt": "Parent",
+          "thumbnails": {}
+        },
+        "name": {
+          "__TYPE__": "FieldContent",
+          "value": "Anita Verma",
+          "type": "Text"
+        },
+        "designation": {
+          "__TYPE__": "FieldContent",
+          "value": "Parent",
+          "type": "Text"
+        },
+        "rating": {
+          "__TYPE__": "FieldContent",
+          "value": 5,
+          "type": "Number"
+        },
+        "testimonial": {
+          "__TYPE__": "StructuredTextContent",
+          "value": [
+            {
+              "type": "paragraph",
+              "content": {
+                "text": "Excellent facilities, caring coaches and a wonderful environment for children's growth."
+              }
+            }
+          ]
+        }
+      },
+      {
+        "photo": {
+          "__TYPE__": "ImageContent",
+          "url": "https://images.prismic.io/demo/player2.jpg",
+          "width": 500,
+          "height": 500,
+          "alt": "Athlete",
+          "thumbnails": {}
+        },
+        "name": {
+          "__TYPE__": "FieldContent",
+          "value": "Aman Singh",
+          "type": "Text"
+        },
+        "designation": {
+          "__TYPE__": "FieldContent",
+          "value": "State Level Athlete",
+          "type": "Text"
+        },
+        "rating": {
+          "__TYPE__": "FieldContent",
+          "value": 5,
+          "type": "Number"
+        },
+        "testimonial": {
+          "__TYPE__": "StructuredTextContent",
+          "value": [
+            {
+              "type": "paragraph",
+              "content": {
+                "text": "RVS Sports Academy helped me improve my fitness, leadership and game strategy tremendously."
+              }
+            }
+          ]
+        }
+      }
+    ]
+  }
+]

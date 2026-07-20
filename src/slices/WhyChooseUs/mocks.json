@@ -3,32 +3,236 @@
     "__TYPE__": "SharedSliceContent",
     "variation": "default",
     "primary": {
-      "title": {
+      "subtitle": {
         "__TYPE__": "FieldContent",
         "value": "Why Choose Us",
         "type": "Text"
       },
-      "reasons": [
-        {
-          "__TYPE__": "GroupItemContent",
-          "reason_title": {
-            "__TYPE__": "FieldContent",
-            "value": "Expert Coaches",
-            "type": "Text"
-          },
-          "reason_description": {
-            "__TYPE__": "StructuredTextContent",
+      "title": {
+        "__TYPE__": "FieldContent",
+        "value": "Why Athletes Choose RVS Sports Academy",
+        "type": "Text"
+      },
+      "description": {
+        "__TYPE__": "StructuredTextContent",
+        "value": [
+          {
+            "type": "paragraph",
+            "content": {
+              "text": "We provide a professional environment where athletes receive expert coaching, world-class training, competitive exposure, and opportunities to achieve excellence both on and off the field."
+            }
+          }
+        ]
+      },
+      "button_text": {
+        "__TYPE__": "FieldContent",
+        "value": "Join Our Academy",
+        "type": "Text"
+      },
+      "button_link": {
+        "__TYPE__": "LinkContent",
+        "value": {
+          "link_type": "Web",
+          "url": "#"
+        }
+      },
+      "stat_1_number": {
+        "__TYPE__": "FieldContent",
+        "value": "500+",
+        "type": "Text"
+      },
+      "stat_1_label": {
+        "__TYPE__": "FieldContent",
+        "value": "Athletes Trained",
+        "type": "Text"
+      },
+      "stat_2_number": {
+        "__TYPE__": "FieldContent",
+        "value": "20+",
+        "type": "Text"
+      },
+      "stat_2_label": {
+        "__TYPE__": "FieldContent",
+        "value": "Professional Coaches",
+        "type": "Text"
+      },
+      "stat_3_number": {
+        "__TYPE__": "FieldContent",
+        "value": "50+",
+        "type": "Text"
+      },
+      "stat_3_label": {
+        "__TYPE__": "FieldContent",
+        "value": "Championships",
+        "type": "Text"
+      },
+      "reasons": {
+        "__TYPE__": "GroupContentType",
+        "value": [
+          {
+            "__TYPE__": "GroupItemContent",
             "value": [
-              {
-                "type": "paragraph",
-                "content": {
-                  "text": "Our coaches are certified professionals with years of experience."
+              [
+                "reason_title",
+                {
+                  "__TYPE__": "FieldContent",
+                  "value": "Expert Coaching",
+                  "type": "Text"
                 }
-              }
+              ],
+              [
+                "reason_description",
+                {
+                  "__TYPE__": "StructuredTextContent",
+                  "value": [
+                    {
+                      "type": "paragraph",
+                      "content": {
+                        "text": "Learn from experienced and certified coaches dedicated to developing every athlete."
+                      }
+                    }
+                  ]
+                }
+              ]
+            ]
+          },
+          {
+            "__TYPE__": "GroupItemContent",
+            "value": [
+              [
+                "reason_title",
+                {
+                  "__TYPE__": "FieldContent",
+                  "value": "Modern Facilities",
+                  "type": "Text"
+                }
+              ],
+              [
+                "reason_description",
+                {
+                  "__TYPE__": "StructuredTextContent",
+                  "value": [
+                    {
+                      "type": "paragraph",
+                      "content": {
+                        "text": "Train using professional courts, fitness equipment, and structured development programs."
+                      }
+                    }
+                  ]
+                }
+              ]
+            ]
+          },
+          {
+            "__TYPE__": "GroupItemContent",
+            "value": [
+              [
+                "reason_title",
+                {
+                  "__TYPE__": "FieldContent",
+                  "value": "Tournament Exposure",
+                  "type": "Text"
+                }
+              ],
+              [
+                "reason_description",
+                {
+                  "__TYPE__": "StructuredTextContent",
+                  "value": [
+                    {
+                      "type": "paragraph",
+                      "content": {
+                        "text": "Gain valuable match experience through district, state, and national competitions."
+                      }
+                    }
+                  ]
+                }
+              ]
+            ]
+          },
+          {
+            "__TYPE__": "GroupItemContent",
+            "value": [
+              [
+                "reason_title",
+                {
+                  "__TYPE__": "FieldContent",
+                  "value": "Leadership Development",
+                  "type": "Text"
+                }
+              ],
+              [
+                "reason_description",
+                {
+                  "__TYPE__": "StructuredTextContent",
+                  "value": [
+                    {
+                      "type": "paragraph",
+                      "content": {
+                        "text": "Develop confidence, teamwork, discipline, and leadership skills beyond sports."
+                      }
+                    }
+                  ]
+                }
+              ]
+            ]
+          },
+          {
+            "__TYPE__": "GroupItemContent",
+            "value": [
+              [
+                "reason_title",
+                {
+                  "__TYPE__": "FieldContent",
+                  "value": "Safe Environment",
+                  "type": "Text"
+                }
+              ],
+              [
+                "reason_description",
+                {
+                  "__TYPE__": "StructuredTextContent",
+                  "value": [
+                    {
+                      "type": "paragraph",
+                      "content": {
+                        "text": "A supportive and inclusive atmosphere where every athlete can thrive."
+                      }
+                    }
+                  ]
+                }
+              ]
+            ]
+          },
+          {
+            "__TYPE__": "GroupItemContent",
+            "value": [
+              [
+                "reason_title",
+                {
+                  "__TYPE__": "FieldContent",
+                  "value": "Scholarship Support",
+                  "type": "Text"
+                }
+              ],
+              [
+                "reason_description",
+                {
+                  "__TYPE__": "StructuredTextContent",
+                  "value": [
+                    {
+                      "type": "paragraph",
+                      "content": {
+                        "text": "Helping talented athletes access scholarships and professional opportunities."
+                      }
+                    }
+                  ]
+                }
+              ]
             ]
           }
-        }
-      ]
+        ]
+      }
     },
     "items": []
   }
